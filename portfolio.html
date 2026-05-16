@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — YoungJoo Chung</title>
+  <meta name="description" content="Portfolio of marketing campaigns, Figma designs, internships, and social media work by YoungJoo Chung.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">YC</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+        <li><a href="photography.html" class="nav-link">Photography</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── PAGE HERO ──────────────────────────────── -->
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">Portfolio</h1>
+      <p class="reveal reveal-delay-1">A collection of campaigns, design projects, internship work, and social media strategy across marketing, branding, and UI/UX.</p>
+    </div>
+  </section>
+
+  <!-- ── FILTER BAR ─────────────────────────────── -->
+  <div class="filter-bar">
+    <div class="container">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Work</button>
+        <button class="filter-tab" data-filter="internship">Internships</button>
+        <button class="filter-tab" data-filter="class">Class Projects</button>
+        <button class="filter-tab" data-filter="social">Social Media</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROJECTS GRID ──────────────────────────── -->
+  <section class="projects-section">
+    <div class="container">
+      <div class="projects-grid">
+
+        <!-- Bhakti Chai -->
+        <div class="project-card reveal" data-category="class" data-project-id="bhakti-chai">
+          <div class="project-card-image">
+            <img src="images/projects/bhakti-chai/cover.png" alt="Bhakti Chai" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">Bhakti Chai</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Class Project</span>
+            <h3 class="project-card-title">Bhakti Chai</h3>
+            <p class="project-card-subtitle">Growing Gen Z Brand Awareness</p>
+            <p class="project-card-desc">A strategic campaign to expand Bhakti Chai into East Coast college markets through ambassador tours and social media engagement.</p>
+            <div class="project-card-skills">
+              <span class="tag">Media Planning</span>
+              <span class="tag">Campaign Strategy</span>
+              <span class="tag">TikTok / Instagram</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- House of Hur -->
+        <div class="project-card reveal reveal-delay-1" data-category="internship" data-project-id="house-of-hur">
+          <div class="project-card-image">
+            <img src="images/projects/house-of-hur/cover.png" alt="House of Hur" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">House of Hur</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Internship · Seoul, South Korea</span>
+            <h3 class="project-card-title">House of Hur</h3>
+            <p class="project-card-subtitle">Marketing Intern · Aug – Oct 2025</p>
+            <p class="project-card-desc">Led end-to-end influencer campaigns, built operational trackers, and produced TikTok content for product launches at a Seoul-based beauty brand.</p>
+            <div class="project-card-skills">
+              <span class="tag">Influencer Marketing</span>
+              <span class="tag">Modash</span>
+              <span class="tag">TikTok</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The UPS Store -->
+        <div class="project-card reveal reveal-delay-2" data-category="class" data-project-id="ups-store">
+          <div class="project-card-image">
+            <img src="images/projects/ups-store/cover.png" alt="The UPS Store" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">The UPS Store</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Class Project</span>
+            <h3 class="project-card-title">The UPS Store</h3>
+            <p class="project-card-subtitle">Helping Small Businesses Do the Hard Things</p>
+            <p class="project-card-desc">A creative platform bridging The UPS Store and Gen Z entrepreneurs through the "Box Buddies" concept and influencer-led activations.</p>
+            <div class="project-card-skills">
+              <span class="tag">Creative Strategy</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Consumer Insights</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bilin Technology -->
+        <div class="project-card reveal" data-category="internship" data-project-id="bilin-technology">
+          <div class="project-card-image">
+            <img src="images/projects/bilin-technology/cover.png" alt="Bilin Technology" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">Bilin Technology</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Internship · Remote</span>
+            <h3 class="project-card-title">Bilin Technology</h3>
+            <p class="project-card-subtitle">Sales &amp; Marketing Associate Intern · Dec 2023 – Jun 2024</p>
+            <p class="project-card-desc">Executed B2B paid media campaigns that generated 200+ qualified leads and reduced cost-per-lead by 18% through A/B testing and HubSpot automation.</p>
+            <div class="project-card-skills">
+              <span class="tag">HubSpot</span>
+              <span class="tag">Paid Media</span>
+              <span class="tag">A/B Testing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matcha Brand -->
+        <div class="project-card reveal reveal-delay-1" data-category="class" data-project-id="matcha-brand">
+          <div class="project-card-image">
+            <img src="images/projects/matcha-brand/cover.png" alt="Matcha Brand Website" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">Matcha Brand Website</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Figma / UI Design</span>
+            <h3 class="project-card-title">Matcha Brand Website</h3>
+            <p class="project-card-subtitle">Personal Brand Concept</p>
+            <p class="project-card-desc">A full e-commerce layout for a fictional matcha brand — designed in Figma with a focus on clean UI and wellness-inspired aesthetics.</p>
+            <div class="project-card-skills">
+              <span class="tag">Figma</span>
+              <span class="tag">UI/UX Design</span>
+              <span class="tag">Prototyping</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KASA -->
+        <div class="project-card reveal reveal-delay-2" data-category="social" data-project-id="kasa">
+          <div class="project-card-image">
+            <img src="images/projects/kasa/cover.png" alt="KASA Social Media" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">KASA Social Media</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Social Media</span>
+            <h3 class="project-card-title">KASA</h3>
+            <p class="project-card-subtitle">Korean American Student Association · UNC Chapel Hill</p>
+            <p class="project-card-desc">Grew the club's digital presence by 80% in video views and 60% in engagement through a consistent content calendar across Instagram, TikTok, and YouTube.</p>
+            <div class="project-card-skills">
+              <span class="tag">Canva</span>
+              <span class="tag">Procreate</span>
+              <span class="tag">TikTok Editing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Women in Fashion -->
+        <div class="project-card reveal" data-category="class" data-project-id="women-in-fashion">
+          <div class="project-card-image">
+            <img src="images/projects/women-in-fashion/cover.png" alt="Women in Fashion" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">Women in Fashion</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Figma / UI Design</span>
+            <h3 class="project-card-title">Women in Fashion Autobiography</h3>
+            <p class="project-card-subtitle">Academic Figma Assignment</p>
+            <p class="project-card-desc">An interactive digital autobiography of Coco Chanel, Rei Kawakubo, Vivienne Westwood, and Miuccia Prada, exploring their impact through curated visual narrative.</p>
+            <div class="project-card-skills">
+              <span class="tag">Figma</span>
+              <span class="tag">Storytelling</span>
+              <span class="tag">Layout Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Podcast -->
+        <div class="project-card reveal reveal-delay-1" data-category="social" data-project-id="podcast">
+          <div class="project-card-image">
+            <img src="images/projects/podcast/cover.png" alt="Can You Hear Us Now" onerror="this.style.display='none'">
+            <div class="project-card-placeholder">Can You Hear Us Now</div>
+            <div class="project-card-overlay">
+              <span class="overlay-cta">View Details</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-category-badge">Social Media</span>
+            <h3 class="project-card-title">Can You Hear Us Now</h3>
+            <p class="project-card-subtitle">Podcast Social Media · Academic Project</p>
+            <p class="project-card-desc">Developed a full social media strategy for a guest-led podcast — creating clips, promotional posts, and graphics tailored for shareability.</p>
+            <div class="project-card-skills">
+              <span class="tag">Video Editing</span>
+              <span class="tag">Content Strategy</span>
+              <span class="tag">Graphic Design</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECT MODAL ──────────────────────────── -->
+  <div class="modal-overlay" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <p class="modal-category"></p>
+        <h2 class="modal-title"></h2>
+        <p class="modal-subtitle"></p>
+        <p class="modal-time"></p>
+      </div>
+      <div class="modal-body">
+
+        <p class="modal-section-label">Overview</p>
+        <p class="modal-description"></p>
+
+        <div class="modal-bullets-section">
+          <p class="modal-section-label">Key Contributions</p>
+          <ul class="modal-bullets"></ul>
+        </div>
+
+        <p class="modal-section-label">Skills Used</p>
+        <div class="modal-skills"></div>
+
+        <p class="modal-section-label modal-screenshots-label" style="margin-top:32px;">Screenshots</p>
+        <div class="modal-screenshots"></div>
+
+        <div class="modal-link-section" style="display:none;">
+          <a href="#" class="modal-link-btn" target="_blank" rel="noopener">
+            View Project &nbsp;&#8599;
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
