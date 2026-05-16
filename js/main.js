@@ -1,4 +1,44 @@
 /* ============================================
+   FILM GRAIN OVERLAY
+   ============================================ */
+(function initGrain() {
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:1;opacity:0.038;';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const W = 256, H = 256;
+  canvas.width = W; canvas.height = H;
+  let frame = 0;
+  (function draw() {
+    if (++frame % 3 === 0) {
+      const img = ctx.createImageData(W, H);
+      const d = img.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const v = Math.random() * 255 | 0;
+        d[i] = d[i+1] = d[i+2] = v;
+        d[i+3] = 255;
+      }
+      ctx.putImageData(img, 0, 0);
+    }
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* ============================================
+   CURSOR GLOW / SPOTLIGHT
+   ============================================ */
+(function initCursorGlow() {
+  const glow = document.createElement('div');
+  glow.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity 0.6s;';
+  document.body.appendChild(glow);
+  document.addEventListener('mousemove', (e) => {
+    glow.style.opacity = '1';
+    glow.style.background = `radial-gradient(circle 420px at ${e.clientX}px ${e.clientY}px, rgba(245,245,240,0.045) 0%, transparent 70%)`;
+  });
+  document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+})();
+
+/* ============================================
    CUSTOM CURSOR
    ============================================ */
 const cursorDot  = document.querySelector('.cursor-dot');
