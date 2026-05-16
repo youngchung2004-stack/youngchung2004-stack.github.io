@@ -122,7 +122,7 @@ const projects = [
     description: 'A creative platform bridging The UPS Store and Gen Z small business owners. Introduced the "Box Buddies" concept for a more interactive brand experience, alongside "Build-A-PR Box" and influencer collaborations.',
     skills: ['Creative Strategy', 'Consumer Insight Research', 'Presentation Delivery', 'Figma', 'Social Media Content Strategy'],
     bullets: null,
-    screenshots: ['images/projects/ups-store/screenshot-1.png','images/projects/ups-store/screenshot-2.png','images/projects/ups-store/screenshot-3.png','images/projects/ups-store/screenshot-4.png','images/projects/ups-store/screenshot-5.png','images/projects/ups-store/screenshot-6.png']
+    screenshots: ['images/projects/ups-store/screenshot-2.png','images/projects/ups-store/screenshot-3.png','images/projects/ups-store/screenshot-4.png','images/projects/ups-store/screenshot-5.png','images/projects/ups-store/screenshot-6.png']
   },
   {
     id: 'matcha-brand',
