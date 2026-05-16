@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photography — YoungJoo Chung</title>
-  <meta name="description" content="Photography gallery by YoungJoo Chung.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,7 +14,6 @@
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
 
-  <!-- Navigation -->
   <nav class="nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">YC</a>
@@ -23,94 +21,51 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-        <li><a href="photography.html" class="nav-link active">Photography</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link active">Portfolio ↓</a>
+          <div class="nav-dropdown">
+            <a href="portfolio.html#projects">Projects</a>
+            <a href="portfolio.html#internship">Internship</a>
+            <a href="portfolio.html#social-media">Social Media</a>
+            <a href="photography.html">Photography</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ── PAGE HERO ──────────────────────────────── -->
   <section class="page-hero">
     <div class="container">
-      <h1 class="reveal">Photography</h1>
-      <p class="reveal reveal-delay-1">A visual journal — moments captured through my lens.</p>
+      <h1 class="page-hero-title reveal">Photography</h1>
     </div>
   </section>
 
-  <!-- ── GALLERY ────────────────────────────────── -->
   <section class="gallery-section">
     <div class="container">
-
-      <!--
-        HOW TO ADD YOUR PHOTOS:
-        1. Place your photos in the images/photography/ folder
-        2. For each photo, copy one of the <div class="gallery-item"> blocks below
-        3. Set data-src="images/photography/your-photo.jpg"
-        4. Add an <img src="images/photography/your-photo.jpg" alt="description"> inside the div
-        5. Delete the placeholder divs once your photos are added
-      -->
-
       <div class="gallery-grid">
-
-        <div class="gallery-item" data-src="images/photography/000079620005.jpg">
-          <img src="images/photography/000079620005.jpg" alt="Film photograph">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0952.JPG">
-          <img src="images/photography/IMG_0952.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/000079620008.jpg">
-          <img src="images/photography/000079620008.jpg" alt="Film photograph">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_5953.JPG">
-          <img src="images/photography/IMG_5953.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/000079620013.jpg">
-          <img src="images/photography/000079620013.jpg" alt="Film photograph">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0944.JPG">
-          <img src="images/photography/IMG_0944.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/000079620023.jpg">
-          <img src="images/photography/000079620023.jpg" alt="Film photograph">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0926.JPG">
-          <img src="images/photography/IMG_0926.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/000079620032.jpg">
-          <img src="images/photography/000079620032.jpg" alt="Film photograph">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_5946.JPG">
-          <img src="images/photography/IMG_5946.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0078.JPG">
-          <img src="images/photography/IMG_0078.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_5941.JPG">
-          <img src="images/photography/IMG_5941.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0536.JPG">
-          <img src="images/photography/IMG_0536.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0344.JPG">
-          <img src="images/photography/IMG_0344.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0532.JPG">
-          <img src="images/photography/IMG_0532.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0347.JPG">
-          <img src="images/photography/IMG_0347.JPG" alt="Photography">
-        </div>
-        <div class="gallery-item" data-src="images/photography/IMG_0356.JPG">
-          <img src="images/photography/IMG_0356.JPG" alt="Photography">
-        </div>
-
+        <div class="gallery-item" data-src="images/photography/000079620005.jpg"><img src="images/photography/000079620005.jpg" alt="Film photograph"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0952.JPG"><img src="images/photography/IMG_0952.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/000079620008.jpg"><img src="images/photography/000079620008.jpg" alt="Film photograph"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_5953.JPG"><img src="images/photography/IMG_5953.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/000079620013.jpg"><img src="images/photography/000079620013.jpg" alt="Film photograph"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0944.JPG"><img src="images/photography/IMG_0944.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/000079620023.jpg"><img src="images/photography/000079620023.jpg" alt="Film photograph"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0926.JPG"><img src="images/photography/IMG_0926.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/000079620032.jpg"><img src="images/photography/000079620032.jpg" alt="Film photograph"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_5946.JPG"><img src="images/photography/IMG_5946.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0078.JPG"><img src="images/photography/IMG_0078.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_5941.JPG"><img src="images/photography/IMG_5941.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0536.JPG"><img src="images/photography/IMG_0536.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0344.JPG"><img src="images/photography/IMG_0344.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0532.JPG"><img src="images/photography/IMG_0532.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0347.JPG"><img src="images/photography/IMG_0347.JPG" alt="Photography"></div>
+        <div class="gallery-item" data-src="images/photography/IMG_0356.JPG"><img src="images/photography/IMG_0356.JPG" alt="Photography"></div>
       </div>
     </div>
   </section>
 
-  <!-- ── LIGHTBOX ───────────────────────────────── -->
   <div class="lightbox">
     <button class="lightbox-close" aria-label="Close">&times;</button>
     <button class="lightbox-arrow prev" aria-label="Previous">&#8592;</button>
@@ -118,11 +73,13 @@
     <button class="lightbox-arrow next" aria-label="Next">&#8594;</button>
   </div>
 
-  <!-- ── FOOTER ─────────────────────────────────── -->
+  <a href="contact.html" class="footer-cta">
+    <span class="footer-cta-text">GET IN TOUCH</span>
+    <span class="footer-cta-arrow">→</span>
+  </a>
+
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
-    </div>
+    <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
   </footer>
 
   <script src="js/main.js"></script>

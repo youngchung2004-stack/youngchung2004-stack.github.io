@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YoungJoo Chung — Marketing & Growth Professional</title>
-  <meta name="description" content="Portfolio of YoungJoo Chung — Marketing strategist, content creator, and UNC Chapel Hill graduate specializing in digital campaigns and visual storytelling.">
+  <title>YoungJoo Chung — Marketing &amp; Growth</title>
+  <meta name="description" content="Portfolio of YoungJoo Chung — marketing strategist, content creator, and UNC Chapel Hill graduate.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Custom cursor -->
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
 
-  <!-- Navigation -->
+  <!-- ── NAVIGATION ───────────────────────────── -->
   <nav class="nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">YC</a>
@@ -24,144 +23,156 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links">
-        <li><a href="index.html" class="nav-link active">Home</a></li>
-        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-        <li><a href="photography.html" class="nav-link">Photography</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio ↓</a>
+          <div class="nav-dropdown">
+            <a href="portfolio.html#projects">Projects</a>
+            <a href="portfolio.html#internship">Internship</a>
+            <a href="portfolio.html#social-media">Social Media</a>
+            <a href="photography.html">Photography</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ── HERO ───────────────────────────────────── -->
+  <!-- ── HERO ─────────────────────────────────── -->
   <section class="hero">
-    <div class="hero-container">
+    <div class="hero-grid">
 
-      <div class="reveal">
-        <div class="hero-intro-row">
-          <div class="hero-image">
-            <div class="hero-image-frame">
-              <img src="images/profile.jpg" alt="YoungJoo Chung">
-            </div>
-          </div>
-          <div>
-            <span class="hero-greeting">Hello, I'm</span>
-            <h1 class="hero-name">YoungJoo Chung</h1>
+      <!-- Left: paper stack with portrait + callouts -->
+      <div class="paper-stack-wrapper reveal">
+
+        <!-- Callout labels -->
+        <span class="callout callout-creative">creative</span>
+        <span class="callout callout-video">video editor</span>
+        <span class="callout callout-graphic">Graphic designs</span>
+        <span class="callout callout-social">social media</span>
+
+        <!-- SVG Paperclip -->
+        <div class="paper-clip">
+          <svg width="44" height="80" viewBox="0 0 44 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 85 C9 85 4 74 4 63 L4 22 C4 12 12 4 22 4 C32 4 40 12 40 22 L40 63 C40 70 35 76 27 76 L27 20 C27 17 25 14 22 14 C19 14 17 17 17 20 L17 63"
+              stroke="#8a8a8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <!-- Stacked papers -->
+        <div class="paper-stack">
+          <div class="paper paper-back"></div>
+          <div class="paper paper-mid"></div>
+          <div class="paper paper-front">
+            <img src="images/profile.jpg" alt="YoungJoo Chung" class="bw-portrait">
           </div>
         </div>
-        <p class="hero-tagline">
-          Marketing &amp; Growth Professional
-          <span class="hero-sub">UNC Chapel Hill · Advertising &amp; PR · Studio Art</span>
+
+      </div>
+
+      <!-- Right: about text -->
+      <div class="hero-text reveal reveal-delay-1">
+        <span class="about-script">About me</span>
+        <span class="hero-greeting">Hi, I'm YoungJoo</span>
+        <p class="hero-bio">
+          I am a marketing and growth professional focused on bridging the gap between analytical strategy and visual storytelling. A graduate of the University of North Carolina at Chapel Hill with a degree in Advertising and Public Relations and a minor in Studio Art, I bring a unique perspective that combines data-driven execution with a creative edge. My experience spans the beauty and AI data sectors, where I specialize in managing multi-channel digital campaigns and streamlining marketing operations.
         </p>
         <div class="hero-ctas">
-          <a href="https://www.linkedin.com/in/young-chung/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/young-chung/" target="_blank" rel="noopener" class="btn btn-cream">LinkedIn</a>
           <a href="YoungJoo Chung - Resume copy.pdf" target="_blank" class="btn btn-outline">Resume</a>
           <a href="portfolio.html" class="btn btn-outline">View Work</a>
         </div>
       </div>
 
     </div>
-
-    <div class="hero-scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
-  <!-- ── ABOUT ──────────────────────────────────── -->
-  <section class="about section-padding" id="about">
+  <!-- ── SKILLS ────────────────────────────────── -->
+  <section class="skills-section">
     <div class="container">
-      <h2 class="section-title reveal">About Me</h2>
-      <div class="about-content">
-        <div class="about-text reveal reveal-delay-1">
-          <p>I am a marketing and growth professional focused on bridging the gap between analytical strategy and visual storytelling. A graduate of the University of North Carolina at Chapel Hill with a degree in Advertising and Public Relations and a minor in Studio Art, I bring a unique perspective that combines data-driven execution with a creative edge.</p>
-          <p>My experience spans the beauty and AI data sectors, where I specialize in managing multi-channel digital campaigns and streamlining marketing operations.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CORE STRENGTHS ────────────────────────── -->
-  <section class="strengths section-padding bg-off-white">
-    <div class="container">
-      <h2 class="section-title reveal">Core Strengths</h2>
-      <div class="strengths-grid">
-
-        <div class="strength-card reveal reveal-delay-1">
-          <span class="strength-number">01</span>
-          <h3>Strategic Creativity</h3>
-          <p>With a background in Studio Art, I approach digital marketing through a visual lens. I develop cohesive brand aesthetics and high-impact graphics that ensure campaigns are as visually compelling as they are strategically sound.</p>
-        </div>
-
-        <div class="strength-card reveal reveal-delay-2">
-          <span class="strength-number">02</span>
-          <h3>Structural Discipline</h3>
-          <p>I prioritize high-level organization and punctuality in every project. By maintaining operational excellence, I ensure complex workflows — from campaign timelines to large-scale events — are executed with precision and strict adherence to deadlines.</p>
-        </div>
-
-        <div class="strength-card reveal reveal-delay-3">
-          <span class="strength-number">03</span>
-          <h3>Proactive Execution</h3>
-          <p>I am a self-starter who thrives in fast-paced environments by identifying needs before they are assigned. Whether mastering a new tool or managing cross-functional tasks, I take full ownership to ensure project goals are consistently met and exceeded.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SKILLS ─────────────────────────────────── -->
-  <section class="skills section-padding">
-    <div class="container">
-      <h2 class="section-title reveal">Skills</h2>
       <div class="skills-grid">
 
-        <div class="skill-group reveal reveal-delay-1">
-          <h4>Marketing Platforms</h4>
-          <div class="skill-tags">
-            <span class="tag">HubSpot</span>
-            <span class="tag">Modash</span>
+        <div class="skill-block reveal">
+          <div class="skill-icon">
+            <!-- Geometric network / grid icon -->
+            <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="50" height="50" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.3"/>
+              <line x1="1" y1="18" x2="51" y2="18" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.3"/>
+              <line x1="1" y1="34" x2="51" y2="34" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.3"/>
+              <line x1="18" y1="1" x2="18" y2="51" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.3"/>
+              <line x1="34" y1="1" x2="34" y2="51" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.3"/>
+              <circle cx="26" cy="26" r="6" stroke="#FDF6E3" stroke-width="1.2"/>
+              <circle cx="9"  cy="9"  r="2.5" stroke="#FDF6E3" stroke-width="1"/>
+              <circle cx="43" cy="9"  r="2.5" stroke="#FDF6E3" stroke-width="1"/>
+              <circle cx="9"  cy="43" r="2.5" stroke="#FDF6E3" stroke-width="1"/>
+              <circle cx="43" cy="43" r="2.5" stroke="#FDF6E3" stroke-width="1"/>
+              <line x1="11" y1="11" x2="20.5" y2="20.5" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.5"/>
+              <line x1="41" y1="11" x2="31.5" y2="20.5" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.5"/>
+            </svg>
           </div>
+          <p class="skill-name">Digital Strategy</p>
+          <p class="skill-desc">Data-driven campaign planning across paid, owned, and earned channels — from HubSpot automation to media budget management.</p>
         </div>
 
-        <div class="skill-group reveal reveal-delay-2">
-          <h4>Analytics &amp; Data</h4>
-          <div class="skill-tags">
-            <span class="tag">Excel</span>
-            <span class="tag">A/B Testing</span>
-            <span class="tag">Campaign Analytics</span>
-            <span class="tag">Lead Scoring</span>
+        <div class="skill-block reveal reveal-delay-1">
+          <div class="skill-icon">
+            <!-- Concentric circles icon -->
+            <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="26" cy="26" r="24" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.3"/>
+              <circle cx="26" cy="26" r="18" stroke="#FDF6E3" stroke-width="0.9" stroke-opacity="0.5"/>
+              <circle cx="26" cy="26" r="12" stroke="#FDF6E3" stroke-width="1"/>
+              <circle cx="26" cy="26" r="6"  stroke="#FDF6E3" stroke-width="1.2"/>
+              <circle cx="26" cy="26" r="2"  fill="#FDF6E3"/>
+              <line x1="26" y1="2"  x2="26" y2="12" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.4"/>
+              <line x1="26" y1="40" x2="26" y2="50" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.4"/>
+              <line x1="2"  y1="26" x2="12" y2="26" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.4"/>
+              <line x1="40" y1="26" x2="50" y2="26" stroke="#FDF6E3" stroke-width="0.8" stroke-opacity="0.4"/>
+            </svg>
           </div>
+          <p class="skill-name">Social Media</p>
+          <p class="skill-desc">Multi-platform content creation and community management — TikTok, Instagram, and YouTube — with measurable growth in reach and engagement.</p>
         </div>
 
-        <div class="skill-group reveal reveal-delay-3">
-          <h4>Creative &amp; Content</h4>
-          <div class="skill-tags">
-            <span class="tag">Canva</span>
-            <span class="tag">Figma</span>
-            <span class="tag">Procreate</span>
-            <span class="tag">TikTok</span>
-            <span class="tag">Instagram</span>
-            <span class="tag">YouTube</span>
-            <span class="tag">Photography</span>
+        <div class="skill-block reveal reveal-delay-2">
+          <div class="skill-icon">
+            <!-- Waveform / content lines icon -->
+            <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="26" x2="10" y2="26" stroke="#FDF6E3" stroke-width="1" stroke-opacity="0.4"/>
+              <path d="M10 26 L14 14 L18 38 L22 18 L26 34 L30 10 L34 40 L38 20 L42 32 L46 26 L48 26" stroke="#FDF6E3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="4"  y1="12" x2="48" y2="12" stroke="#FDF6E3" stroke-width="0.6" stroke-opacity="0.2"/>
+              <line x1="4"  y1="40" x2="48" y2="40" stroke="#FDF6E3" stroke-width="0.6" stroke-opacity="0.2"/>
+            </svg>
           </div>
+          <p class="skill-name">Content</p>
+          <p class="skill-desc">Visual storytelling through Canva, Procreate, and Figma — from campaign graphics to full UI/UX prototypes that are both strategic and aesthetically driven.</p>
         </div>
 
-        <div class="skill-group reveal reveal-delay-4">
-          <h4>Certifications</h4>
-          <div class="skill-tags">
-            <span class="tag">HubSpot Digital Marketing</span>
-            <span class="tag">HubSpot Inbound Marketing</span>
+        <div class="skill-block reveal reveal-delay-3">
+          <div class="skill-icon">
+            <!-- Pen / writing lines icon -->
+            <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M38 6 L46 14 L18 42 L8 44 L10 34 Z" stroke="#FDF6E3" stroke-width="1.2" stroke-linejoin="round"/>
+              <line x1="30" y1="14" x2="38" y2="22" stroke="#FDF6E3" stroke-width="1" stroke-opacity="0.6"/>
+              <line x1="4"  y1="48" x2="24" y2="48" stroke="#FDF6E3" stroke-width="1" stroke-opacity="0.3"/>
+              <line x1="4"  y1="44" x2="8"  y2="44" stroke="#FDF6E3" stroke-width="1" stroke-opacity="0.3"/>
+            </svg>
           </div>
+          <p class="skill-name">Copywriting</p>
+          <p class="skill-desc">Crafting brand-aligned messaging for campaigns, creator briefs, and social posts — balancing strategic clarity with a compelling creative voice.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ─────────────────────────────────── -->
+  <!-- ── FOOTER CTA ─────────────────────────────── -->
+  <a href="contact.html" class="footer-cta reveal">
+    <span class="footer-cta-text">GET IN TOUCH</span>
+    <span class="footer-cta-arrow">→</span>
+  </a>
+
   <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
-    </div>
+    <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
   </footer>
 
   <script src="js/main.js"></script>
