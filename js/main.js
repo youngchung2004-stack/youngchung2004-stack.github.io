@@ -1,4 +1,25 @@
 /* ============================================
+   CURSOR PARTICLE TRAIL
+   ============================================ */
+(function initParticleTrail() {
+  let lastX = 0, lastY = 0;
+  document.addEventListener('mousemove', (e) => {
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    if (dx * dx + dy * dy < 64) return; // spawn every ~8px
+    lastX = e.clientX; lastY = e.clientY;
+    requestAnimationFrame(() => {
+      const size = (4 + Math.random() * 4) | 0;
+      const p = document.createElement('div');
+      p.className = 'cursor-particle';
+      p.style.cssText = `left:${lastX}px;top:${lastY}px;width:${size}px;height:${size}px;`;
+      p.style.setProperty('--drift', `-${10 + (Math.random() * 18 | 0)}px`);
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 1000);
+    });
+  });
+})();
+
+/* ============================================
    FILM GRAIN OVERLAY
    ============================================ */
 (function initGrain() {

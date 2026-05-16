@@ -64,6 +64,20 @@ body {
   background: rgba(245,245,240,0.08);
 }
 
+@keyframes particle-drift {
+  0%   { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.5) translateY(var(--drift, -18px)); }
+}
+
+.cursor-particle {
+  position: fixed;
+  border-radius: 50%;
+  background: #F5F5F0;
+  pointer-events: none;
+  z-index: 9998;
+  animation: particle-drift 1s ease-out forwards;
+}
+
 /* ============================================
    NAVIGATION
    ============================================ */
