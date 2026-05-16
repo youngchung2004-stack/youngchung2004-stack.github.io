@@ -6,7 +6,7 @@
   <title>Portfolio — YoungJoo Chung</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,30 +14,27 @@
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
 
-  <!-- ── NAVIGATION ───────────────────────────── -->
   <nav class="nav">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">YC</a>
+      <a href="index.html" class="nav-home">Home</a>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
         <li class="nav-item">
           <a href="portfolio.html" class="nav-link active">Portfolio ↓</a>
           <div class="nav-dropdown">
             <a href="portfolio.html#projects">Projects</a>
             <a href="portfolio.html#internship">Internship</a>
             <a href="portfolio.html#social-media">Social Media</a>
-            <a href="photography.html">Photography</a>
           </div>
         </li>
+        <li class="nav-item"><a href="film.html" class="nav-link">Film</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ── PAGE HERO ──────────────────────────────── -->
   <section class="page-hero">
     <div class="container">
       <h1 class="page-hero-title reveal">Portfolio</h1>
@@ -45,7 +42,6 @@
     </div>
   </section>
 
-  <!-- ── FILTER BAR ─────────────────────────────── -->
   <div class="filter-bar">
     <div class="container">
       <div class="filter-tabs">
@@ -57,12 +53,10 @@
     </div>
   </div>
 
-  <!-- ── PROJECTS GRID ──────────────────────────── -->
   <section class="projects-section">
     <div class="container">
       <div class="projects-grid">
 
-        <!-- Bhakti Chai -->
         <div class="project-card reveal" data-category="projects" data-project-id="bhakti-chai">
           <div class="project-card-image">
             <img src="images/projects/bhakti-chai/cover.png" alt="Bhakti Chai">
@@ -74,7 +68,6 @@
           </div>
         </div>
 
-        <!-- The UPS Store -->
         <div class="project-card reveal reveal-delay-1" data-category="projects" data-project-id="ups-store">
           <div class="project-card-image">
             <img src="images/projects/ups-store/cover.png" alt="The UPS Store">
@@ -86,10 +79,9 @@
           </div>
         </div>
 
-        <!-- Matcha Brand -->
         <div class="project-card reveal reveal-delay-2" data-category="projects" data-project-id="matcha-brand">
           <div class="project-card-image">
-            <img src="images/projects/matcha-brand/cover.png" alt="Matcha Brand Website">
+            <img src="images/projects/matcha-brand/cover.png" alt="Matcha Brand">
             <div class="project-card-overlay"><span class="overlay-label">View Details</span></div>
           </div>
           <div class="project-card-meta">
@@ -98,22 +90,21 @@
           </div>
         </div>
 
-        <!-- Women in Fashion -->
         <div class="project-card reveal" data-category="projects" data-project-id="women-in-fashion">
           <div class="project-card-image">
             <img src="images/projects/women-in-fashion/cover.png" alt="Women in Fashion">
             <div class="project-card-overlay"><span class="overlay-label">View Details</span></div>
           </div>
           <div class="project-card-meta">
-            <p class="project-card-title">Women in Fashion Autobiography</p>
+            <p class="project-card-title">Women in Fashion</p>
             <p class="project-card-date">WIN 2024</p>
           </div>
         </div>
 
-        <!-- House of Hur -->
         <div class="project-card reveal reveal-delay-1" data-category="internship" data-project-id="house-of-hur">
           <div class="project-card-image">
-            <img src="images/projects/house-of-hur/cover.png" alt="House of Hur" onerror="this.parentElement.innerHTML='<div class=\'project-card-placeholder\'>House of Hur</div><div class=\'project-card-overlay\'><span class=\'overlay-label\'>View Details</span></div>'">
+            <img src="images/projects/house-of-hur/cover.png" alt="House of Hur"
+              onerror="this.style.display='none'">
             <div class="project-card-overlay"><span class="overlay-label">View Details</span></div>
           </div>
           <div class="project-card-meta">
@@ -122,10 +113,10 @@
           </div>
         </div>
 
-        <!-- Bilin Technology -->
         <div class="project-card reveal reveal-delay-2" data-category="internship" data-project-id="bilin-technology">
           <div class="project-card-image">
-            <img src="images/projects/bilin-technology/cover.png" alt="Bilin Technology" onerror="this.parentElement.innerHTML='<div class=\'project-card-placeholder\'>Bilin Technology</div><div class=\'project-card-overlay\'><span class=\'overlay-label\'>View Details</span></div>'">
+            <img src="images/projects/bilin-technology/cover.png" alt="Bilin Technology"
+              onerror="this.style.display='none'">
             <div class="project-card-overlay"><span class="overlay-label">View Details</span></div>
           </div>
           <div class="project-card-meta">
@@ -134,7 +125,6 @@
           </div>
         </div>
 
-        <!-- KASA -->
         <div class="project-card reveal" data-category="social-media" data-project-id="kasa">
           <div class="project-card-image">
             <img src="images/projects/kasa/cover.png" alt="KASA Social Media">
@@ -146,7 +136,6 @@
           </div>
         </div>
 
-        <!-- Podcast -->
         <div class="project-card reveal reveal-delay-1" data-category="social-media" data-project-id="podcast">
           <div class="project-card-image">
             <img src="images/projects/podcast/cover.png" alt="Can You Hear Us Now">
@@ -162,7 +151,7 @@
     </div>
   </section>
 
-  <!-- ── PROJECT MODAL ──────────────────────────── -->
+  <!-- Modal -->
   <div class="modal-overlay" role="dialog" aria-modal="true">
     <div class="modal">
       <div class="modal-header">
@@ -175,18 +164,14 @@
       <div class="modal-body">
         <p class="modal-section-label">Overview</p>
         <p class="modal-description"></p>
-
         <div class="modal-bullets-section">
           <p class="modal-section-label">Key Contributions</p>
           <ul class="modal-bullets"></ul>
         </div>
-
         <p class="modal-section-label">Skills Used</p>
         <div class="modal-skills"></div>
-
-        <p class="modal-section-label modal-screenshots-label" style="margin-top:28px;">Screenshots</p>
+        <p class="modal-section-label modal-screenshots-label" style="margin-top:26px;">Screenshots</p>
         <div class="modal-screenshots"></div>
-
         <div class="modal-link-section" style="display:none;">
           <a href="#" class="modal-link-btn" target="_blank" rel="noopener">View Project ↗</a>
         </div>
@@ -194,9 +179,8 @@
     </div>
   </div>
 
-  <!-- ── FOOTER CTA ─────────────────────────────── -->
-  <a href="contact.html" class="footer-cta">
-    <span class="footer-cta-text">GET IN TOUCH</span>
+  <a href="contact.html" class="footer-cta-strip">
+    <span class="footer-cta-text">Get In Touch</span>
     <span class="footer-cta-arrow">→</span>
   </a>
 

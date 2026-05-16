@@ -181,7 +181,7 @@ const projects = [
       'Produced custom digital illustrations and graphics using Procreate and Canva.',
       'Shot and edited event photography for promotional use across all channels.'
     ],
-    screenshots: ['images/projects/kasa/screenshot-1.png','images/projects/kasa/screenshot-2.png','images/projects/kasa/screenshot-3.png','images/projects/kasa/screenshot-4.png','images/projects/kasa/screenshot-5.png','images/projects/kasa/screenshot-6.png']
+    screenshots: ['images/projects/kasa/screenshot-1.png','images/projects/kasa/screenshot-2.png','images/projects/kasa/screenshot-3.png','images/projects/kasa/screenshot-4.png']
   },
   {
     id: 'podcast',
