@@ -1,44 +1,4 @@
 /* ============================================
-   CURSOR PARTICLE TRAIL
-   ============================================ */
-(function initParticleTrail() {
-  let lastX = 0, lastY = 0;
-  document.addEventListener('mousemove', (e) => {
-    const dx = e.clientX - lastX, dy = e.clientY - lastY;
-    if (dx * dx + dy * dy < 64) return; // spawn every ~8px
-    lastX = e.clientX; lastY = e.clientY;
-    const x = lastX, y = lastY; // snapshot before rAF delay
-    requestAnimationFrame(() => {
-      const size = (4 + Math.random() * 4) | 0;
-      const drift = -(10 + (Math.random() * 18 | 0));
-      const p = document.createElement('div');
-      p.className = 'cursor-particle';
-      p.style.left   = x + 'px';
-      p.style.top    = y + 'px';
-      p.style.width  = size + 'px';
-      p.style.height = size + 'px';
-      p.style.setProperty('--drift', drift + 'px');
-      document.body.appendChild(p);
-      setTimeout(() => p.remove(), 1000);
-    });
-  });
-})();
-
-/* ============================================
-   CURSOR GLOW / SPOTLIGHT
-   ============================================ */
-(function initCursorGlow() {
-  const glow = document.createElement('div');
-  glow.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity 0.6s;';
-  document.body.appendChild(glow);
-  document.addEventListener('mousemove', (e) => {
-    glow.style.opacity = '1';
-    glow.style.background = `radial-gradient(circle 420px at ${e.clientX}px ${e.clientY}px, rgba(245,245,240,0.045) 0%, transparent 70%)`;
-  });
-  document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
-})();
-
-/* ============================================
    CUSTOM CURSOR
    ============================================ */
 const cursorDot  = document.querySelector('.cursor-dot');
