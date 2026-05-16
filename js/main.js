@@ -25,32 +25,6 @@
 })();
 
 /* ============================================
-   FILM GRAIN OVERLAY
-   ============================================ */
-(function initGrain() {
-  const canvas = document.createElement('canvas');
-  canvas.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:1;opacity:0.038;';
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-  const W = 256, H = 256;
-  canvas.width = W; canvas.height = H;
-  let frame = 0;
-  (function draw() {
-    if (++frame % 3 === 0) {
-      const img = ctx.createImageData(W, H);
-      const d = img.data;
-      for (let i = 0; i < d.length; i += 4) {
-        const v = Math.random() * 255 | 0;
-        d[i] = d[i+1] = d[i+2] = v;
-        d[i+3] = 255;
-      }
-      ctx.putImageData(img, 0, 0);
-    }
-    requestAnimationFrame(draw);
-  })();
-})();
-
-/* ============================================
    CURSOR GLOW / SPOTLIGHT
    ============================================ */
 (function initCursorGlow() {
