@@ -78,6 +78,25 @@ const revealObs = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 /* ============================================
+   FULL-IMAGE OVERLAY (modal image lightbox)
+   ============================================ */
+function openFullImage(src) {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(10,10,10,.97);z-index:500;display:flex;align-items:center;justify-content:center;cursor:zoom-out;';
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = '';
+  img.style.cssText = 'max-width:90vw;max-height:90vh;object-fit:contain;pointer-events:none;';
+  overlay.appendChild(img);
+  const close = () => { overlay.remove(); document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+}
+
+/* ============================================
    PROJECT DATA
    ============================================ */
 const projects = [
@@ -259,8 +278,11 @@ function initModal() {
       } else {
         if (screenshotsLabel) screenshotsLabel.style.display = 'block';
         screenshotsEl.innerHTML = p.screenshots.map(src =>
-          `<div class="modal-screenshot"><img src="${src}" alt="" onerror="this.parentElement.innerHTML='<span>${src}</span>'"></div>`
+          `<div class="modal-screenshot"><img src="${src}" alt="" loading="lazy" style="cursor:zoom-in;" onerror="this.parentElement.style.display='none'"></div>`
         ).join('');
+        screenshotsEl.querySelectorAll('img').forEach(img => {
+          img.addEventListener('click', () => openFullImage(img.src));
+        });
       }
     }
 
