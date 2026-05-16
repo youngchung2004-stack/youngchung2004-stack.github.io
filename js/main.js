@@ -145,7 +145,7 @@ const projects = [
       'Negotiated paid and gifting terms with micro-influencers (up to 100K followers), building long-term relationships through email campaigns.',
       'Planned, filmed, and published TikTok assets for product launches; tested hooks/CTAs and documented learnings for future campaigns.'
     ],
-    screenshots: []
+    screenshots: ['images/projects/house-of-hur/detail.webp']
   },
   {
     id: 'bilin-technology',
