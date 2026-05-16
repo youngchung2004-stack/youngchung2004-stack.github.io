@@ -863,7 +863,7 @@ body {
 
 .film-grid {
   columns: 3;
-  column-gap: 3px;
+  column-gap: 6px;
   margin-bottom: 8px;
 }
 
@@ -888,17 +888,16 @@ body {
 
 .gallery-item {
   break-inside: avoid;
-  margin-bottom: 3px;
+  margin-bottom: 6px;
   cursor: none;
   overflow: hidden;
   display: block;
-  background: #2a2a2a;
 }
 
 .gallery-item img {
   display: block;
   width: 100%;
-  object-fit: contain;
+  height: auto;
   transition: opacity .3s;
 }
 
