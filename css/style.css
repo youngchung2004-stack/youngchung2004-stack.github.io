@@ -243,6 +243,7 @@ body {
   padding: 60px 48px 0;
   position: relative;
   overflow: hidden;
+  background: url('../images/hero-bg.jpeg') center center / cover no-repeat;
 }
 
 .hero-name {
