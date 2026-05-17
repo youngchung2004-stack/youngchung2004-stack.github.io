@@ -316,6 +316,9 @@ body {
 .about-section {
   padding: 120px 0;
   position: relative;
+  margin-top: -120px;
+  padding-top: 200px;
+  z-index: 1;
 }
 
 .about-section::before {
