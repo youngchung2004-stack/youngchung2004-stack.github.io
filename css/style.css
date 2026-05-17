@@ -88,17 +88,19 @@ body {
 }
 
 .nav-home {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #D3D3D3;
   text-decoration: none;
-  transition: color .2s, border-color .2s;
-  border: 1px solid rgba(211,211,211,0.45);
-  padding: 5px 12px;
+  display: flex;
+  align-items: center;
 }
-.nav-home:hover { color: var(--cream); border-color: rgba(245,245,240,0.7); }
+
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  filter: invert(1) brightness(0.85);
+  transition: filter .2s;
+}
+.nav-home:hover .nav-logo-img { filter: invert(1) brightness(1); }
 
 .nav-links {
   list-style: none;
