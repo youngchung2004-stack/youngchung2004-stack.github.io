@@ -231,50 +231,76 @@ body {
 .btn-outline:hover { border-color: var(--cream); transform: translateY(-2px); }
 
 /* ============================================
-   HOME — HERO (full-screen landing)
+   HOME — HERO (split-screen editorial)
    ============================================ */
 .hero {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 60px 48px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   position: relative;
   overflow: hidden;
 }
 
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 64px 80px;
+  position: relative;
+  background: url('../images/gradient-bg.jpeg') center center / cover no-repeat;
+  border-right: none;
+  z-index: 1;
+}
+
+.hero-left-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 13vw, 12rem);
+  font-size: clamp(4.5rem, 9vw, 10rem);
   font-weight: 400;
-  line-height: 0.92;
-  letter-spacing: 0.04em;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--cream);
-  margin-bottom: 28px;
+  color: #1A1A1A;
+  margin-bottom: 32px;
 }
 
 .hero-subhead {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 2.4vw, 1.7rem);
+  font-size: clamp(0.85rem, 1.4vw, 1.2rem);
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--cream-dim);
+  color: rgba(26, 26, 26, 0.6);
 }
 
 .hero-scroll {
   position: absolute;
   bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  color: var(--cream-dim);
+  color: rgba(26, 26, 26, 0.5);
   font-family: var(--font-display);
   font-size: 0.65rem;
   letter-spacing: 0.2em;
@@ -285,7 +311,7 @@ body {
 .hero-scroll-line {
   width: 1px;
   height: 50px;
-  background: linear-gradient(to bottom, var(--cream-dim), transparent);
+  background: linear-gradient(to bottom, rgba(26,26,26,0.4), transparent);
   animation: scrollPulse 2.5s ease infinite;
 }
 
@@ -295,8 +321,8 @@ body {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================
@@ -304,7 +330,6 @@ body {
    ============================================ */
 .about-section {
   padding: 120px 0;
-  border-top: 1px solid var(--cream-border);
 }
 
 .about-grid {
@@ -356,7 +381,6 @@ body {
    ============================================ */
 .strengths-section {
   padding: 80px 0 100px;
-  border-top: 1px solid var(--cream-border);
 }
 
 .strengths-label {
@@ -429,7 +453,6 @@ body {
    ============================================ */
 .skills-section {
   padding: 80px 0 100px;
-  border-top: 1px solid var(--cream-border);
 }
 
 .skills-section-title {
@@ -483,7 +506,6 @@ body {
    FOOTER CTA
    ============================================ */
 .footer-cta-strip {
-  border-top: 1px solid var(--cream-border);
   padding: 40px 48px;
   display: flex;
   align-items: center;
@@ -511,7 +533,6 @@ body {
 
 .footer {
   padding: 18px 48px;
-  border-top: 1px solid var(--cream-border);
   text-align: center;
 }
 
@@ -1097,9 +1118,23 @@ body {
   .nav-dropdown a { padding: 12px 28px 12px 44px; }
   .nav-toggle { display: flex; }
 
-  .hero { padding: 60px 24px 0; }
-  .hero-name { font-size: clamp(3rem, 15vw, 6rem); }
-  .hero-subhead { font-size: clamp(0.7rem, 3.5vw, 1rem); letter-spacing: 0.12em; }
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 55vh 45vh;
+    height: 100dvh;
+  }
+  .hero-left {
+    order: 2;
+    padding: 40px 28px 60px;
+    border-right: none;
+    border-top: 1px solid var(--cream-border);
+    justify-content: flex-start;
+  }
+  .hero-left-content { flex: none; }
+  .hero-right { order: 1; }
+  .hero-scroll { left: 28px; bottom: 20px; }
+  .hero-name { font-size: clamp(3.2rem, 13vw, 6rem); margin-bottom: 16px; }
+  .hero-subhead { font-size: clamp(0.7rem, 3.5vw, 1rem); letter-spacing: 0.14em; }
 
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-photo-wrap img { max-height: 420px; }
