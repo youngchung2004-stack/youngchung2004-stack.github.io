@@ -81,7 +81,7 @@ body {
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 32px;
-  height: 60px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -94,7 +94,7 @@ body {
 }
 
 .nav-logo-img {
-  height: 72px;
+  height: 90px;
   width: auto;
   display: block;
   filter: invert(1) brightness(0.85);
