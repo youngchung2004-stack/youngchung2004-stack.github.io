@@ -243,8 +243,6 @@ body {
   padding: 60px 48px 0;
   position: relative;
   overflow: hidden;
-  /* Static fallback for mobile / no-WebGL */
-  background: url('../images/water-bg.jpg') center/cover no-repeat;
 }
 
 .hero-name {
