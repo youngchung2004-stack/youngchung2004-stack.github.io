@@ -270,8 +270,8 @@ body {
 }
 
 .hero-portrait-wrap {
-  width: 82%;
-  max-width: 1100px;
+  width: 96%;
+  max-width: none;
   overflow: hidden;
   margin: 0 auto;
 }
@@ -1193,6 +1193,11 @@ body.light-theme .modal-close:hover { border-color: #1A1A1A; color: #1A1A1A; }
 body.light-theme .cursor-dot { background: #1A1A1A; }
 body.light-theme .cursor-ring { border-color: rgba(26,26,26,0.3); }
 body.light-theme .cursor-ring.hovering { border-color: #1A1A1A; background: rgba(26,26,26,0.05); }
+
+body.light-theme .film-category-title {
+  color: #1A1A1A;
+  border-bottom-color: rgba(26,26,26,0.5);
+}
 
 body.light-theme .footer-cta-strip:hover { background: rgba(26,26,26,0.04); }
 body.light-theme .footer a { color: rgba(26,26,26,0.6); }
