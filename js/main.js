@@ -212,7 +212,7 @@ const projects = [
     description: 'Developed a comprehensive social media strategy to promote guest-led podcast episodes, specializing in identifying high-impact segments to create engaging clips and promotional posts.',
     skills: ['Video Snippet Editing', 'Social Media Promotion', 'Content Curation', 'Podcast Hosting', 'Graphic Design'],
     bullets: null,
-    screenshots: ['images/projects/podcast/screenshot-1.png','images/projects/podcast/screenshot-2.png','images/projects/podcast/screenshot-3.png','images/projects/podcast/screenshot-4.png','images/projects/podcast/screenshot-5.png']
+    screenshots: ['images/projects/podcast/screenshot-1.png','images/projects/podcast/screenshot-2.png','images/projects/podcast/screenshot-3.png']
   }
 ];
 
