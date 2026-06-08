@@ -560,6 +560,62 @@
       color: rgba(245,245,240,.35);
     }
 
+    /* ── Dev & Iteration Section ─────────────────── */
+    .dev-section {
+      padding: 0 0 64px;
+    }
+    .dev-card {
+      border: 1px solid rgba(245,245,240,.09);
+      background: rgba(245,245,240,.025);
+    }
+    .dev-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 32px;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .dev-header-icon { font-size: 1rem; line-height: 1; }
+    .dev-header-title {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.35);
+    }
+    .dev-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .dev-block {
+      padding: 32px;
+      border-right: 1px solid rgba(245,245,240,.07);
+    }
+    .dev-block:last-child { border-right: none; }
+    .dev-block-label {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.5);
+      margin-bottom: 14px;
+    }
+    .dev-block-body {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      line-height: 1.82;
+      color: rgba(245,245,240,.42);
+    }
+
+    @media (max-width: 900px) {
+      .dev-grid { grid-template-columns: 1fr; }
+      .dev-block { border-right: none; border-bottom: 1px solid rgba(245,245,240,.07); }
+      .dev-block:last-child { border-bottom: none; }
+      .dev-card-header { padding: 18px 24px; }
+      .dev-block { padding: 26px 24px; }
+    }
+
     @media (max-width: 900px) {
       .pc-layout { grid-template-columns: 1fr; }
       .pc-panel { border-right: none; border-bottom: 1px solid rgba(245,245,240,.07); }
@@ -799,6 +855,28 @@
 
         </div><!-- /pc-panel-right -->
       </div><!-- /pc-layout -->
+    </div>
+  </section>
+
+  <!-- ── Dev & Iteration ──────────────────────── -->
+  <section class="dev-section">
+    <div class="container">
+      <div class="dev-card">
+        <div class="dev-card-header">
+          <span class="dev-header-icon">🛠️</span>
+          <span class="dev-header-title">Development &amp; Iteration</span>
+        </div>
+        <div class="dev-grid">
+          <div class="dev-block">
+            <p class="dev-block-label">Architecture &amp; Design</p>
+            <p class="dev-block-body">I mapped out the database schema and compliance logic required to handle modern user privacy preferences. My goal was to create an interface that replaces intrusive cookie banners with a high-trust, brand-aligned data collection tool.</p>
+          </div>
+          <div class="dev-block">
+            <p class="dev-block-label">AI-Assisted Execution</p>
+            <p class="dev-block-body">To rapidly bring this concept to life, I acted as the Product Manager and Frontend Director, using Claude Code to programmatically generate and refine the responsive layout. This allowed me to pivot my focus from writing boilerplate syntax to optimizing the user flow, state management, and clear visual feedback when a user modifies their marketing consent profile.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

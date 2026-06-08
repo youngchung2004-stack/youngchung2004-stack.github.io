@@ -537,6 +537,62 @@
       opacity: .4;
     }
 
+    /* ── Dev & Iteration Section ─────────────────── */
+    .dev-section {
+      padding: 0 0 64px;
+    }
+    .dev-card {
+      border: 1px solid rgba(245,245,240,.09);
+      background: rgba(245,245,240,.025);
+    }
+    .dev-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 32px;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .dev-header-icon { font-size: 1rem; line-height: 1; }
+    .dev-header-title {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.35);
+    }
+    .dev-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .dev-block {
+      padding: 32px;
+      border-right: 1px solid rgba(245,245,240,.07);
+    }
+    .dev-block:last-child { border-right: none; }
+    .dev-block-label {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.5);
+      margin-bottom: 14px;
+    }
+    .dev-block-body {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      line-height: 1.82;
+      color: rgba(245,245,240,.42);
+    }
+
+    @media (max-width: 900px) {
+      .dev-grid { grid-template-columns: 1fr; }
+      .dev-block { border-right: none; border-bottom: 1px solid rgba(245,245,240,.07); }
+      .dev-block:last-child { border-bottom: none; }
+      .dev-card-header { padding: 18px 24px; }
+      .dev-block { padding: 26px 24px; }
+    }
+
     @media (max-width: 900px) {
       .brand-hero-body { grid-template-columns: 1fr; }
       .brand-products { padding-left: 0; }
@@ -717,6 +773,28 @@
 
       </div><!-- /brand-stage -->
 
+    </div>
+  </section>
+
+  <!-- ── Dev & Iteration ──────────────────────── -->
+  <section class="dev-section">
+    <div class="container">
+      <div class="dev-card">
+        <div class="dev-card-header">
+          <span class="dev-header-icon">🛠️</span>
+          <span class="dev-header-title">Development &amp; Iteration</span>
+        </div>
+        <div class="dev-grid">
+          <div class="dev-block">
+            <p class="dev-block-label">Architecture &amp; Design</p>
+            <p class="dev-block-body">I designed the audience segmentation strategy for this project, defining three distinct target customer personas. I mapped out how a single brand's messaging, imagery, and product layout should dynamically shift to maximize conversion rates for each psychological profile.</p>
+          </div>
+          <div class="dev-block">
+            <p class="dev-block-label">AI-Assisted Execution</p>
+            <p class="dev-block-body">I leveraged Claude Code as my technical copilot to construct the conditional rendering logic and fluid transition animations. By delegating the raw coding execution to AI, I was able to dedicate my time to high-value marketing tasks: precise copywriting differentiation, psychological targeting strategy, and creating a seamless visual user experience.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
