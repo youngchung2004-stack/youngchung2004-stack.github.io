@@ -36,11 +36,13 @@
       margin-bottom: 26px;
     }
     .page-sub {
-      font-family: var(--font-serif);
-      font-size: 1rem;
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 400;
       line-height: 1.82;
-      color: rgba(245,245,240,.5);
+      color: rgba(245,245,240,.78);
       max-width: 600px;
+      letter-spacing: 0.01em;
     }
     .page-tags {
       display: flex; flex-wrap: wrap; gap: 9px;
@@ -451,10 +453,12 @@
       color: var(--cream);
     }
     .exp-h-body {
-      font-family: var(--font-serif);
-      font-size: 0.98rem;
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 400;
       line-height: 1.82;
-      color: rgba(245,245,240,.48);
+      color: rgba(245,245,240,.78);
+      letter-spacing: 0.01em;
     }
     .exp-cards {
       display: grid;
@@ -485,9 +489,11 @@
     }
     .exp-card-body {
       font-family: var(--font-sans);
-      font-size: 0.78rem;
-      line-height: 1.68;
-      color: rgba(245,245,240,.33);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.78;
+      color: rgba(245,245,240,.75);
+      letter-spacing: 0.01em;
     }
 
     /* Persona legend */
@@ -524,12 +530,13 @@
       margin-top: 10px;
     }
     .legend-signal {
-      font-family: 'Courier New', monospace;
-      font-size: 0.67rem;
-      color: rgba(245,245,240,.25);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: rgba(245,245,240,.68);
       display: flex;
       gap: 8px;
       align-items: center;
+      letter-spacing: 0.01em;
     }
     .legend-signal::before {
       content: '→';
@@ -580,9 +587,10 @@
     }
     .dev-block-body {
       font-family: var(--font-sans);
-      font-size: 0.88rem;
-      line-height: 1.82;
-      color: rgba(245,245,240,.42);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(245,245,240,.78);
     }
 
     @media (max-width: 900px) {
