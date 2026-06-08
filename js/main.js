@@ -63,11 +63,16 @@ if (navToggle && navLinks) {
     spans[2].style.transform = open ? 'rotate(-45deg) translate(5px, -5px)' : '';
   });
 
-  // Close menu when a non-dropdown link is tapped on mobile
+  // Close when any nav-link without a sub-menu is tapped
   navLinks.querySelectorAll('.nav-link').forEach(link => {
     if (!link.closest('.nav-item').querySelector('.nav-dropdown')) {
       link.addEventListener('click', closeMobileMenu);
     }
+  });
+
+  // Close when tapping the overlay background (not a link/button)
+  navLinks.addEventListener('click', (e) => {
+    if (e.target === navLinks) closeMobileMenu();
   });
 }
 

@@ -1031,41 +1031,70 @@ body {
   .container { padding: 0 24px; }
   .nav-container { padding: 0 20px; }
 
-  /* Scale logo down so it fits cleanly inside the 80px nav bar */
+  /* Logo scales down to sit cleanly inside the 80px nav bar */
   .nav-logo-img { height: 48px; }
 
-  /* Mobile menu panel — slides down from below the nav bar */
+  /* Hamburger: show on mobile, ensure it sits above the overlay */
+  .nav-toggle {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    z-index: 101;
+    padding: 8px;
+  }
+
+  /* Make bars slightly thicker and wider for better visibility */
+  .nav-toggle span {
+    width: 24px;
+    height: 2px;
+  }
+
+  /* ── Full-screen overlay — hidden by default via opacity+visibility ── */
+  /* This is far more reliable than transform-translate across all devices */
   .nav-links {
     position: fixed;
-    top: 80px; left: 0; right: 0;
-    background: rgba(17,17,17,.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    inset: 0;
+    background: rgba(14,14,14,.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 0;
-    border-bottom: 1px solid var(--cream-border);
-    transform: translateY(-110%);
-    transition: transform .35s var(--ease);
-    z-index: 99;
+    padding-top: 80px;          /* push content below the nav bar */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .28s ease, visibility .28s ease;
+    z-index: 99;                 /* below nav (z-100) so hamburger stays tappable */
   }
 
-  .nav-links.open { transform: translateY(0); }
-  .nav-links li { width: 100%; }
+  /* Open state: simply fade in */
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+  }
 
-  /* Larger tap targets for thumb-friendly navigation */
+  .nav-links li { width: 100%; text-align: center; }
+
+  /* Large, centred tap targets */
   .nav-link {
     display: block;
-    padding: 20px 24px;
-    font-size: 1.05rem;
-    letter-spacing: 0.16em;
+    padding: 24px 32px;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
     border-bottom: 1px solid rgba(245,245,240,.07);
+    color: rgba(245,245,240,.7);
   }
 
+  .nav-link:hover,
+  .nav-link.active { color: var(--cream); }
+
+  /* Sub-menu inside the overlay */
   .nav-dropdown {
     position: static;
-    background: rgba(0,0,0,.28);
+    background: rgba(0,0,0,.3);
     border: none;
-    border-top: 1px solid rgba(245,245,240,.07);
+    border-top: 1px solid rgba(245,245,240,.06);
     opacity: 1;
     pointer-events: all;
     transform: none;
@@ -1074,15 +1103,16 @@ body {
   }
 
   .nav-item.dropdown-open .nav-dropdown { display: block; }
-  .nav-dropdown a {
-    padding: 14px 24px 14px 42px;
-    font-size: 0.88rem;
-    border-bottom: 1px solid rgba(245,245,240,.05);
-  }
-  .nav-dropdown a:last-child { border-bottom: none; }
 
-  /* Show hamburger; make it pointer since cursor:none is disabled on mobile */
-  .nav-toggle { display: flex; cursor: pointer; }
+  .nav-dropdown a {
+    padding: 16px 32px;
+    font-size: 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(245,245,240,.05);
+    color: rgba(245,245,240,.5);
+  }
+
+  .nav-dropdown a:last-child { border-bottom: none; }
 
   .hero { padding: 60px 24px 0; }
   .hero-name { font-size: clamp(3rem, 15vw, 6rem); }
