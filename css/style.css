@@ -370,78 +370,6 @@ body {
 .about-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* ============================================
-   HOME — STRENGTHS
-   ============================================ */
-.strengths-section {
-  padding: 80px 0 100px;
-}
-
-.strengths-label {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #D3D3D3;
-  margin-bottom: 48px;
-  line-height: 1;
-}
-
-.strengths-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.strength-card {
-  background: var(--bg-card);
-  border: 1px solid var(--cream-border);
-  padding: 40px 32px;
-  transition: border-color .3s, transform .3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.strength-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 2px; height: 0;
-  background: var(--cream);
-  transition: height .4s var(--ease);
-}
-
-.strength-card:hover { border-color: rgba(245,245,240,0.3); transform: translateY(-4px); }
-.strength-card:hover::before { height: 100%; }
-
-.strength-num {
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  color: var(--cream-dim);
-  margin-bottom: 18px;
-  display: block;
-}
-
-.strength-name {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--cream);
-  margin-bottom: 14px;
-  line-height: 1.1;
-}
-
-.strength-desc {
-  font-family: var(--font-serif);
-  font-size: 0.88rem;
-  line-height: 1.75;
-  color: var(--cream-dim);
-}
-
-/* ============================================
    HOME — SKILLS
    ============================================ */
 .skills-section {
@@ -683,30 +611,30 @@ body {
 .project-card.filtered-out { display: none; }
 
 /* ── Portfolio Category Groups (portfolio.html only) ── */
-.project-group + .project-group { margin-top: 60px; }
+.project-group + .project-group { margin-top: 80px; }
 .project-group.filtered-out { display: none; }
 
 .project-group-header {
-  padding: 0 48px 16px;
-  border-bottom: 1px solid rgba(245,245,240,.07);
+  padding: 48px 48px 24px;
+  border-bottom: 1px solid rgba(245,245,240,.1);
   margin-bottom: 2px;
   display: flex;
-  align-items: center;
-  gap: 18px;
+  align-items: flex-end;
+  gap: 24px;
 }
 
 .project-group-label {
   font-family: var(--font-display);
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(245,245,240,.32);
+  line-height: 1;
+  color: rgba(245,245,240,.72);
 }
 
 .project-group-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(245,245,240,.05);
+  display: none;
 }
 
 /* ============================================
@@ -1148,7 +1076,6 @@ body {
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-photo-wrap img { max-height: 420px; }
 
-  .strengths-grid { grid-template-columns: 1fr; }
   .skills-grid    { grid-template-columns: 1fr; }
   .skill-block    { border-right: none; border-bottom: 1px solid var(--cream-border); }
 
@@ -1157,8 +1084,8 @@ body {
   .gallery-grid { columns: 1; }
 
   .projects-grid { grid-template-columns: 1fr; }
-  .project-group-header { padding: 0 20px 14px; }
-  .project-group + .project-group { margin-top: 44px; }
+  .project-group-header { padding: 36px 20px 20px; }
+  .project-group + .project-group { margin-top: 56px; }
 
   .modal { max-height: 100vh; }
   .modal-header { padding: 28px 24px; }
@@ -1213,9 +1140,8 @@ body.light-theme .filter-tab { color: rgba(26,26,26,0.55); border-color: rgba(26
 body.light-theme .filter-tab:hover { color: #1A1A1A; border-color: rgba(26,26,26,0.4); }
 body.light-theme .filter-tab.active { background: #1A1A1A; color: #F5F5F0; border-color: #1A1A1A; }
 
-body.light-theme .project-group-header { border-bottom-color: rgba(26,26,26,.1); }
-body.light-theme .project-group-label { color: rgba(26,26,26,.35); }
-body.light-theme .project-group-line { background: rgba(26,26,26,.07); }
+body.light-theme .project-group-header { border-bottom-color: rgba(26,26,26,.12); }
+body.light-theme .project-group-label { color: rgba(26,26,26,.65); }
 
 body.light-theme .project-card-image { background: #DEDED9; }
 body.light-theme .project-card-overlay { background: rgba(245,245,240,0.88); }
