@@ -611,26 +611,23 @@ body {
 .project-card.filtered-out { display: none; }
 
 /* ── Portfolio Category Groups (portfolio.html only) ── */
-.project-group + .project-group { margin-top: 80px; }
+.project-group + .project-group { margin-top: 100px; }
 .project-group.filtered-out { display: none; }
 
 .project-group-header {
-  padding: 48px 48px 24px;
-  border-bottom: 1px solid rgba(245,245,240,.1);
+  padding: 64px 48px 28px;
+  border-bottom: 1px solid rgba(245,245,240,.12);
   margin-bottom: 2px;
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
 }
 
 .project-group-label {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   line-height: 1;
-  color: rgba(245,245,240,.72);
+  color: rgba(245,245,240,.92);
 }
 
 .project-group-line {
@@ -1102,8 +1099,9 @@ body {
   .gallery-grid { columns: 1; }
 
   .projects-grid { grid-template-columns: 1fr; }
-  .project-group-header { padding: 36px 20px 20px; }
-  .project-group + .project-group { margin-top: 56px; }
+  .project-group-header { padding: 44px 20px 22px; }
+  .project-group + .project-group { margin-top: 72px; }
+  .project-group-label { font-size: clamp(2.2rem, 9vw, 3rem); }
 
   .modal { max-height: 100vh; }
   .modal-header { padding: 28px 24px; }
@@ -1158,8 +1156,8 @@ body.light-theme .filter-tab { color: rgba(26,26,26,0.55); border-color: rgba(26
 body.light-theme .filter-tab:hover { color: #1A1A1A; border-color: rgba(26,26,26,0.4); }
 body.light-theme .filter-tab.active { background: #1A1A1A; color: #F5F5F0; border-color: #1A1A1A; }
 
-body.light-theme .project-group-header { border-bottom-color: rgba(26,26,26,.12); }
-body.light-theme .project-group-label { color: rgba(26,26,26,.65); }
+body.light-theme .project-group-header { border-bottom-color: rgba(26,26,26,.15); }
+body.light-theme .project-group-label { color: #1A1A1A; }
 
 body.light-theme .project-card-image { background: #DEDED9; }
 body.light-theme .project-card-overlay { background: rgba(245,245,240,0.88); }
