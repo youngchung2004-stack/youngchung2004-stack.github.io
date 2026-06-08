@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Automation Engine — YoungJoo Chung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Page Hero ─────────────────────────────── */
+    .auto-hero {
+      padding: 160px 0 80px;
+      border-bottom: 1px solid rgba(245,245,240,.08);
+    }
+    .auto-hero-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.4);
+      margin-bottom: 20px;
+    }
+    .auto-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 0.92;
+      color: var(--cream);
+      margin-bottom: 28px;
+    }
+    .auto-hero-sub {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(245,245,240,.55);
+      max-width: 620px;
+    }
+    .auto-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+    .auto-tag {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.5);
+      border: 1px solid rgba(245,245,240,.12);
+      padding: 6px 14px;
+    }
+
+    /* ── Simulator Wrapper ──────────────────────── */
+    .simulator-section {
+      padding: 80px 0 60px;
+    }
+    .sim-label {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.35);
+      margin-bottom: 40px;
+    }
+
+    /* ── Three-Column Grid ──────────────────────── */
+    .sim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(245,245,240,.1);
+      position: relative;
+    }
+
+    .sim-col {
+      padding: 36px 32px;
+      border-right: 1px solid rgba(245,245,240,.08);
+      position: relative;
+    }
+    .sim-col:last-child { border-right: none; }
+
+    .sim-col-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.28);
+      margin-bottom: 6px;
+    }
+    .sim-col-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+
+    /* ── Column 1: Form ─────────────────────────── */
+    .sim-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .sim-input, .sim-textarea {
+      width: 100%;
+      background: rgba(245,245,240,.04);
+      border: 1px solid rgba(245,245,240,.1);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color .2s;
+      resize: none;
+    }
+    .sim-input::placeholder, .sim-textarea::placeholder {
+      color: rgba(245,245,240,.25);
+    }
+    .sim-input:focus, .sim-textarea:focus {
+      border-color: rgba(245,245,240,.3);
+    }
+    .sim-textarea { height: 80px; }
+
+    .sim-btn {
+      margin-top: 6px;
+      background: var(--cream);
+      color: #1A1A1A;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 13px 20px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .sim-btn:hover { background: #e8e8e3; transform: translateY(-1px); }
+    .sim-btn:active { transform: translateY(0); }
+    .sim-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    /* ── Column 2: Engine Steps ─────────────────── */
+    .engine-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .engine-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border: 1px solid rgba(245,245,240,.06);
+      transition: border-color .3s, background .3s;
+      position: relative;
+    }
+    .engine-step.active {
+      border-color: rgba(245,245,240,.25);
+      background: rgba(245,245,240,.04);
+    }
+    .engine-step.done {
+      border-color: rgba(120,200,120,.3);
+      background: rgba(120,200,120,.04);
+    }
+    .step-icon {
+      font-size: 0.9rem;
+      color: rgba(245,245,240,.25);
+      margin-top: 2px;
+      transition: color .3s;
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+    }
+    .engine-step.active .step-icon { color: var(--cream); }
+    .engine-step.done .step-icon { color: #78c878; }
+    .step-name {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.5);
+      transition: color .3s;
+      margin-bottom: 5px;
+    }
+    .engine-step.active .step-name { color: var(--cream); }
+    .engine-step.done .step-name { color: rgba(120,200,120,.9); }
+    .step-output {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: rgba(245,245,240,.35);
+      min-height: 16px;
+      transition: color .3s;
+    }
+    .engine-step.done .step-output { color: rgba(120,200,120,.7); }
+    .step-spinner {
+      display: none;
+      width: 10px; height: 10px;
+      border: 1.5px solid rgba(245,245,240,.15);
+      border-top-color: var(--cream);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .engine-step.active .step-spinner { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Column 3: Endpoints ────────────────────── */
+    .endpoints {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .endpoint {
+      padding: 20px 18px;
+      border: 1px solid rgba(245,245,240,.08);
+      position: relative;
+      transition: border-color .4s, background .4s, transform .3s;
+    }
+    .endpoint-icon {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .endpoint-name {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.6);
+      margin-bottom: 6px;
+      transition: color .3s;
+    }
+    .endpoint-desc {
+      font-family: var(--font-sans);
+      font-size: 0.73rem;
+      color: rgba(245,245,240,.25);
+      line-height: 1.5;
+    }
+    .endpoint-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid rgba(245,245,240,.1);
+      color: rgba(245,245,240,.3);
+      transition: all .3s;
+    }
+
+    /* Endpoint hit states */
+    .endpoint.hit-high {
+      border-color: rgba(100,220,130,.5);
+      background: rgba(100,220,130,.06);
+      transform: translateY(-2px);
+    }
+    .endpoint.hit-high .endpoint-name { color: #64dc82; }
+    .endpoint.hit-high .endpoint-badge {
+      border-color: rgba(100,220,130,.4);
+      color: #64dc82;
+      background: rgba(100,220,130,.1);
+    }
+    .endpoint.hit-nurture {
+      border-color: rgba(120,160,255,.5);
+      background: rgba(120,160,255,.06);
+      transform: translateY(-2px);
+    }
+    .endpoint.hit-nurture .endpoint-name { color: #78a0ff; }
+    .endpoint.hit-nurture .endpoint-badge {
+      border-color: rgba(120,160,255,.4);
+      color: #78a0ff;
+      background: rgba(120,160,255,.1);
+    }
+
+    /* ── Data Packet ────────────────────────────── */
+    .data-packet {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--cream);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(245,245,240,.15), 0 0 16px rgba(245,245,240,.4);
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: left .5s cubic-bezier(0.4,0,0.2,1),
+                  top .5s cubic-bezier(0.4,0,0.2,1),
+                  opacity .25s;
+    }
+    .data-packet.visible { opacity: 1; }
+    .data-packet.high-priority {
+      background: #64dc82;
+      box-shadow: 0 0 0 3px rgba(100,220,130,.2), 0 0 16px rgba(100,220,130,.5);
+    }
+    .data-packet.nurture {
+      background: #78a0ff;
+      box-shadow: 0 0 0 3px rgba(120,160,255,.2), 0 0 16px rgba(120,160,255,.5);
+    }
+
+    /* ── Connector Arrows ───────────────────────── */
+    .sim-connectors {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .connector-arrow {
+      position: absolute;
+      top: 50%;
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      color: rgba(245,245,240,.15);
+      letter-spacing: 0.1em;
+      transform: translateY(-50%);
+    }
+    .connector-arrow.left  { left: 33.33%; transform: translate(-50%, -50%); }
+    .connector-arrow.right { left: 66.66%; transform: translate(-50%, -50%); }
+
+    /* ── Speed-to-Lead Section ──────────────────── */
+    .speed-section {
+      padding: 70px 0 100px;
+      border-top: 1px solid rgba(245,245,240,.07);
+    }
+    .speed-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .speed-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .speed-body {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(245,245,240,.55);
+    }
+    .speed-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(245,245,240,.06);
+    }
+    .stat-row:first-child { border-top: 1px solid rgba(245,245,240,.06); }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--cream);
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      min-width: 100px;
+    }
+    .stat-desc {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: rgba(245,245,240,.4);
+      line-height: 1.5;
+    }
+
+    /* ── Status Log ─────────────────────────────── */
+    .sim-log {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: rgba(245,245,240,.03);
+      border: 1px solid rgba(245,245,240,.06);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: rgba(245,245,240,.3);
+      min-height: 48px;
+      line-height: 1.7;
+    }
+    .log-line { display: block; }
+    .log-line.success { color: rgba(100,220,130,.7); }
+    .log-line.info    { color: rgba(120,160,255,.7); }
+    .log-line.warn    { color: rgba(245,200,80,.6); }
+
+    /* ── Responsive ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .sim-grid { grid-template-columns: 1fr; }
+      .sim-col { border-right: none; border-bottom: 1px solid rgba(245,245,240,.08); }
+      .sim-col:last-child { border-bottom: none; }
+      .speed-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-home"><img src="images/logo.png" alt="YJC" class="nav-logo-img"></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link active">Portfolio</a>
+          <div class="nav-dropdown">
+            <a href="portfolio.html#projects">Projects</a>
+            <a href="portfolio.html#internship">Internship</a>
+            <a href="portfolio.html#social-media">Social Media</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="film.html" class="nav-link">Film</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ─────────────────────────────── -->
+  <section class="auto-hero">
+    <div class="container">
+      <p class="auto-hero-eyebrow">Marketing Operations · Automation</p>
+      <h1 class="auto-hero-title">Marketing Logistics<br>&amp; Automation Engine</h1>
+      <p class="auto-hero-sub">A live simulation of how inbound leads are captured, cleaned, scored, and routed in real time — built to demonstrate the operational logic behind modern marketing automation stacks.</p>
+      <div class="auto-tags">
+        <span class="auto-tag">HubSpot Logic</span>
+        <span class="auto-tag">Lead Scoring</span>
+        <span class="auto-tag">CRM Routing</span>
+        <span class="auto-tag">Speed-to-Lead</span>
+        <span class="auto-tag">Data Pipeline</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Simulator ─────────────────────────────── -->
+  <section class="simulator-section">
+    <div class="container">
+      <p class="sim-label">↳ Interactive Pipeline Simulator — Try It Live</p>
+
+      <div class="sim-grid" id="sim-grid">
+
+        <!-- Col 1: Inbound -->
+        <div class="sim-col" id="col-1">
+          <p class="sim-col-eyebrow">Step 01</p>
+          <h3 class="sim-col-title">Inbound Lead Form</h3>
+          <div class="sim-form">
+            <input class="sim-input" id="lead-name" type="text" placeholder="Name (try lowercase)" autocomplete="off">
+            <input class="sim-input" id="lead-email" type="email" placeholder="Email address" autocomplete="off">
+            <textarea class="sim-textarea" id="lead-message" placeholder="Custom message… (try 'pricing' or 'urgent')"></textarea>
+            <button class="sim-btn" id="process-btn">
+              <span>Process Lead</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Col 2: Engine -->
+        <div class="sim-col" id="col-2">
+          <p class="sim-col-eyebrow">Step 02</p>
+          <h3 class="sim-col-title">Logistics Engine</h3>
+          <div class="engine-steps">
+
+            <div class="engine-step" id="step-cleanse">
+              <span class="step-icon">⌧</span>
+              <div style="flex:1">
+                <p class="step-name">Text Cleansing</p>
+                <p class="step-output" id="out-cleanse">Awaiting input…</p>
+              </div>
+              <div class="step-spinner"></div>
+            </div>
+
+            <div class="engine-step" id="step-sentiment">
+              <span class="step-icon">◈</span>
+              <div style="flex:1">
+                <p class="step-name">Sentiment Scoring</p>
+                <p class="step-output" id="out-sentiment">Awaiting input…</p>
+              </div>
+              <div class="step-spinner"></div>
+            </div>
+
+            <div class="engine-step" id="step-routing">
+              <span class="step-icon">⟶</span>
+              <div style="flex:1">
+                <p class="step-name">Routing Logic</p>
+                <p class="step-output" id="out-routing">Awaiting input…</p>
+              </div>
+              <div class="step-spinner"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Col 3: Endpoints -->
+        <div class="sim-col" id="col-3">
+          <p class="sim-col-eyebrow">Step 03</p>
+          <h3 class="sim-col-title">Downstream Endpoints</h3>
+          <div class="endpoints">
+
+            <div class="endpoint" id="ep-slack">
+              <div class="endpoint-icon">⚡</div>
+              <p class="endpoint-name">High-Priority Sales Slack</p>
+              <p class="endpoint-desc">Triggers immediate SDR notification with lead score, name, and message excerpt.</p>
+              <span class="endpoint-badge">Slack #hot-leads</span>
+            </div>
+
+            <div class="endpoint" id="ep-crm">
+              <div class="endpoint-icon">◎</div>
+              <p class="endpoint-name">Nurture Database CRM</p>
+              <p class="endpoint-desc">Enrolls contact in a long-form email sequence with monthly touchpoints.</p>
+              <span class="endpoint-badge">HubSpot CRM</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /sim-grid -->
+
+      <!-- Status Log -->
+      <div class="sim-log" id="sim-log">
+        <span class="log-line">// Pipeline ready. Submit a lead to begin.</span>
+      </div>
+
+    </div><!-- /container -->
+  </section>
+
+  <!-- ── Data Packet (floating) ────────────────── -->
+  <div class="data-packet" id="data-packet"></div>
+
+  <!-- ── Speed-to-Lead Section ─────────────────── -->
+  <section class="speed-section">
+    <div class="container">
+      <div class="speed-grid">
+        <div>
+          <h2 class="speed-title">The Logic of<br>Speed-to-Lead</h2>
+          <p class="speed-body">
+            In modern marketing operations, the time between a lead submitting a form and receiving a response is the single biggest lever on conversion rate. This pipeline simulates the logic I apply in real campaigns: standardize the data, score the intent, and route instantly — so the right person always gets the right lead at the right time.<br><br>
+            By automating text cleansing and sentiment detection, teams eliminate manual triage. High-intent signals like pricing inquiries or urgency language trigger direct sales handoffs, while softer leads flow into nurture sequences that build trust over time.
+          </p>
+        </div>
+        <div class="speed-stats">
+          <div class="stat-row">
+            <span class="stat-num">78×</span>
+            <p class="stat-desc">More likely to qualify a lead if contacted within 5 minutes vs. 30 minutes after submission.</p>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">&lt;2s</span>
+            <p class="stat-desc">Target routing time from form submission to CRM entry in an optimized pipeline.</p>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">40%</span>
+            <p class="stat-desc">Average increase in qualified pipeline volume after implementing automated lead scoring.</p>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">3-tier</span>
+            <p class="stat-desc">Routing model: hot leads → SDR, warm leads → nurture, cold leads → content sequence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a href="contact.html" class="footer-cta-strip">
+    <span class="footer-cta-text">Get In Touch</span>
+    <span class="footer-cta-arrow">→</span>
+  </a>
+  <footer class="footer">
+    <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+    const HIGH_PRIORITY_KEYWORDS = ['buy','buying','price','pricing','cost','quote','urgent','asap','immediately','purchase','deal','demo','sale'];
+
+    const btn       = document.getElementById('process-btn');
+    const nameInput = document.getElementById('lead-name');
+    const emailInput= document.getElementById('lead-email');
+    const msgInput  = document.getElementById('lead-message');
+    const logEl     = document.getElementById('sim-log');
+    const packet    = document.getElementById('data-packet');
+
+    const stepCleanse   = document.getElementById('step-cleanse');
+    const stepSentiment = document.getElementById('step-sentiment');
+    const stepRouting   = document.getElementById('step-routing');
+    const outCleanse    = document.getElementById('out-cleanse');
+    const outSentiment  = document.getElementById('out-sentiment');
+    const outRouting    = document.getElementById('out-routing');
+    const epSlack       = document.getElementById('ep-slack');
+    const epCrm         = document.getElementById('ep-crm');
+
+    function log(msg, type = '') {
+      const line = document.createElement('span');
+      line.className = 'log-line' + (type ? ' ' + type : '');
+      line.textContent = msg;
+      logEl.appendChild(document.createElement('br'));
+      logEl.appendChild(line);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function resetSteps() {
+      [stepCleanse, stepSentiment, stepRouting].forEach(s => {
+        s.classList.remove('active','done');
+      });
+      [outCleanse, outSentiment, outRouting].forEach(o => {
+        o.textContent = 'Awaiting input…';
+      });
+      [epSlack, epCrm].forEach(e => {
+        e.classList.remove('hit-high','hit-nurture');
+      });
+      packet.classList.remove('visible','high-priority','nurture');
+    }
+
+    function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function getCenter(el) {
+      const r = el.getBoundingClientRect();
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    }
+
+    function movePacket(el, instant = false) {
+      const { x, y } = getCenter(el);
+      if (instant) {
+        packet.style.transition = 'none';
+        packet.style.left = x + 'px';
+        packet.style.top  = y + 'px';
+      } else {
+        packet.style.transition = 'left .55s cubic-bezier(0.4,0,0.2,1), top .55s cubic-bezier(0.4,0,0.2,1), opacity .25s';
+        packet.style.left = x + 'px';
+        packet.style.top  = y + 'px';
+      }
+    }
+
+    function capitalize(str) {
+      return str.replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function scoreMessage(msg) {
+      const lower = msg.toLowerCase();
+      const hits = HIGH_PRIORITY_KEYWORDS.filter(k => lower.includes(k));
+      return hits;
+    }
+
+    async function processLead() {
+      const rawName  = nameInput.value.trim();
+      const email    = emailInput.value.trim();
+      const message  = msgInput.value.trim();
+
+      if (!rawName) { nameInput.focus(); return; }
+
+      btn.disabled = true;
+      logEl.innerHTML = '<span class="log-line">// Pipeline initiated — ' + new Date().toLocaleTimeString() + '</span>';
+      resetSteps();
+
+      // ── Packet appears at form button ────────────
+      const btnRect = btn.getBoundingClientRect();
+      packet.style.transition = 'none';
+      packet.style.left = (btnRect.left + btnRect.width / 2) + 'px';
+      packet.style.top  = (btnRect.top + btnRect.height / 2) + 'px';
+      packet.classList.add('visible');
+      await wait(80);
+
+      // ── Step 1: Text Cleansing ───────────────────
+      stepCleanse.classList.add('active');
+      log('→ [cleanse] Received raw input: "' + rawName + '"');
+      movePacket(stepCleanse);
+      await wait(700);
+
+      const cleanedName = capitalize(rawName);
+      outCleanse.textContent = '"' + rawName + '" → "' + cleanedName + '"';
+      stepCleanse.classList.remove('active');
+      stepCleanse.classList.add('done');
+      log('✓ [cleanse] Normalized: "' + cleanedName + '"', 'success');
+      await wait(300);
+
+      // ── Step 2: Sentiment Scoring ────────────────
+      stepSentiment.classList.add('active');
+      log('→ [sentiment] Analyzing message content…');
+      movePacket(stepSentiment);
+      await wait(800);
+
+      const hits = scoreMessage(message);
+      const isHighPriority = hits.length > 0;
+      const score = isHighPriority ? 'HIGH INTENT (' + hits.join(', ') + ')' : 'LOW INTENT — no triggers found';
+      outSentiment.textContent = 'Score: ' + score;
+      stepSentiment.classList.remove('active');
+      stepSentiment.classList.add('done');
+      log('✓ [sentiment] ' + score, isHighPriority ? 'warn' : 'info');
+      await wait(300);
+
+      // ── Step 3: Routing Logic ────────────────────
+      stepRouting.classList.add('active');
+      log('→ [routing] Evaluating destination…');
+      movePacket(stepRouting);
+      await wait(700);
+
+      const destination = isHighPriority ? 'HIGH_PRIORITY_SLACK' : 'NURTURE_CRM';
+      outRouting.textContent = 'Route → ' + destination;
+      stepRouting.classList.remove('active');
+      stepRouting.classList.add('done');
+      log('✓ [routing] Destination: ' + destination, 'success');
+      await wait(300);
+
+      // ── Packet moves to endpoint ─────────────────
+      if (isHighPriority) {
+        packet.classList.add('high-priority');
+        movePacket(epSlack);
+        await wait(600);
+        epSlack.classList.add('hit-high');
+        log('⚡ [deliver] Lead "' + cleanedName + '" fired to #hot-leads Slack channel.', 'success');
+      } else {
+        packet.classList.add('nurture');
+        movePacket(epCrm);
+        await wait(600);
+        epCrm.classList.add('hit-nurture');
+        log('◎ [deliver] Lead "' + cleanedName + '" enrolled in HubSpot nurture sequence.', 'info');
+      }
+
+      await wait(300);
+      log('// Pipeline complete. Processing time: ~' + (isHighPriority ? '1.8' : '2.0') + 's');
+
+      // Fade out packet
+      await wait(1200);
+      packet.style.opacity = '0';
+      await wait(300);
+      packet.classList.remove('visible');
+
+      btn.disabled = false;
+    }
+
+    btn.addEventListener('click', processLead);
+
+    // Allow Enter in name field to trigger
+    nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') processLead(); });
+  })();
+  </script>
+</body>
+</html>
