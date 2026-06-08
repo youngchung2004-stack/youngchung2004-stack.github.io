@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Personalization Engine — YoungJoo Chung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+
+    /* ══════════════════════════════════════════════
+       PAGE CHROME
+    ══════════════════════════════════════════════ */
+    .page-hero-wrap {
+      padding: 160px 0 72px;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .page-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.3);
+      margin-bottom: 18px;
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 0.92;
+      color: var(--cream);
+      margin-bottom: 26px;
+    }
+    .page-sub {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      line-height: 1.82;
+      color: rgba(245,245,240,.5);
+      max-width: 600px;
+    }
+    .page-tags {
+      display: flex; flex-wrap: wrap; gap: 9px;
+      margin-top: 28px;
+    }
+    .page-tag {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.38);
+      border: 1px solid rgba(245,245,240,.1);
+      padding: 5px 13px;
+    }
+
+    /* ══════════════════════════════════════════════
+       DEMO WRAPPER
+    ══════════════════════════════════════════════ */
+    .demo-section { padding: 72px 0 40px; }
+    .demo-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.28);
+      margin-bottom: 36px;
+    }
+
+    /* ══════════════════════════════════════════════
+       PERSONA SWITCHER
+    ══════════════════════════════════════════════ */
+    .persona-bar {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 3px;
+    }
+    .persona-btn {
+      flex: 1;
+      padding: 14px 18px;
+      background: rgba(245,245,240,.04);
+      border: 1px solid rgba(245,245,240,.08);
+      color: rgba(245,245,240,.35);
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .22s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .persona-btn:hover {
+      border-color: rgba(245,245,240,.2);
+      color: rgba(245,245,240,.65);
+      background: rgba(245,245,240,.06);
+    }
+    .persona-btn.active {
+      border-color: var(--pa-accent, rgba(245,245,240,.4));
+      background: var(--pa-bg, rgba(245,245,240,.06));
+      color: var(--pa-accent, var(--cream));
+    }
+    .persona-icon { font-size: 1rem; flex-shrink: 0; }
+    .persona-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0;
+      margin-left: auto;
+      transition: opacity .2s;
+    }
+    .persona-btn.active .persona-dot { opacity: 1; }
+
+    /* ══════════════════════════════════════════════
+       BRAND HERO STAGE
+    ══════════════════════════════════════════════ */
+    .brand-stage {
+      position: relative;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Background layers — one per persona, cross-faded */
+    .bg-layer {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .9s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none;
+    }
+    .bg-layer.active { opacity: 1; }
+
+    .bg-commuter  { background: radial-gradient(ellipse 80% 70% at 70% 40%, #2E3A4E 0%, #1A1F2A 50%, #0F1117 100%); }
+    .bg-fitness   { background: radial-gradient(ellipse 80% 70% at 65% 35%, #1A2E1A 0%, #0D1A0D 50%, #060D06 100%); }
+    .bg-creative  { background: radial-gradient(ellipse 90% 80% at 60% 45%, #2E1E16 0%, #1E130D 50%, #120B07 100%); }
+
+    /* Noise/texture overlay */
+    .bg-layer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: .4;
+      mix-blend-mode: overlay;
+    }
+
+    /* Brand nav */
+    .brand-nav {
+      position: relative;
+      z-index: 2;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .brand-wordmark {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: .9;
+    }
+    .brand-nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .brand-nav-links a {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      text-decoration: none;
+      cursor: default;
+    }
+    .brand-cart {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: default;
+    }
+
+    /* Hero body */
+    .brand-hero-body {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0 40px 40px;
+      align-items: center;
+    }
+
+    /* Left text block */
+    .brand-text {
+      padding: 40px 40px 40px 0;
+    }
+    .brand-kicker {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      transition: color .5s;
+    }
+    .brand-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 5.2rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 0.9;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+    .brand-subtext {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      line-height: 1.78;
+      color: rgba(255,255,255,.52);
+      margin-bottom: 34px;
+      max-width: 380px;
+    }
+    .brand-ctas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-cta-primary {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 13px 26px;
+      border: none;
+      cursor: default;
+      transition: background .4s, color .4s;
+    }
+    .brand-cta-secondary {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: default;
+    }
+
+    /* Social proof strip */
+    .brand-proof {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .proof-stars { color: rgba(255,255,255,.6); font-size: 0.75rem; letter-spacing: 0.08em; }
+    .proof-copy {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* Right: Product Cards */
+    .brand-products {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 40px 0 40px 20px;
+    }
+
+    .product-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      backdrop-filter: blur(8px);
+      transition: border-color .3s, background .3s, transform .3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px; height: 100%;
+      transition: background .5s;
+    }
+    .product-card:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.14);
+      transform: translateX(4px);
+    }
+
+    .product-visual {
+      width: 52px; height: 52px;
+      flex-shrink: 0;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      position: relative;
+      transition: background .5s;
+    }
+
+    .product-info { flex: 1; min-width: 0; }
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.82);
+      margin-bottom: 3px;
+    }
+    .product-desc {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: rgba(255,255,255,.3);
+      line-height: 1.4;
+    }
+    .product-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .product-price {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 6px;
+      transition: color .4s;
+    }
+    .product-add {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.4);
+      transition: all .3s;
+      cursor: default;
+    }
+
+    /* ── Feature strip ──────────────────────────── */
+    .brand-feature-strip {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .feature-item {
+      padding: 20px 40px;
+      border-right: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-icon { font-size: 1rem; opacity: .5; }
+    .feature-text {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,.3);
+      line-height: 1.4;
+    }
+    .feature-text strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 2px;
+    }
+
+    /* ══════════════════════════════════════════════
+       TRANSITION ANIMATIONS
+    ══════════════════════════════════════════════ */
+    .brand-text,
+    .brand-products,
+    .feature-item {
+      transition: opacity .35s, transform .35s;
+    }
+    .stage-transitioning .brand-text,
+    .stage-transitioning .brand-products {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    .stage-transitioning .feature-item {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    /* Stagger card entries */
+    .product-card {
+      opacity: 0;
+      transform: translateX(16px);
+      transition: opacity .4s, transform .4s, border-color .3s, background .3s;
+    }
+    .product-card.in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .product-card.in:hover { transform: translateX(4px); }
+
+    /* ══════════════════════════════════════════════
+       EXPLAINER
+    ══════════════════════════════════════════════ */
+    .explainer-wrap {
+      padding: 72px 0 100px;
+      border-top: 1px solid rgba(245,245,240,.07);
+    }
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 60px;
+      align-items: end;
+    }
+    .exp-h-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--cream);
+    }
+    .exp-h-body {
+      font-family: var(--font-serif);
+      font-size: 0.98rem;
+      line-height: 1.82;
+      color: rgba(245,245,240,.48);
+    }
+    .exp-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      border: 1px solid rgba(245,245,240,.07);
+    }
+    .exp-card {
+      padding: 30px 28px;
+      border-right: 1px solid rgba(245,245,240,.07);
+    }
+    .exp-card:last-child { border-right: none; }
+    .exp-num {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.2);
+      margin-bottom: 12px;
+    }
+    .exp-card-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.72);
+      margin-bottom: 10px;
+    }
+    .exp-card-body {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      line-height: 1.68;
+      color: rgba(245,245,240,.33);
+    }
+
+    /* Persona legend */
+    .persona-legend {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      border: 1px solid rgba(245,245,240,.07);
+    }
+    .legend-card {
+      padding: 26px 24px;
+      border-right: 1px solid rgba(245,245,240,.07);
+    }
+    .legend-card:last-child { border-right: none; }
+    .legend-accent-bar {
+      height: 3px;
+      width: 40px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+    .legend-name {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.65);
+      margin-bottom: 8px;
+    }
+    .legend-signals {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 10px;
+    }
+    .legend-signal {
+      font-family: 'Courier New', monospace;
+      font-size: 0.67rem;
+      color: rgba(245,245,240,.25);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .legend-signal::before {
+      content: '→';
+      font-family: var(--font-sans);
+      opacity: .4;
+    }
+
+    @media (max-width: 900px) {
+      .brand-hero-body { grid-template-columns: 1fr; }
+      .brand-products { padding-left: 0; }
+      .brand-feature-strip { grid-template-columns: 1fr; }
+      .feature-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+      .exp-header { grid-template-columns: 1fr; gap: 32px; }
+      .exp-cards { grid-template-columns: 1fr; }
+      .exp-card { border-right: none; border-bottom: 1px solid rgba(245,245,240,.07); }
+      .persona-legend { grid-template-columns: 1fr; }
+      .legend-card { border-right: none; border-bottom: 1px solid rgba(245,245,240,.07); }
+      .persona-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-home"><img src="images/logo.png" alt="YJC" class="nav-logo-img"></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link active">Portfolio</a>
+          <div class="nav-dropdown">
+            <a href="portfolio.html#projects">Projects</a>
+            <a href="portfolio.html#internship">Internship</a>
+            <a href="portfolio.html#social-media">Social Media</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="film.html" class="nav-link">Film</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Intro ────────────────────────────── -->
+  <section class="page-hero-wrap">
+    <div class="container">
+      <p class="page-eyebrow">Personalization · Dynamic Content · Audience Segmentation</p>
+      <h1 class="page-title">Dynamic<br>Personalization Engine</h1>
+      <p class="page-sub">A live demonstration of real-time hero personalization — same brand, three distinct audience profiles. Watch how headline, copy, color language, and product relevance shift to match each user's psychological identity.</p>
+      <div class="page-tags">
+        <span class="page-tag">Audience Segmentation</span>
+        <span class="page-tag">Dynamic Content</span>
+        <span class="page-tag">A/B Architecture</span>
+        <span class="page-tag">Conversion UX</span>
+        <span class="page-tag">Psychographic Targeting</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Demo ──────────────────────────────────── -->
+  <section class="demo-section">
+    <div class="container">
+      <p class="demo-label">↳ Interactive Demo — Select a Persona</p>
+
+      <!-- Persona Switcher -->
+      <div class="persona-bar">
+        <button class="persona-btn active" data-persona="commuter"
+                style="--pa-accent: #E8A44A; --pa-bg: rgba(232,164,74,.07);">
+          <span class="persona-icon">🚇</span>
+          The Daily Commuter
+          <span class="persona-dot"></span>
+        </button>
+        <button class="persona-btn" data-persona="fitness"
+                style="--pa-accent: #8FD44A; --pa-bg: rgba(143,212,74,.07);">
+          <span class="persona-icon">⚡</span>
+          The Fitness Enthusiast
+          <span class="persona-dot"></span>
+        </button>
+        <button class="persona-btn" data-persona="creative"
+                style="--pa-accent: #D47A5A; --pa-bg: rgba(212,122,90,.07);">
+          <span class="persona-icon">✦</span>
+          The Creative Professional
+          <span class="persona-dot"></span>
+        </button>
+      </div>
+
+      <!-- Brand Hero Stage -->
+      <div class="brand-stage" id="brand-stage">
+
+        <!-- BG Layers -->
+        <div class="bg-layer bg-commuter active" id="bg-commuter"></div>
+        <div class="bg-layer bg-fitness"         id="bg-fitness"></div>
+        <div class="bg-layer bg-creative"        id="bg-creative"></div>
+
+        <!-- Brand Nav -->
+        <div class="brand-nav">
+          <span class="brand-wordmark">Aura</span>
+          <ul class="brand-nav-links">
+            <li><a>Collections</a></li>
+            <li><a>Rituals</a></li>
+            <li><a>Journal</a></li>
+            <li><a>About</a></li>
+          </ul>
+          <span class="brand-cart">◻ Cart (0)</span>
+        </div>
+
+        <!-- Hero Body -->
+        <div class="brand-hero-body">
+
+          <!-- Left: Copy -->
+          <div class="brand-text">
+            <p class="brand-kicker" id="b-kicker">For the momentum-driven life</p>
+            <h2 class="brand-headline" id="b-headline">Your morning,<br>optimized.</h2>
+            <p class="brand-subtext" id="b-subtext">
+              Precision-formulated for the 6:47 platform. Energy that peaks when you need it, clarity that holds through back-to-back meetings.
+            </p>
+            <div class="brand-ctas">
+              <button class="brand-cta-primary" id="b-cta">Shop the Commuter Edit</button>
+              <span class="brand-cta-secondary">Explore Rituals →</span>
+            </div>
+            <div class="brand-proof">
+              <span class="proof-stars">★★★★★</span>
+              <span class="proof-copy" id="b-proof">4.9 / 5 from 2,847 reviews — "The only thing that makes the 7am train worth it."</span>
+            </div>
+          </div>
+
+          <!-- Right: Products -->
+          <div class="brand-products" id="b-products">
+            <div class="product-card" id="pc-0">
+              <div class="product-visual" id="pv-0">☕</div>
+              <div class="product-info">
+                <p class="product-name" id="pn-0">Morning Clarity</p>
+                <p class="product-desc" id="pd-0">Focus blend · 30 capsules · Sustained release</p>
+              </div>
+              <div class="product-right">
+                <p class="product-price" id="pp-0">$48</p>
+                <span class="product-add">Add +</span>
+              </div>
+            </div>
+            <div class="product-card" id="pc-1">
+              <div class="product-visual" id="pv-1">🧳</div>
+              <div class="product-info">
+                <p class="product-name" id="pn-1">Transit Ritual</p>
+                <p class="product-desc" id="pd-1">Commuter thermos · 16oz · Ceramic lined</p>
+              </div>
+              <div class="product-right">
+                <p class="product-price" id="pp-1">$62</p>
+                <span class="product-add">Add +</span>
+              </div>
+            </div>
+            <div class="product-card" id="pc-2">
+              <div class="product-visual" id="pv-2">🌤</div>
+              <div class="product-info">
+                <p class="product-name" id="pn-2">Urban Shield</p>
+                <p class="product-desc" id="pd-2">SPF 40 moisturizer · Pollution barrier</p>
+              </div>
+              <div class="product-right">
+                <p class="product-price" id="pp-2">$36</p>
+                <span class="product-add">Add +</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /brand-hero-body -->
+
+        <!-- Feature Strip -->
+        <div class="brand-feature-strip">
+          <div class="feature-item" id="fi-0">
+            <span class="feature-icon" id="fi-icon-0">⏱</span>
+            <span class="feature-text"><strong id="fi-title-0">Speed Formulated</strong><span id="fi-sub-0">Works within 18 minutes of intake</span></span>
+          </div>
+          <div class="feature-item" id="fi-1">
+            <span class="feature-icon" id="fi-icon-1">🧬</span>
+            <span class="feature-text"><strong id="fi-title-1">Clean Label</strong><span id="fi-sub-1">Zero artificial fillers or stimulants</span></span>
+          </div>
+          <div class="feature-item" id="fi-2">
+            <span class="feature-icon" id="fi-icon-2">📦</span>
+            <span class="feature-text"><strong id="fi-title-2">Same-Day Ship</strong><span id="fi-sub-2">Order before 2pm, ships today</span></span>
+          </div>
+        </div>
+
+      </div><!-- /brand-stage -->
+
+    </div>
+  </section>
+
+  <!-- ── Explainer ─────────────────────────────── -->
+  <section class="explainer-wrap">
+    <div class="container">
+      <div class="exp-header">
+        <h2 class="exp-h-title">The Logic<br>Behind the<br>Shift</h2>
+        <p class="exp-h-body">
+          Dynamic personalization isn't just changing copy — it's restructuring the entire emotional contract between brand and visitor. Each persona triggers a different psychological pitch: urgency for the commuter, achievement for the athlete, identity for the creator. The product stays the same. The story changes everything.
+        </p>
+      </div>
+
+      <div class="exp-cards">
+        <div class="exp-card">
+          <p class="exp-num">01 — Signal</p>
+          <p class="exp-card-title">Psychographic Trigger</p>
+          <p class="exp-card-body">A URL parameter, cookie, or CRM tag identifies the visitor's persona cluster. This can come from a past purchase, quiz funnel, ad click, or firmographic match — all without changing the page URL.</p>
+        </div>
+        <div class="exp-card">
+          <p class="exp-num">02 — Map</p>
+          <p class="exp-card-title">Content Swap Layer</p>
+          <p class="exp-card-body">A persona data object holds every variable: headline, subtext, color palette, product set, CTA copy, and social proof. A single function call replaces the entire visual state in under 400ms.</p>
+        </div>
+        <div class="exp-card">
+          <p class="exp-num">03 — Convert</p>
+          <p class="exp-card-title">Higher Relevance → Higher CVR</p>
+          <p class="exp-card-body">Personalized landing experiences consistently outperform generic ones by 35–80% in conversion rate. The investment is in mapping content to audience — the payoff is in every session that feels intentional.</p>
+        </div>
+      </div>
+
+      <!-- Persona Legend -->
+      <div class="persona-legend">
+        <div class="legend-card">
+          <div class="legend-accent-bar" style="background:#E8A44A;"></div>
+          <p class="legend-name">The Daily Commuter</p>
+          <div class="legend-signals">
+            <span class="legend-signal">Motivation: efficiency + control</span>
+            <span class="legend-signal">Tone: direct, time-aware</span>
+            <span class="legend-signal">Color: warm amber / deep slate</span>
+            <span class="legend-signal">Products: functional, portable</span>
+          </div>
+        </div>
+        <div class="legend-card">
+          <div class="legend-accent-bar" style="background:#8FD44A;"></div>
+          <p class="legend-name">The Fitness Enthusiast</p>
+          <div class="legend-signals">
+            <span class="legend-signal">Motivation: performance + progress</span>
+            <span class="legend-signal">Tone: bold, challenging</span>
+            <span class="legend-signal">Color: electric lime / deep forest</span>
+            <span class="legend-signal">Products: recovery, output</span>
+          </div>
+        </div>
+        <div class="legend-card">
+          <div class="legend-accent-bar" style="background:#D47A5A;"></div>
+          <p class="legend-name">The Creative Professional</p>
+          <div class="legend-signals">
+            <span class="legend-signal">Motivation: flow + craft identity</span>
+            <span class="legend-signal">Tone: poetic, unhurried</span>
+            <span class="legend-signal">Color: terracotta / deep umber</span>
+            <span class="legend-signal">Products: ritual, focus, space</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <a href="contact.html" class="footer-cta-strip">
+    <span class="footer-cta-text">Get In Touch</span>
+    <span class="footer-cta-arrow">→</span>
+  </a>
+  <footer class="footer">
+    <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+
+    /* ══════════════════════════════════════════════
+       PERSONA DATA
+    ══════════════════════════════════════════════ */
+    const personas = {
+
+      commuter: {
+        accent:   '#E8A44A',
+        kicker:   'For the momentum-driven life',
+        headline: 'Your morning,<br>optimized.',
+        subtext:  'Precision-formulated for the 6:47 platform. Energy that peaks when you need it, clarity that holds through back-to-back meetings.',
+        cta:      'Shop the Commuter Edit',
+        proof:    '4.9 / 5 from 2,847 reviews — "The only thing that makes the 7am train worth it."',
+        products: [
+          { icon:'☕', name:'Morning Clarity',  desc:'Focus blend · 30 capsules · Sustained release', price:'$48' },
+          { icon:'🧳', name:'Transit Ritual',   desc:'Commuter thermos · 16oz · Ceramic lined',      price:'$62' },
+          { icon:'🌤', name:'Urban Shield',     desc:'SPF 40 moisturizer · Pollution barrier',       price:'$36' },
+        ],
+        features: [
+          { icon:'⏱', title:'Speed Formulated',  sub:'Works within 18 minutes of intake' },
+          { icon:'🧬', title:'Clean Label',       sub:'Zero artificial fillers or stimulants' },
+          { icon:'📦', title:'Same-Day Ship',     sub:'Order before 2pm, ships today' },
+        ],
+      },
+
+      fitness: {
+        accent:   '#8FD44A',
+        kicker:   'Built for the ones who don\'t stop',
+        headline: 'Push past<br>the plateau.',
+        subtext:  'For the 5am alarm, the last rep, and the PR you haven\'t hit yet. Recovery science meets performance nutrition — no compromises.',
+        cta:      'Build Your Stack',
+        proof:    '4.8 / 5 from 5,210 reviews — "My recovery time dropped by 40%. Nothing else comes close."',
+        products: [
+          { icon:'🏋', name:'Peak Load',     desc:'Recovery protein · 25g per serving · Grass-fed', price:'$56' },
+          { icon:'⚡', name:'Endure',        desc:'Electrolyte blend · No sugar · 60 servings',     price:'$44' },
+          { icon:'🎯', name:'Form Series',   desc:'Resistance bands · 5-level set · Anti-snap',     price:'$38' },
+        ],
+        features: [
+          { icon:'🔬', title:'Clinically Dosed',   sub:'Every ingredient at effective levels' },
+          { icon:'🌿', title:'Third-Party Tested',  sub:'NSF Certified for Sport' },
+          { icon:'🔥', title:'Next-Level Recovery', sub:'Reduce DOMS by up to 38%' },
+        ],
+      },
+
+      creative: {
+        accent:   '#D47A5A',
+        kicker:   'Rituals for the making mind',
+        headline: 'Design your<br>flow state.',
+        subtext:  'For the maker, the thinker, the builder. Supplements and rituals crafted for deep focus, sustained creativity, and the kind of calm that lets the best work through.',
+        cta:      'Enter the Studio Edit',
+        proof:    '4.9 / 5 from 1,632 reviews — "I write 3x more in the same session. It\'s not magic — it\'s Aura."',
+        products: [
+          { icon:'🧠', name:'Deep Work',     desc:'Nootropic blend · Lion\'s mane + L-theanine',    price:'$54' },
+          { icon:'🌿', name:'Still Mind',    desc:'Adaptogen drops · Ashwagandha · 30ml',            price:'$42' },
+          { icon:'🕯', name:'The Studio',    desc:'Desk ritual kit · Candle + tincture + notecard',  price:'$78' },
+        ],
+        features: [
+          { icon:'🎨', title:'Made for Makers',    sub:'Formulated with creative professionals' },
+          { icon:'🌙', title:'Non-Stimulant',      sub:'No crash, no jitters — pure clarity' },
+          { icon:'✦',  title:'Ritual-Designed',    sub:'Part of a complete creative practice' },
+        ],
+      },
+    };
+
+    /* ══════════════════════════════════════════════
+       DOM REFS
+    ══════════════════════════════════════════════ */
+    const stage    = document.getElementById('brand-stage');
+    const btnEls   = document.querySelectorAll('.persona-btn');
+    const bgLayers = { commuter: document.getElementById('bg-commuter'), fitness: document.getElementById('bg-fitness'), creative: document.getElementById('bg-creative') };
+    const brandText   = document.querySelector('.brand-text');
+    const brandProds  = document.querySelector('.brand-products');
+
+    let current = 'commuter';
+    let busy = false;
+
+    /* ══════════════════════════════════════════════
+       SWITCH PERSONA
+    ══════════════════════════════════════════════ */
+    async function switchPersona(key) {
+      if (key === current || busy) return;
+      busy = true;
+      const p = personas[key];
+
+      // 1 — Update buttons
+      btnEls.forEach(b => b.classList.toggle('active', b.dataset.persona === key));
+
+      // 2 — Fade out content
+      stage.classList.add('stage-transitioning');
+      // Also fade out product cards
+      for (let i = 0; i < 3; i++) {
+        document.getElementById('pc-' + i).classList.remove('in');
+      }
+
+      await wait(360);
+
+      // 3 — Swap background
+      Object.entries(bgLayers).forEach(([k, el]) => el.classList.toggle('active', k === key));
+
+      // 4 — Update copy
+      document.getElementById('b-kicker').textContent        = p.kicker;
+      document.getElementById('b-headline').innerHTML        = p.headline;
+      document.getElementById('b-subtext').textContent       = p.subtext;
+      document.getElementById('b-cta').textContent           = p.cta;
+      document.getElementById('b-proof').textContent         = p.proof;
+      document.getElementById('b-cta').style.background      = p.accent;
+      document.getElementById('b-cta').style.color           = '#0F0F0F';
+      document.getElementById('b-kicker').style.color        = p.accent;
+
+      // 5 — Update products
+      for (let i = 0; i < 3; i++) {
+        document.getElementById('pv-' + i).textContent = p.products[i].icon;
+        document.getElementById('pn-' + i).textContent = p.products[i].name;
+        document.getElementById('pd-' + i).textContent = p.products[i].desc;
+        document.getElementById('pp-' + i).textContent = p.products[i].price;
+        document.getElementById('pp-' + i).style.color = p.accent;
+        document.getElementById('pc-' + i).style.setProperty('--card-accent', p.accent);
+        document.querySelector('#pc-' + i + '::before'); // noop — set via JS below
+        document.getElementById('pc-' + i).style.borderLeftColor = p.accent + '44';
+      }
+      // Card left accent bar
+      document.querySelectorAll('.product-card').forEach(c => {
+        c.style.borderLeft = `2px solid ${p.accent}55`;
+      });
+      document.querySelectorAll('.product-visual').forEach(v => {
+        v.style.background = p.accent + '18';
+      });
+
+      // 6 — Update features
+      for (let i = 0; i < 3; i++) {
+        document.getElementById('fi-icon-' + i).textContent  = p.features[i].icon;
+        document.getElementById('fi-title-' + i).textContent = p.features[i].title;
+        document.getElementById('fi-sub-' + i).textContent   = p.features[i].sub;
+      }
+
+      // 7 — Fade in
+      stage.classList.remove('stage-transitioning');
+
+      await wait(80);
+
+      // 8 — Stagger cards
+      for (let i = 0; i < 3; i++) {
+        await wait(90);
+        document.getElementById('pc-' + i).classList.add('in');
+      }
+
+      current = key;
+      busy = false;
+    }
+
+    function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    /* ══════════════════════════════════════════════
+       INIT
+    ══════════════════════════════════════════════ */
+    function init() {
+      const p = personas.commuter;
+      document.getElementById('b-cta').style.background = p.accent;
+      document.getElementById('b-cta').style.color      = '#0F0F0F';
+      document.getElementById('b-kicker').style.color   = p.accent;
+      document.querySelectorAll('.product-card').forEach(c => {
+        c.style.borderLeft = `2px solid ${p.accent}55`;
+      });
+      document.querySelectorAll('.product-visual').forEach(v => {
+        v.style.background = p.accent + '18';
+      });
+      document.querySelectorAll('.product-price').forEach(el => {
+        el.style.color = p.accent;
+      });
+      // Trigger initial card-in animation
+      setTimeout(() => {
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => document.getElementById('pc-' + i).classList.add('in'), i * 100);
+        }
+      }, 200);
+    }
+
+    /* ══════════════════════════════════════════════
+       EVENTS
+    ══════════════════════════════════════════════ */
+    btnEls.forEach(btn => {
+      btn.addEventListener('click', () => switchPersona(btn.dataset.persona));
+    });
+
+    init();
+
+  })();
+  </script>
+
+</body>
+</html>
