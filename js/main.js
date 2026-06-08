@@ -220,16 +220,27 @@ const projects = [
    PORTFOLIO FILTER
    ============================================ */
 function initFilters() {
-  const tabs  = document.querySelectorAll('.filter-tab');
-  const cards = document.querySelectorAll('.project-card');
+  const tabs   = document.querySelectorAll('.filter-tab');
+  const groups = document.querySelectorAll('.project-group');
   if (!tabs.length) return;
 
   function applyFilter(filter) {
     tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === filter));
-    cards.forEach(card => {
-      const show = filter === 'all' || card.dataset.category === filter;
-      card.classList.toggle('filtered-out', !show);
-    });
+
+    if (groups.length) {
+      // Group-based filtering: show/hide entire category groups
+      groups.forEach(group => {
+        const groupFilter = group.dataset.groupFilter;
+        const show = filter === 'all' || groupFilter === filter;
+        group.classList.toggle('filtered-out', !show);
+      });
+    } else {
+      // Fallback: legacy card-level filtering
+      document.querySelectorAll('.project-card').forEach(card => {
+        const show = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('filtered-out', !show);
+      });
+    }
   }
 
   // Read hash on load

@@ -682,6 +682,33 @@ body {
 
 .project-card.filtered-out { display: none; }
 
+/* ── Portfolio Category Groups (portfolio.html only) ── */
+.project-group + .project-group { margin-top: 60px; }
+.project-group.filtered-out { display: none; }
+
+.project-group-header {
+  padding: 0 48px 16px;
+  border-bottom: 1px solid rgba(245,245,240,.07);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.project-group-label {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(245,245,240,.32);
+}
+
+.project-group-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(245,245,240,.05);
+}
+
 /* ============================================
    PROJECT MODAL
    ============================================ */
@@ -1130,6 +1157,8 @@ body {
   .gallery-grid { columns: 1; }
 
   .projects-grid { grid-template-columns: 1fr; }
+  .project-group-header { padding: 0 20px 14px; }
+  .project-group + .project-group { margin-top: 44px; }
 
   .modal { max-height: 100vh; }
   .modal-header { padding: 28px 24px; }
@@ -1183,6 +1212,10 @@ body.light-theme .nav-dropdown a:hover { color: #1A1A1A; background: rgba(26,26,
 body.light-theme .filter-tab { color: rgba(26,26,26,0.55); border-color: rgba(26,26,26,0.2); }
 body.light-theme .filter-tab:hover { color: #1A1A1A; border-color: rgba(26,26,26,0.4); }
 body.light-theme .filter-tab.active { background: #1A1A1A; color: #F5F5F0; border-color: #1A1A1A; }
+
+body.light-theme .project-group-header { border-bottom-color: rgba(26,26,26,.1); }
+body.light-theme .project-group-label { color: rgba(26,26,26,.35); }
+body.light-theme .project-group-line { background: rgba(26,26,26,.07); }
 
 body.light-theme .project-card-image { background: #DEDED9; }
 body.light-theme .project-card-overlay { background: rgba(245,245,240,0.88); }
