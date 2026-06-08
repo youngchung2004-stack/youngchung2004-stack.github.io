@@ -526,8 +526,13 @@ body {
 /* ============================================
    PORTFOLIO — PROJECT GRID
    ============================================ */
-.projects-section { padding: 56px 0 100px; }
+.projects-section { padding: 56px 0 100px; transition: opacity .18s ease; }
 .projects-section .container { max-width: none; padding: 0; }
+
+/* ── View: ALL — flat unified grid, no category headers ── */
+.projects-section.view-all .project-group-header { display: none; }
+.projects-section.view-all .project-group + .project-group { margin-top: 2px !important; }
+.projects-section.view-all .project-group:first-child { margin-top: 0; }
 
 .projects-grid {
   display: grid;

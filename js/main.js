@@ -247,41 +247,37 @@ const projects = [
 ];
 
 /* ============================================
-   PORTFOLIO FILTER
+   PORTFOLIO VIEW TOGGLE  (All ↔ Categories)
    ============================================ */
 function initFilters() {
-  const tabs   = document.querySelectorAll('.filter-tab');
-  const groups = document.querySelectorAll('.project-group');
-  if (!tabs.length) return;
+  const tabs    = document.querySelectorAll('.filter-tab[data-view]');
+  const section = document.querySelector('.projects-section');
+  if (!tabs.length || !section) return;
 
-  function applyFilter(filter) {
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === filter));
+  // Ensure all groups are always visible (no filtered-out state needed)
+  document.querySelectorAll('.project-group').forEach(g => g.classList.remove('filtered-out'));
 
-    if (groups.length) {
-      // Group-based filtering: show/hide entire category groups
-      groups.forEach(group => {
-        const groupFilter = group.dataset.groupFilter;
-        const show = filter === 'all' || groupFilter === filter;
-        group.classList.toggle('filtered-out', !show);
-      });
-    } else {
-      // Fallback: legacy card-level filtering
-      document.querySelectorAll('.project-card').forEach(card => {
-        const show = filter === 'all' || card.dataset.category === filter;
-        card.classList.toggle('filtered-out', !show);
-      });
-    }
+  function applyView(view) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.view === view));
+    section.classList.toggle('view-all',        view === 'all');
+    section.classList.toggle('view-categories', view === 'categories');
+    history.replaceState(null, '', view === 'categories' ? '#categories' : window.location.pathname);
   }
 
-  // Read hash on load
+  function switchView(view) {
+    section.style.opacity = '0';
+    setTimeout(() => {
+      applyView(view);
+      section.style.opacity = '1';
+    }, 180);
+  }
+
+  // On load: default to "all", or "categories" if hash says so
   const hash = window.location.hash.replace('#', '');
-  if (hash) applyFilter(hash);
+  applyView(hash === 'categories' ? 'categories' : 'all');
 
   tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      applyFilter(tab.dataset.filter);
-      history.replaceState(null, '', tab.dataset.filter === 'all' ? window.location.pathname : '#' + tab.dataset.filter);
-    });
+    tab.addEventListener('click', () => switchView(tab.dataset.view));
   });
 }
 
