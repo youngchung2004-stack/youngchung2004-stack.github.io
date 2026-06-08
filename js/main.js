@@ -55,6 +55,15 @@ function closeMobileMenu() {
 }
 
 if (navToggle && navLinks) {
+  // Inject the × close button once — covers all pages without touching HTML
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'nav-close';
+  closeBtn.setAttribute('aria-label', 'Close menu');
+  closeBtn.innerHTML = '&times;';
+  document.body.appendChild(closeBtn);
+  closeBtn.addEventListener('click', closeMobileMenu);
+
+  // Hamburger toggle
   navToggle.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
     const spans = navToggle.querySelectorAll('span');
@@ -63,14 +72,14 @@ if (navToggle && navLinks) {
     spans[2].style.transform = open ? 'rotate(-45deg) translate(5px, -5px)' : '';
   });
 
-  // Close when any nav-link without a sub-menu is tapped
+  // Close when any non-dropdown nav-link is tapped
   navLinks.querySelectorAll('.nav-link').forEach(link => {
     if (!link.closest('.nav-item').querySelector('.nav-dropdown')) {
       link.addEventListener('click', closeMobileMenu);
     }
   });
 
-  // Close when tapping the overlay background (not a link/button)
+  // Close when tapping the overlay background
   navLinks.addEventListener('click', (e) => {
     if (e.target === navLinks) closeMobileMenu();
   });

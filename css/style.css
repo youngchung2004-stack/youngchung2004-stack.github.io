@@ -1031,88 +1031,113 @@ body {
   .container { padding: 0 24px; }
   .nav-container { padding: 0 20px; }
 
-  /* Logo scales down to sit cleanly inside the 80px nav bar */
+  /* Logo sits cleanly inside the 80px nav bar */
   .nav-logo-img { height: 48px; }
 
-  /* Hamburger: show on mobile, ensure it sits above the overlay */
+  /* Hamburger — always above the overlay */
   .nav-toggle {
     display: flex;
     cursor: pointer;
     position: relative;
-    z-index: 101;
+    z-index: 501;
     padding: 8px;
   }
 
-  /* Make bars slightly thicker and wider for better visibility */
   .nav-toggle span {
     width: 24px;
     height: 2px;
   }
 
-  /* ── Full-screen overlay — hidden by default via opacity+visibility ── */
-  /* This is far more reliable than transform-translate across all devices */
+  /* ── Solid black full-screen overlay ───────────────
+     No blur, no transparency — covers 100% of the
+     screen regardless of browser/device.            */
   .nav-links {
     position: fixed;
-    inset: 0;
-    background: rgba(14,14,14,.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 0;
-    padding-top: 80px;          /* push content below the nav bar */
+    padding: 0 0 0 48px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity .28s ease, visibility .28s ease;
-    z-index: 99;                 /* below nav (z-100) so hamburger stays tappable */
+    transition: opacity .25s ease, visibility .25s ease;
+    z-index: 500;
+    overflow-y: auto;
   }
 
-  /* Open state: simply fade in */
   .nav-links.open {
     opacity: 1;
     visibility: visible;
   }
 
-  .nav-links li { width: 100%; text-align: center; }
+  .nav-links li { width: 100%; }
 
-  /* Large, centred tap targets */
+  /* Left-aligned, large white links */
   .nav-link {
     display: block;
-    padding: 24px 32px;
-    font-size: 1.8rem;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(245,245,240,.07);
-    color: rgba(245,245,240,.7);
+    padding: 18px 0;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,.08);
   }
 
   .nav-link:hover,
-  .nav-link.active { color: var(--cream); }
+  .nav-link.active { color: rgba(255,255,255,.6); }
 
-  /* Sub-menu inside the overlay */
+  /* Portfolio sub-links */
   .nav-dropdown {
     position: static;
-    background: rgba(0,0,0,.3);
+    background: transparent;
     border: none;
-    border-top: 1px solid rgba(245,245,240,.06);
     opacity: 1;
     pointer-events: all;
     transform: none;
     display: none;
     min-width: unset;
+    padding-left: 20px;
   }
 
   .nav-item.dropdown-open .nav-dropdown { display: block; }
 
   .nav-dropdown a {
-    padding: 16px 32px;
+    padding: 12px 0;
     font-size: 1rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(245,245,240,.05);
-    color: rgba(245,245,240,.5);
+    letter-spacing: 0.12em;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    color: rgba(255,255,255,.4);
   }
 
+  .nav-dropdown a:hover { color: rgba(255,255,255,.75); }
   .nav-dropdown a:last-child { border-bottom: none; }
+
+  /* ── X close button (injected by JS) ── */
+  .nav-close {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 501;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    padding: 10px;
+    display: none;        /* hidden on desktop */
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Show the X button on mobile */
+  .nav-close { display: flex; }
 
   .hero { padding: 60px 24px 0; }
   .hero-name { font-size: clamp(3rem, 15vw, 6rem); }
