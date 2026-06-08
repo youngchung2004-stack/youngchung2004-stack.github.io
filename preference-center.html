@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preference Center — YoungJoo Chung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+
+    /* ══════════════════════════════════════════════
+       PAGE CHROME
+    ══════════════════════════════════════════════ */
+    .pref-hero {
+      padding: 160px 0 72px;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .pref-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.74rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.3);
+      margin-bottom: 18px;
+    }
+    .pref-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6.5vw, 6.5rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 0.92;
+      color: var(--cream);
+      margin-bottom: 26px;
+    }
+    .pref-sub {
+      font-family: var(--font-serif);
+      font-size: 1.02rem;
+      line-height: 1.82;
+      color: rgba(245,245,240,.5);
+      max-width: 580px;
+    }
+    .pref-tags {
+      display: flex; flex-wrap: wrap; gap: 9px;
+      margin-top: 30px;
+    }
+    .pref-tag {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.38);
+      border: 1px solid rgba(245,245,240,.1);
+      padding: 5px 13px;
+    }
+
+    /* ══════════════════════════════════════════════
+       MAIN LAYOUT
+    ══════════════════════════════════════════════ */
+    .pc-section { padding: 72px 0 100px; }
+
+    .pc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border: 1px solid rgba(245,245,240,.08);
+    }
+
+    /* ══════════════════════════════════════════════
+       LEFT PANEL — CONTROLS
+    ══════════════════════════════════════════════ */
+    .pc-panel {
+      padding: 44px 40px 44px;
+      border-right: 1px solid rgba(245,245,240,.08);
+    }
+    .pc-panel-right {
+      padding: 44px 40px 44px;
+      border-right: none;
+      background: rgba(245,245,240,.015);
+    }
+
+    .pc-section-label {
+      font-family: var(--font-display);
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.28);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pc-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(245,245,240,.07);
+    }
+
+    .pc-block { margin-bottom: 40px; }
+    .pc-block:last-child { margin-bottom: 0; }
+
+    /* ── Frequency Radio Pills ──────────────────── */
+    .freq-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .freq-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 18px;
+      border: 1px solid rgba(245,245,240,.08);
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      position: relative;
+      user-select: none;
+    }
+    .freq-option:hover { border-color: rgba(245,245,240,.18); }
+    .freq-option.selected {
+      border-color: rgba(245,245,240,.35);
+      background: rgba(245,245,240,.04);
+    }
+    .freq-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .freq-radio {
+      width: 14px; height: 14px;
+      border: 1.5px solid rgba(245,245,240,.2);
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      transition: border-color .2s;
+    }
+    .freq-radio::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      width: 6px; height: 6px;
+      background: var(--cream);
+      border-radius: 50%;
+      transition: transform .2s;
+    }
+    .freq-option.selected .freq-radio {
+      border-color: var(--cream);
+    }
+    .freq-option.selected .freq-radio::after {
+      transform: translate(-50%,-50%) scale(1);
+    }
+    .freq-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.55);
+      transition: color .2s;
+    }
+    .freq-option.selected .freq-name { color: var(--cream); }
+    .freq-cadence {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: rgba(245,245,240,.2);
+      transition: color .2s;
+    }
+    .freq-option.selected .freq-cadence { color: rgba(245,245,240,.45); }
+
+    /* ── Toggle Switches ────────────────────────── */
+    .toggle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border: 1px solid rgba(245,245,240,.06);
+      transition: background .2s, border-color .2s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-row:hover { border-color: rgba(245,245,240,.14); }
+    .toggle-row.on { background: rgba(245,245,240,.03); border-color: rgba(245,245,240,.12); }
+
+    .toggle-info { display: flex; flex-direction: column; gap: 2px; }
+    .toggle-name {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.45);
+      transition: color .2s;
+    }
+    .toggle-row.on .toggle-name { color: rgba(245,245,240,.9); }
+    .toggle-hint {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      color: rgba(245,245,240,.2);
+      line-height: 1.4;
+    }
+
+    /* The actual toggle pill */
+    .toggle-switch {
+      width: 36px; height: 20px;
+      background: rgba(245,245,240,.08);
+      border-radius: 10px;
+      position: relative;
+      flex-shrink: 0;
+      transition: background .25s;
+      border: 1px solid rgba(245,245,240,.12);
+    }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 14px; height: 14px;
+      background: rgba(245,245,240,.4);
+      border-radius: 50%;
+      transition: transform .25s, background .25s;
+    }
+    .toggle-row.on .toggle-switch {
+      background: rgba(245,245,240,.18);
+      border-color: rgba(245,245,240,.3);
+    }
+    .toggle-row.on .toggle-switch::after {
+      transform: translateX(16px);
+      background: var(--cream);
+    }
+
+    /* ── Channel Checkboxes ─────────────────────── */
+    .channel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+    }
+    .channel-card {
+      padding: 16px 14px;
+      border: 1px solid rgba(245,245,240,.07);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color .2s, background .2s;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .channel-card:hover { border-color: rgba(245,245,240,.16); }
+    .channel-card.on {
+      border-color: rgba(245,245,240,.28);
+      background: rgba(245,245,240,.03);
+    }
+    .channel-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .channel-name {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.35);
+      transition: color .2s;
+    }
+    .channel-card.on .channel-name { color: rgba(245,245,240,.85); }
+    .channel-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(245,245,240,.15);
+      transition: background .2s;
+    }
+    .channel-card.on .channel-dot { background: var(--cream); }
+
+    /* ── Save Button ────────────────────────────── */
+    .save-wrap { margin-top: 36px; }
+    .save-btn {
+      width: 100%;
+      background: var(--cream);
+      color: #1A1A1A;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 16px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .save-btn:hover { background: #e8e8e3; transform: translateY(-1px); }
+    .save-btn.saving {
+      background: rgba(245,245,240,.15);
+      color: rgba(245,245,240,.5);
+      cursor: not-allowed;
+      transform: none;
+    }
+    .save-btn.saved {
+      background: rgba(100,220,130,.18);
+      color: #64dc82;
+      border: 1px solid rgba(100,220,130,.3);
+    }
+    .save-spinner {
+      width: 13px; height: 13px;
+      border: 1.5px solid rgba(245,245,240,.2);
+      border-top-color: rgba(245,245,240,.7);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    .save-btn.saving .save-spinner { display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ══════════════════════════════════════════════
+       RIGHT PANEL — LIVE PREVIEW
+    ══════════════════════════════════════════════ */
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+    .preview-title {
+      font-family: var(--font-display);
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.28);
+    }
+    .preview-live {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(100,220,130,.7);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .live-dot {
+      width: 5px; height: 5px;
+      background: #64dc82;
+      border-radius: 50%;
+      animation: pulse 1.8s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .3; }
+    }
+
+    /* ── JSON Block ─────────────────────────────── */
+    .json-block {
+      background: rgba(0,0,0,.3);
+      border: 1px solid rgba(245,245,240,.07);
+      padding: 24px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.74rem;
+      line-height: 1.85;
+      color: rgba(245,245,240,.35);
+      overflow: hidden;
+      position: relative;
+    }
+    .j-key    { color: rgba(120,160,255,.8); }
+    .j-str    { color: rgba(245,200,80,.75); }
+    .j-bool-t { color: rgba(100,220,130,.85); }
+    .j-bool-f { color: rgba(255,120,100,.7); }
+    .j-num    { color: rgba(245,160,100,.8); }
+    .j-dim    { color: rgba(245,245,240,.18); }
+    .j-line {
+      display: block;
+      transition: color .3s;
+    }
+    .j-line.updated {
+      animation: lineFlash .6s ease;
+    }
+    @keyframes lineFlash {
+      0%   { background: rgba(245,245,240,.08); color: var(--cream); }
+      100% { background: transparent; }
+    }
+
+    /* ── Profile Card (post-save) ───────────────── */
+    .profile-card {
+      margin-top: 20px;
+      border: 1px solid rgba(245,245,240,.08);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .5s, transform .5s;
+    }
+    .profile-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .pc-card-header {
+      padding: 16px 20px;
+      background: rgba(245,245,240,.04);
+      border-bottom: 1px solid rgba(245,245,240,.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pc-card-header-title {
+      font-family: var(--font-display);
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.4);
+    }
+    .pc-card-badge {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      background: rgba(100,220,130,.12);
+      color: #64dc82;
+      border: 1px solid rgba(100,220,130,.25);
+    }
+    .pc-card-body {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .pc-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pc-field-key {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.22);
+    }
+    .pc-field-val {
+      font-family: 'Courier New', monospace;
+      font-size: 0.74rem;
+      color: rgba(245,245,240,.65);
+    }
+    .pc-field-val.highlight { color: #64dc82; }
+
+    /* ── Commit Toast ───────────────────────────── */
+    .commit-toast {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background: #1A1A1A;
+      border: 1px solid rgba(100,220,130,.3);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 9998;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .35s, transform .35s;
+      pointer-events: none;
+      min-width: 300px;
+    }
+    .commit-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .toast-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(100,220,130,.12);
+      border: 1px solid rgba(100,220,130,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .toast-body {}
+    .toast-title {
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64dc82;
+      margin-bottom: 3px;
+    }
+    .toast-sub {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: rgba(245,245,240,.3);
+    }
+
+    /* ── Diff Lines (save animation) ───────────── */
+    .diff-block {
+      margin-top: 14px;
+      display: none;
+    }
+    .diff-block.visible { display: block; }
+    .diff-line {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      line-height: 1.7;
+      padding: 1px 10px;
+      display: block;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity .3s, transform .3s;
+    }
+    .diff-line.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .diff-line.add { color: rgba(100,220,130,.7); background: rgba(100,220,130,.04); }
+    .diff-line.meta { color: rgba(245,245,240,.2); }
+
+    /* ══════════════════════════════════════════════
+       EXPLAINER
+    ══════════════════════════════════════════════ */
+    .explainer-section {
+      padding: 70px 0 100px;
+      border-top: 1px solid rgba(245,245,240,.07);
+    }
+    .explainer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      border: 1px solid rgba(245,245,240,.07);
+    }
+    .exp-card {
+      padding: 32px 28px;
+      border-right: 1px solid rgba(245,245,240,.07);
+    }
+    .exp-card:last-child { border-right: none; }
+    .exp-num {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.2);
+      margin-bottom: 14px;
+    }
+    .exp-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.75);
+      margin-bottom: 12px;
+    }
+    .exp-body {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: rgba(245,245,240,.35);
+    }
+
+    @media (max-width: 900px) {
+      .pc-layout { grid-template-columns: 1fr; }
+      .pc-panel { border-right: none; border-bottom: 1px solid rgba(245,245,240,.07); }
+      .explainer-grid { grid-template-columns: 1fr; }
+      .exp-card { border-right: none; border-bottom: 1px solid rgba(245,245,240,.07); }
+      .channel-grid { grid-template-columns: 1fr 1fr; }
+      .pc-card-body { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-home"><img src="images/logo.png" alt="YJC" class="nav-logo-img"></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link active">Portfolio</a>
+          <div class="nav-dropdown">
+            <a href="portfolio.html#projects">Projects</a>
+            <a href="portfolio.html#internship">Internship</a>
+            <a href="portfolio.html#social-media">Social Media</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="film.html" class="nav-link">Film</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ─────────────────────────────── -->
+  <section class="pref-hero">
+    <div class="container">
+      <p class="pref-eyebrow">CRM · Data Architecture · Personalization</p>
+      <h1 class="pref-title">Customer Data<br>Preference Center</h1>
+      <p class="pref-sub">A live demonstration of how first-party preference data is captured, structured, and committed to a customer profile — powering personalized communication at scale.</p>
+      <div class="pref-tags">
+        <span class="pref-tag">First-Party Data</span>
+        <span class="pref-tag">CRM Segmentation</span>
+        <span class="pref-tag">Consent Management</span>
+        <span class="pref-tag">Zero-Party</span>
+        <span class="pref-tag">Personalization Engine</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main Simulator ───────────────────────── -->
+  <section class="pc-section">
+    <div class="container">
+
+      <div class="pc-layout">
+
+        <!-- LEFT: Controls ─────────────────────── -->
+        <div class="pc-panel">
+
+          <!-- Frequency -->
+          <div class="pc-block">
+            <p class="pc-section-label">Communication Frequency</p>
+            <div class="freq-group" id="freq-group">
+              <div class="freq-option selected" data-freq="daily">
+                <div class="freq-left">
+                  <div class="freq-radio"></div>
+                  <span class="freq-name">Daily</span>
+                </div>
+                <span class="freq-cadence">cadence: 1d</span>
+              </div>
+              <div class="freq-option" data-freq="weekly">
+                <div class="freq-left">
+                  <div class="freq-radio"></div>
+                  <span class="freq-name">Weekly</span>
+                </div>
+                <span class="freq-cadence">cadence: 7d</span>
+              </div>
+              <div class="freq-option" data-freq="sales_only">
+                <div class="freq-left">
+                  <div class="freq-radio"></div>
+                  <span class="freq-name">Only Sales</span>
+                </div>
+                <span class="freq-cadence">cadence: event_triggered</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Themes -->
+          <div class="pc-block">
+            <p class="pc-section-label">Content Themes</p>
+            <div class="toggle-list">
+              <div class="toggle-row on" data-toggle="new_products">
+                <div class="toggle-info">
+                  <span class="toggle-name">New Products</span>
+                  <span class="toggle-hint">Launches, drops, and early-access releases</span>
+                </div>
+                <div class="toggle-switch"></div>
+              </div>
+              <div class="toggle-row" data-toggle="editorial_stories">
+                <div class="toggle-info">
+                  <span class="toggle-name">Editorial Stories</span>
+                  <span class="toggle-hint">Brand narrative and behind-the-scenes content</span>
+                </div>
+                <div class="toggle-switch"></div>
+              </div>
+              <div class="toggle-row on" data-toggle="promotions">
+                <div class="toggle-info">
+                  <span class="toggle-name">Promotions &amp; Offers</span>
+                  <span class="toggle-hint">Discounts, bundles, and exclusive member pricing</span>
+                </div>
+                <div class="toggle-switch"></div>
+              </div>
+              <div class="toggle-row" data-toggle="industry_insights">
+                <div class="toggle-info">
+                  <span class="toggle-name">Industry Insights</span>
+                  <span class="toggle-hint">Trend reports and category analysis</span>
+                </div>
+                <div class="toggle-switch"></div>
+              </div>
+              <div class="toggle-row on" data-toggle="event_invites">
+                <div class="toggle-info">
+                  <span class="toggle-name">Event Invites</span>
+                  <span class="toggle-hint">Launches, activations, and private events</span>
+                </div>
+                <div class="toggle-switch"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channels -->
+          <div class="pc-block">
+            <p class="pc-section-label">Preferred Channels</p>
+            <div class="channel-grid">
+              <div class="channel-card on" data-channel="email">
+                <div class="channel-icon">✉</div>
+                <span class="channel-name">Email</span>
+                <div class="channel-dot"></div>
+              </div>
+              <div class="channel-card" data-channel="sms">
+                <div class="channel-icon">◻</div>
+                <span class="channel-name">SMS</span>
+                <div class="channel-dot"></div>
+              </div>
+              <div class="channel-card on" data-channel="push">
+                <div class="channel-icon">◈</div>
+                <span class="channel-name">Push</span>
+                <div class="channel-dot"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save -->
+          <div class="save-wrap">
+            <button class="save-btn" id="save-btn">
+              <span class="save-spinner"></span>
+              <span class="save-label">Save Preferences</span>
+              <span class="save-arrow">→</span>
+            </button>
+          </div>
+
+        </div><!-- /pc-panel -->
+
+        <!-- RIGHT: Live Preview ─────────────────── -->
+        <div class="pc-panel pc-panel-right">
+
+          <div class="preview-header">
+            <span class="preview-title">Live Profile Preview</span>
+            <span class="preview-live">
+              <span class="live-dot"></span>
+              Syncing
+            </span>
+          </div>
+
+          <!-- JSON Output -->
+          <div class="json-block" id="json-block">
+            <span class="j-line j-dim">{</span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-key">"user_id"</span><span class="j-dim">:</span> <span class="j-str">"usr_8f3k2a"</span><span class="j-dim">,</span></span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-key">"email"</span><span class="j-dim">:</span> <span class="j-str">"customer@example.com"</span><span class="j-dim">,</span></span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-key">"preferences"</span><span class="j-dim">: {</span></span>
+            <span class="j-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-key">"frequency"</span><span class="j-dim">:</span> <span class="j-str" id="j-freq">"daily"</span><span class="j-dim">,</span></span>
+            <span class="j-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-key">"themes"</span><span class="j-dim">: [</span></span>
+            <span class="j-line" id="j-themes-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-str">"new_products"</span><span class="j-dim">,</span> <span class="j-str">"promotions"</span><span class="j-dim">,</span> <span class="j-str">"event_invites"</span></span>
+            <span class="j-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-dim">],</span></span>
+            <span class="j-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-key">"channels"</span><span class="j-dim">: [</span></span>
+            <span class="j-line" id="j-channels-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-str">"email"</span><span class="j-dim">,</span> <span class="j-str">"push"</span></span>
+            <span class="j-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-dim">]</span></span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-dim">},</span></span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-key">"consent"</span><span class="j-dim">: {</span></span>
+            <span class="j-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-key">"marketing"</span><span class="j-dim">:</span> <span class="j-bool-t">true</span><span class="j-dim">,</span></span>
+            <span class="j-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="j-key">"analytics"</span><span class="j-dim">:</span> <span class="j-bool-t">true</span></span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-dim">},</span></span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-key">"segment"</span><span class="j-dim">:</span> <span class="j-str" id="j-segment">"high_engagement"</span><span class="j-dim">,</span></span>
+            <span class="j-line">&nbsp;&nbsp;<span class="j-key">"last_updated"</span><span class="j-dim">:</span> <span class="j-num" id="j-updated">"—"</span></span>
+            <span class="j-line j-dim">}</span>
+          </div>
+
+          <!-- Diff block (shows on save) -->
+          <div class="diff-block" id="diff-block">
+            <div class="diff-line meta">@@ preferences committed to CRM @@</div>
+          </div>
+
+          <!-- Profile Card (shows after save) -->
+          <div class="profile-card" id="profile-card">
+            <div class="pc-card-header">
+              <span class="pc-card-header-title">Profile Record — HubSpot CRM</span>
+              <span class="pc-card-badge">✓ Committed</span>
+            </div>
+            <div class="pc-card-body">
+              <div class="pc-field">
+                <span class="pc-field-key">Lifecycle Stage</span>
+                <span class="pc-field-val highlight" id="card-lifecycle">Marketing Qualified</span>
+              </div>
+              <div class="pc-field">
+                <span class="pc-field-key">Frequency</span>
+                <span class="pc-field-val" id="card-freq">Daily</span>
+              </div>
+              <div class="pc-field">
+                <span class="pc-field-key">Active Themes</span>
+                <span class="pc-field-val" id="card-themes">3 selected</span>
+              </div>
+              <div class="pc-field">
+                <span class="pc-field-key">Channels</span>
+                <span class="pc-field-val" id="card-channels">Email, Push</span>
+              </div>
+              <div class="pc-field">
+                <span class="pc-field-key">Segment Tag</span>
+                <span class="pc-field-val highlight" id="card-segment">high_engagement</span>
+              </div>
+              <div class="pc-field">
+                <span class="pc-field-key">Updated</span>
+                <span class="pc-field-val" id="card-updated">—</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /pc-panel-right -->
+      </div><!-- /pc-layout -->
+    </div>
+  </section>
+
+  <!-- ── Explainer ─────────────────────────────── -->
+  <section class="explainer-section">
+    <div class="container">
+      <div class="explainer-grid">
+        <div class="exp-card">
+          <p class="exp-num">01 — Capture</p>
+          <p class="exp-title">Zero-Party Data</p>
+          <p class="exp-body">Unlike inferred behavioral data, preference centers capture explicit customer intent. The customer tells you exactly what they want — creating a consent-verified, high-confidence signal that outperforms any third-party data source.</p>
+        </div>
+        <div class="exp-card">
+          <p class="exp-num">02 — Structure</p>
+          <p class="exp-title">Clean Schema</p>
+          <p class="exp-body">Raw toggle states are immediately normalized into a structured JSON object and matched to CRM field mappings. This eliminates manual entry, reduces data debt, and ensures every preference is queryable for segmentation.</p>
+        </div>
+        <div class="exp-card">
+          <p class="exp-num">03 — Activate</p>
+          <p class="exp-title">Live Segmentation</p>
+          <p class="exp-body">The committed profile is scored against segment rules in real time. Customers who prefer high frequency + sales content are flagged as high-engagement and routed to priority nurture flows with tighter touchpoint cadences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a href="contact.html" class="footer-cta-strip">
+    <span class="footer-cta-text">Get In Touch</span>
+    <span class="footer-cta-arrow">→</span>
+  </a>
+  <footer class="footer">
+    <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
+  </footer>
+
+  <!-- ── Toast ─────────────────────────────────── -->
+  <div class="commit-toast" id="commit-toast">
+    <div class="toast-icon">✓</div>
+    <div class="toast-body">
+      <p class="toast-title">Preferences Committed</p>
+      <p class="toast-sub" id="toast-sub">Syncing to CRM…</p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+
+    /* ── State ─────────────────────────────────── */
+    let state = {
+      frequency: 'daily',
+      themes: new Set(['new_products','promotions','event_invites']),
+      channels: new Set(['email','push']),
+      saved: false
+    };
+
+    /* ── DOM refs ──────────────────────────────── */
+    const freqOptions  = document.querySelectorAll('.freq-option');
+    const toggleRows   = document.querySelectorAll('.toggle-row');
+    const channelCards = document.querySelectorAll('.channel-card');
+    const saveBtn      = document.getElementById('save-btn');
+    const saveLabel    = saveBtn.querySelector('.save-label');
+    const saveArrow    = saveBtn.querySelector('.save-arrow');
+
+    const jFreq        = document.getElementById('j-freq');
+    const jThemesLine  = document.getElementById('j-themes-line');
+    const jChannelsLine= document.getElementById('j-channels-line');
+    const jSegment     = document.getElementById('j-segment');
+    const jUpdated     = document.getElementById('j-updated');
+
+    const profileCard  = document.getElementById('profile-card');
+    const diffBlock    = document.getElementById('diff-block');
+    const toast        = document.getElementById('commit-toast');
+    const toastSub     = document.getElementById('toast-sub');
+
+    /* ── Helpers ───────────────────────────────── */
+    function flash(el) {
+      el.classList.remove('updated');
+      void el.offsetWidth;
+      el.classList.add('updated');
+    }
+
+    function getSegment() {
+      const themeCount   = state.themes.size;
+      const channelCount = state.channels.size;
+      if (state.frequency === 'daily' && themeCount >= 3) return 'high_engagement';
+      if (state.frequency === 'sales_only')               return 'purchase_intent';
+      if (themeCount <= 1 || channelCount <= 1)           return 'low_engagement';
+      return 'standard_nurture';
+    }
+
+    function formatThemes() {
+      return [...state.themes].map(t => `<span class="j-str">"${t}"</span><span class="j-dim">,</span> `).join('').replace(/,\s$/, '');
+    }
+    function formatChannels() {
+      return [...state.channels].map(c => `<span class="j-str">"${c}"</span><span class="j-dim">,</span> `).join('').replace(/,\s$/, '');
+    }
+
+    function updateJSON() {
+      jFreq.textContent = `"${state.frequency}"`;
+      flash(jFreq.parentElement);
+
+      jThemesLine.innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` + (state.themes.size ? formatThemes() : '<span class="j-dim">—empty—</span>');
+      flash(jThemesLine);
+
+      jChannelsLine.innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` + (state.channels.size ? formatChannels() : '<span class="j-dim">—empty—</span>');
+      flash(jChannelsLine);
+
+      jSegment.textContent = `"${getSegment()}"`;
+      flash(jSegment.parentElement);
+    }
+
+    /* ── Frequency ─────────────────────────────── */
+    freqOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        freqOptions.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        state.frequency = opt.dataset.freq;
+        updateJSON();
+        resetSaveBtn();
+      });
+    });
+
+    /* ── Toggles ───────────────────────────────── */
+    toggleRows.forEach(row => {
+      row.addEventListener('click', () => {
+        const key = row.dataset.toggle;
+        row.classList.toggle('on');
+        if (row.classList.contains('on')) state.themes.add(key);
+        else state.themes.delete(key);
+        updateJSON();
+        resetSaveBtn();
+      });
+    });
+
+    /* ── Channels ──────────────────────────────── */
+    channelCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.dataset.channel;
+        card.classList.toggle('on');
+        if (card.classList.contains('on')) state.channels.add(key);
+        else state.channels.delete(key);
+        updateJSON();
+        resetSaveBtn();
+      });
+    });
+
+    /* ── Reset save button ─────────────────────── */
+    function resetSaveBtn() {
+      if (saveBtn.classList.contains('saved')) {
+        saveBtn.classList.remove('saved');
+        saveLabel.textContent = 'Save Preferences';
+        saveArrow.textContent = '→';
+        profileCard.classList.remove('visible');
+        diffBlock.classList.remove('visible');
+        diffBlock.querySelectorAll('.diff-line.add').forEach(l => l.remove());
+      }
+    }
+
+    /* ── Save ──────────────────────────────────── */
+    async function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    saveBtn.addEventListener('click', async () => {
+      if (saveBtn.disabled || saveBtn.classList.contains('saving')) return;
+
+      saveBtn.classList.add('saving');
+      saveBtn.disabled = true;
+      saveLabel.textContent = 'Committing…';
+      saveArrow.textContent = '';
+
+      await wait(400);
+
+      // Build diff lines
+      diffBlock.querySelectorAll('.diff-line.add').forEach(l => l.remove());
+      const diffs = [
+        `+ frequency: "${state.frequency}"`,
+        `+ themes: [${[...state.themes].join(', ')}]`,
+        `+ channels: [${[...state.channels].join(', ')}]`,
+        `+ segment: "${getSegment()}"`,
+        `+ last_updated: "${new Date().toISOString()}"`,
+      ];
+      diffs.forEach(text => {
+        const line = document.createElement('div');
+        line.className = 'diff-line add';
+        line.textContent = text;
+        diffBlock.appendChild(line);
+      });
+      diffBlock.classList.add('visible');
+
+      // Animate diff lines in
+      const diffLines = diffBlock.querySelectorAll('.diff-line');
+      for (let i = 0; i < diffLines.length; i++) {
+        await wait(120);
+        diffLines[i].classList.add('show');
+      }
+
+      await wait(300);
+
+      // Update timestamp
+      const now = new Date().toISOString().replace('T',' ').slice(0,19);
+      jUpdated.textContent = `"${now}"`;
+      flash(jUpdated.parentElement);
+
+      // Fill profile card
+      const freqLabels = { daily: 'Daily', weekly: 'Weekly', sales_only: 'Event-Triggered' };
+      document.getElementById('card-freq').textContent     = freqLabels[state.frequency] || state.frequency;
+      document.getElementById('card-themes').textContent   = `${state.themes.size} selected`;
+      document.getElementById('card-channels').textContent = [...state.channels].join(', ');
+      document.getElementById('card-segment').textContent  = getSegment();
+      document.getElementById('card-updated').textContent  = now;
+      const lifecycle = state.frequency === 'sales_only' ? 'Sales Qualified' :
+                        state.themes.size >= 4            ? 'Marketing Qualified' : 'Lead';
+      document.getElementById('card-lifecycle').textContent = lifecycle;
+      document.getElementById('card-segment').className = 'pc-field-val highlight';
+
+      await wait(200);
+      profileCard.classList.add('visible');
+
+      // Toast
+      toastSub.textContent = `${state.themes.size} themes · ${state.channels.size} channels · ${getSegment()}`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3800);
+
+      await wait(200);
+
+      // Done
+      saveBtn.classList.remove('saving');
+      saveBtn.classList.add('saved');
+      saveBtn.disabled = false;
+      saveLabel.textContent = 'Preferences Saved';
+      saveArrow.textContent = '✓';
+    });
+
+  })();
+  </script>
+</body>
+</html>
