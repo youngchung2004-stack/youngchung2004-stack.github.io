@@ -1122,11 +1122,12 @@ body {
   .nav-dropdown a:last-child { border-bottom: none; }
 
   /* ── X close button (injected by JS) ── */
+  /* Hidden by default on ALL screen sizes — JS toggles it open/closed */
   .nav-close {
     position: fixed;
     top: 24px;
     right: 24px;
-    z-index: 501;
+    z-index: 502;
     background: none;
     border: none;
     cursor: pointer;
@@ -1134,17 +1135,15 @@ body {
     font-size: 2rem;
     line-height: 1;
     padding: 10px;
-    display: none;        /* hidden on desktop */
+    display: none;
     align-items: center;
     justify-content: center;
     width: 44px;
     height: 44px;
   }
 
-  /* Show the X button on mobile */
-  .nav-close { display: flex; }
-
-  .hero { padding: 60px 24px 0; }
+  /* Hero top-padding must clear the 80px fixed nav bar */
+  .hero { padding: 100px 24px 0; }
   .hero-name { font-size: clamp(3rem, 15vw, 6rem); }
   .hero-subhead { font-size: clamp(0.7rem, 3.5vw, 1rem); letter-spacing: 0.12em; }
 

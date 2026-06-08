@@ -36,6 +36,7 @@ if (cursorDot && cursorRing) {
 const nav       = document.querySelector('.nav');
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks  = document.querySelector('.nav-links');
+let   closeBtn  = null;   // set after injection below
 
 if (nav) {
   window.addEventListener('scroll', () => {
@@ -48,6 +49,10 @@ if (nav) {
 function closeMobileMenu() {
   if (!navLinks) return;
   navLinks.classList.remove('open');
+  document.body.style.overflow = '';
+  // Restore hamburger, hide X
+  if (navToggle) navToggle.style.visibility = '';
+  if (closeBtn)  closeBtn.style.display = 'none';
   const spans = navToggle ? navToggle.querySelectorAll('span') : [];
   spans[0] && (spans[0].style.transform = '');
   spans[1] && (spans[1].style.opacity   = '');
@@ -56,7 +61,7 @@ function closeMobileMenu() {
 
 if (navToggle && navLinks) {
   // Inject the × close button once — covers all pages without touching HTML
-  const closeBtn = document.createElement('button');
+  closeBtn = document.createElement('button');
   closeBtn.className = 'nav-close';
   closeBtn.setAttribute('aria-label', 'Close menu');
   closeBtn.innerHTML = '&times;';
@@ -66,10 +71,10 @@ if (navToggle && navLinks) {
   // Hamburger toggle
   navToggle.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
-    const spans = navToggle.querySelectorAll('span');
-    spans[0].style.transform = open ? 'rotate(45deg) translate(5px, 5px)' : '';
-    spans[1].style.opacity   = open ? '0' : '';
-    spans[2].style.transform = open ? 'rotate(-45deg) translate(5px, -5px)' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
+    // Swap hamburger ↔ X
+    navToggle.style.visibility = open ? 'hidden' : '';
+    closeBtn.style.display     = open ? 'flex'   : 'none';
   });
 
   // Close when any non-dropdown nav-link is tapped
