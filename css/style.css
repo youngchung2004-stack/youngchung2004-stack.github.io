@@ -1032,42 +1032,60 @@ body {
 
 @media (max-width: 768px) {
   .container { padding: 0 24px; }
-  .nav-container { padding: 0 24px; }
+  .nav-container { padding: 0 20px; }
 
+  /* Scale logo down so it fits cleanly inside the 80px nav bar */
+  .nav-logo-img { height: 48px; }
+
+  /* Mobile menu panel — slides down from below the nav bar */
   .nav-links {
     position: fixed;
-    top: 60px; left: 0; right: 0;
-    background: #111;
+    top: 80px; left: 0; right: 0;
+    background: rgba(17,17,17,.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     flex-direction: column;
     gap: 0;
     border-bottom: 1px solid var(--cream-border);
     transform: translateY(-110%);
     transition: transform .35s var(--ease);
+    z-index: 99;
   }
 
   .nav-links.open { transform: translateY(0); }
   .nav-links li { width: 100%; }
 
+  /* Larger tap targets for thumb-friendly navigation */
   .nav-link {
     display: block;
-    padding: 16px 28px;
-    font-size: 0.9rem;
+    padding: 20px 24px;
+    font-size: 1.05rem;
+    letter-spacing: 0.16em;
+    border-bottom: 1px solid rgba(245,245,240,.07);
   }
 
   .nav-dropdown {
     position: static;
-    background: rgba(0,0,0,.2);
+    background: rgba(0,0,0,.28);
     border: none;
-    border-top: 1px solid var(--cream-border);
+    border-top: 1px solid rgba(245,245,240,.07);
     opacity: 1;
     pointer-events: all;
     transform: none;
     display: none;
+    min-width: unset;
   }
 
   .nav-item.dropdown-open .nav-dropdown { display: block; }
-  .nav-dropdown a { padding: 12px 28px 12px 44px; }
-  .nav-toggle { display: flex; }
+  .nav-dropdown a {
+    padding: 14px 24px 14px 42px;
+    font-size: 0.88rem;
+    border-bottom: 1px solid rgba(245,245,240,.05);
+  }
+  .nav-dropdown a:last-child { border-bottom: none; }
+
+  /* Show hamburger; make it pointer since cursor:none is disabled on mobile */
+  .nav-toggle { display: flex; cursor: pointer; }
 
   .hero { padding: 60px 24px 0; }
   .hero-name { font-size: clamp(3rem, 15vw, 6rem); }

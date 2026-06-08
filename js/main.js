@@ -45,6 +45,15 @@ if (nav) {
   }, { passive: true });
 }
 
+function closeMobileMenu() {
+  if (!navLinks) return;
+  navLinks.classList.remove('open');
+  const spans = navToggle ? navToggle.querySelectorAll('span') : [];
+  spans[0] && (spans[0].style.transform = '');
+  spans[1] && (spans[1].style.opacity   = '');
+  spans[2] && (spans[2].style.transform = '');
+}
+
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
@@ -52,6 +61,13 @@ if (navToggle && navLinks) {
     spans[0].style.transform = open ? 'rotate(45deg) translate(5px, 5px)' : '';
     spans[1].style.opacity   = open ? '0' : '';
     spans[2].style.transform = open ? 'rotate(-45deg) translate(5px, -5px)' : '';
+  });
+
+  // Close menu when a non-dropdown link is tapped on mobile
+  navLinks.querySelectorAll('.nav-link').forEach(link => {
+    if (!link.closest('.nav-item').querySelector('.nav-dropdown')) {
+      link.addEventListener('click', closeMobileMenu);
+    }
   });
 }
 
