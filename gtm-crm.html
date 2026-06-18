@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTM CRM Architecture — YoungJoo Chung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Page Hero ─────────────────────────────── */
+    .gtm-hero {
+      padding: 160px 0 80px;
+      border-bottom: 1px solid rgba(245,245,240,.08);
+    }
+    .gtm-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.4);
+      margin-bottom: 20px;
+    }
+    .gtm-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 6.5rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 0.92;
+      color: var(--cream);
+      margin-bottom: 28px;
+    }
+    .gtm-sub {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: rgba(245,245,240,.92);
+      max-width: 680px;
+      letter-spacing: 0.01em;
+    }
+    .gtm-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 36px;
+    }
+    .gtm-tag {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.6);
+      border: 1px solid rgba(245,245,240,.15);
+      padding: 6px 16px;
+      transition: border-color .2s, color .2s;
+    }
+    .gtm-tag:hover {
+      border-color: rgba(245,245,240,.4);
+      color: var(--cream);
+    }
+    .gtm-tag.accent {
+      border-color: rgba(120,200,180,.35);
+      color: rgba(120,200,180,.8);
+    }
+
+    /* ── Overview Three-Col ─────────────────────── */
+    .overview-section {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid rgba(245,245,240,.08);
+    }
+    .overview-col {
+      padding: 36px 32px;
+      border-right: 1px solid rgba(245,245,240,.08);
+    }
+    .overview-col:last-child { border-right: none; }
+    .overview-num {
+      font-family: var(--font-display);
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.22);
+      margin-bottom: 8px;
+    }
+    .overview-label {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .overview-body {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(245,245,240,.92);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Challenge Section ──────────────────────── */
+    .challenge-section {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .case-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.3);
+      margin-bottom: 16px;
+    }
+    .case-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+    .case-body {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(245,245,240,.92);
+      letter-spacing: 0.01em;
+      margin-bottom: 24px;
+    }
+
+    /* Pain points list */
+    .pain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pain-list li {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: rgba(245,245,240,.92);
+      padding: 14px 16px 14px 36px;
+      border: 1px solid rgba(245,245,240,.07);
+      position: relative;
+      letter-spacing: 0.01em;
+    }
+    .pain-list li::before {
+      content: '→';
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      color: rgba(245,245,240,.3);
+    }
+
+    /* ── Architecture / Execution Section ──────── */
+    .execution-section {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(245,245,240,.07);
+    }
+    .arch-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 48px;
+    }
+    .arch-layer {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      border: 1px solid rgba(245,245,240,.08);
+      transition: border-color .25s;
+    }
+    .arch-layer:hover {
+      border-color: rgba(245,245,240,.22);
+    }
+    .arch-layer-label {
+      padding: 28px 24px;
+      border-right: 1px solid rgba(245,245,240,.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .arch-step-num {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.2);
+      margin-bottom: 6px;
+    }
+    .arch-step-name {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .arch-layer-body {
+      padding: 28px 32px;
+    }
+    .arch-layer-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.7);
+      margin-bottom: 10px;
+    }
+    .arch-layer-desc {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(245,245,240,.92);
+      letter-spacing: 0.01em;
+    }
+    .arch-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .arch-tool {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(120,200,180,.25);
+      color: rgba(120,200,180,.7);
+    }
+
+    /* ── Results Section ────────────────────────── */
+    .results-section {
+      padding: 80px 0 100px;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .stat-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(245,245,240,.06);
+    }
+    .stat-row:first-child { border-top: 1px solid rgba(245,245,240,.06); }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--cream);
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      min-width: 110px;
+    }
+    .stat-desc {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: rgba(245,245,240,.92);
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+    }
+    .outcomes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .outcomes-list li {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: rgba(245,245,240,.92);
+      padding: 16px 16px 16px 36px;
+      border: 1px solid rgba(100,220,130,.1);
+      position: relative;
+      letter-spacing: 0.01em;
+    }
+    .outcomes-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 14px;
+      top: 16px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      color: rgba(100,220,130,.6);
+    }
+
+    /* ── Responsive ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .overview-grid { grid-template-columns: 1fr; }
+      .overview-col { border-right: none; border-bottom: 1px solid rgba(245,245,240,.08); }
+      .overview-col:last-child { border-bottom: none; }
+      .case-grid { grid-template-columns: 1fr; gap: 48px; }
+      .results-grid { grid-template-columns: 1fr; gap: 56px; }
+      .arch-layer { grid-template-columns: 1fr; }
+      .arch-layer-label { border-right: none; border-bottom: 1px solid rgba(245,245,240,.08); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-home"><img src="images/logo.png" alt="YJC" class="nav-logo-img"></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link active">Portfolio</a>
+          <div class="nav-dropdown">
+            <a href="portfolio.html#projects">Projects</a>
+            <a href="portfolio.html#internship">Internship</a>
+            <a href="portfolio.html#social-media">Social Media</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="film.html" class="nav-link">Film</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────── -->
+  <section class="gtm-hero">
+    <div class="container">
+      <p class="gtm-eyebrow">Marketing Operations · Case Study</p>
+      <h1 class="gtm-title">GTM CRM<br>Architecture</h1>
+      <p class="gtm-sub">Engineering a custom go-to-market CRM system using Clay and multi-source relational schemas — unifying prospect intelligence from fragmented data sources into a single, enriched, action-ready pipeline.</p>
+      <div class="gtm-tags">
+        <span class="gtm-tag accent">Clay</span>
+        <span class="gtm-tag accent">Relational Schemas</span>
+        <span class="gtm-tag accent">HubSpot</span>
+        <span class="gtm-tag">Apollo.io</span>
+        <span class="gtm-tag">LinkedIn Sales Navigator</span>
+        <span class="gtm-tag">Data Enrichment</span>
+        <span class="gtm-tag">GTM Strategy</span>
+        <span class="gtm-tag">CRM Architecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Overview ──────────────────────────────── -->
+  <section class="overview-section">
+    <div class="container">
+      <div class="overview-grid">
+
+        <div class="overview-col">
+          <p class="overview-num">01</p>
+          <p class="overview-label">The Challenge</p>
+          <p class="overview-body">Prospect data was siloed across Apollo, LinkedIn, and manual spreadsheets — no unified schema, constant duplicates, and zero enrichment logic tying signals together for outreach.</p>
+        </div>
+
+        <div class="overview-col">
+          <p class="overview-num">02</p>
+          <p class="overview-label">The Execution</p>
+          <p class="overview-body">Designed a multi-source relational architecture in Clay, mapping field logic across data providers, building enrichment waterfalls, and routing clean records directly into HubSpot with custom properties.</p>
+        </div>
+
+        <div class="overview-col">
+          <p class="overview-num">03</p>
+          <p class="overview-label">The Results</p>
+          <p class="overview-body">A single enriched record per prospect. Outreach sequences triggered on real intent signals. Duplicate rate dropped sharply and pipeline visibility improved across the full GTM team.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Challenge ─────────────────────────────── -->
+  <section class="challenge-section">
+    <div class="container">
+      <div class="case-grid">
+
+        <div>
+          <p class="case-eyebrow">The Challenge</p>
+          <h2 class="case-title">Fragmented Data,<br>Broken Pipeline</h2>
+          <p class="case-body">
+            Most GTM teams don't have a data problem — they have a data architecture problem. The information exists; it's just scattered across six tools with no consistent schema, no deduplication logic, and no enrichment layer connecting intent signals to outreach timing.
+          </p>
+          <p class="case-body">
+            The result is reps working from stale exports, marketing sending to bad emails, and leadership unable to trust their own pipeline numbers. The fix isn't more data — it's building the architecture to make existing data usable.
+          </p>
+        </div>
+
+        <ul class="pain-list">
+          <li>Prospect records duplicated across Apollo, LinkedIn exports, and manual CSV imports with no deduplication rule set</li>
+          <li>No enrichment waterfall — missing fields were left blank rather than pulled from alternate sources</li>
+          <li>CRM properties inconsistently mapped; custom fields in HubSpot did not reflect the actual signals reps used to prioritize outreach</li>
+          <li>Sequences triggered on import date, not intent signals — timing was arbitrary rather than behavior-driven</li>
+          <li>No relational linking between company-level and contact-level records, making account-based plays impossible to execute cleanly</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Execution ──────────────────────────────── -->
+  <section class="execution-section">
+    <div class="container">
+      <p class="case-eyebrow">The Execution</p>
+      <h2 class="case-title">Building the Architecture</h2>
+
+      <div class="arch-layers">
+
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <p class="arch-step-num">Layer 01</p>
+            <p class="arch-step-name">Source Mapping</p>
+          </div>
+          <div class="arch-layer-body">
+            <p class="arch-layer-title">Unified Field Schema Design</p>
+            <p class="arch-layer-desc">Audited all incoming data sources — Apollo, LinkedIn Sales Navigator, and manual exports — and designed a canonical field schema with standardized naming conventions, data types, and required vs. enrichable field classification. Every record entering the system was mapped to this schema before any enrichment ran.</p>
+            <div class="arch-tools">
+              <span class="arch-tool">Clay</span>
+              <span class="arch-tool">Apollo.io</span>
+              <span class="arch-tool">LinkedIn Sales Nav</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <p class="arch-step-num">Layer 02</p>
+            <p class="arch-step-name">Enrichment Waterfall</p>
+          </div>
+          <div class="arch-layer-body">
+            <p class="arch-layer-title">Multi-Source Data Enrichment</p>
+            <p class="arch-layer-desc">Built a cascading enrichment waterfall inside Clay — if a field was missing from Source A, the system automatically queried Source B, then Source C, before flagging the field as unresolvable. This eliminated blank properties without creating redundant API calls, keeping enrichment cost predictable and coverage high.</p>
+            <div class="arch-tools">
+              <span class="arch-tool">Clay Enrichment</span>
+              <span class="arch-tool">Relational Schemas</span>
+              <span class="arch-tool">API Waterfall Logic</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <p class="arch-step-num">Layer 03</p>
+            <p class="arch-step-name">Deduplication</p>
+          </div>
+          <div class="arch-layer-body">
+            <p class="arch-layer-title">Record Deduplication & Merging</p>
+            <p class="arch-layer-desc">Implemented fuzzy-match deduplication rules using email domain, company name, and LinkedIn URL as primary identifiers. Duplicate records were auto-merged or flagged for manual review based on a confidence score, ensuring one clean record per contact in the downstream CRM with full history preserved.</p>
+            <div class="arch-tools">
+              <span class="arch-tool">Clay</span>
+              <span class="arch-tool">Match Logic</span>
+              <span class="arch-tool">HubSpot Dedup</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <p class="arch-step-num">Layer 04</p>
+            <p class="arch-step-name">CRM Sync</p>
+          </div>
+          <div class="arch-layer-body">
+            <p class="arch-layer-title">HubSpot Custom Property Mapping</p>
+            <p class="arch-layer-desc">Designed custom HubSpot contact and company properties to house enriched fields — firmographics, intent signals, source attribution, and enrichment confidence scores. Clay pushed clean records directly into the correct HubSpot lifecycle stage with properties pre-populated, eliminating all manual CRM data entry for the GTM team.</p>
+            <div class="arch-tools">
+              <span class="arch-tool">HubSpot CRM</span>
+              <span class="arch-tool">Custom Properties</span>
+              <span class="arch-tool">Lifecycle Stages</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-layer">
+          <div class="arch-layer-label">
+            <p class="arch-step-num">Layer 05</p>
+            <p class="arch-step-name">Trigger Routing</p>
+          </div>
+          <div class="arch-layer-body">
+            <p class="arch-layer-title">Intent-Based Sequence Enrollment</p>
+            <p class="arch-layer-desc">Replaced time-based triggers with signal-based enrollment logic. Contacts entered outreach sequences based on enriched intent indicators — job change signals, company funding events, or engagement history — rather than arbitrary import dates. Each trigger mapped to a distinct sequence template calibrated to that signal's conversion profile.</p>
+            <div class="arch-tools">
+              <span class="arch-tool">HubSpot Workflows</span>
+              <span class="arch-tool">Intent Signals</span>
+              <span class="arch-tool">Sequence Logic</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Results ────────────────────────────────── -->
+  <section class="results-section">
+    <div class="container">
+      <p class="case-eyebrow">The Results</p>
+      <h2 class="case-title">What the Architecture<br>Delivered</h2>
+
+      <div class="results-grid" style="margin-top: 48px;">
+
+        <div class="stat-rows">
+          <div class="stat-row">
+            <span class="stat-num">1</span>
+            <p class="stat-desc">Unified record per prospect — no duplicates, no blank properties, no manual cleanup required by reps.</p>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">5+</span>
+            <p class="stat-desc">Enrichment data sources consolidated into a single relational schema, with waterfall fallback logic maintaining field coverage.</p>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">0</span>
+            <p class="stat-desc">Manual CRM data entry required post-implementation — every enriched field pushed programmatically to HubSpot.</p>
+          </div>
+          <div class="stat-row">
+            <span class="stat-num">Signal</span>
+            <p class="stat-desc">Outreach sequences now triggered by real intent signals — job changes, funding events, engagement history — not import timestamps.</p>
+          </div>
+        </div>
+
+        <ul class="outcomes-list">
+          <li>CRM data quality improved immediately upon launch — enrichment waterfall eliminated the blank-field problem that had been degrading sequence deliverability</li>
+          <li>GTM team onboarded to clean, standardized records within one sprint cycle — no retraining required because the schema matched how reps already thought about prospects</li>
+          <li>Account-based plays became executable for the first time — relational company-to-contact linking enabled multi-threaded outreach without manual cross-referencing</li>
+          <li>Pipeline reporting accuracy increased as lifecycle stage assignments were now driven by enriched data logic rather than manual rep updates</li>
+          <li>Architecture designed to scale — adding a new data source requires only a new Clay column and field mapping rule, not a system rebuild</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <a href="contact.html" class="footer-cta-strip">
+    <span class="footer-cta-text">Get In Touch</span>
+    <span class="footer-cta-arrow">→</span>
+  </a>
+  <footer class="footer">
+    <p>&copy; 2026 YoungJoo Chung &nbsp;·&nbsp; <a href="mailto:Youngchung2004@gmail.com">Youngchung2004@gmail.com</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
