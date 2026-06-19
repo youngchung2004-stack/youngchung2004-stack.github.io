@@ -487,10 +487,10 @@ body {
 
 .page-hero-sub {
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--cream-dim);
+  color: rgba(245,245,240,.65);
 }
 
 /* ============================================
@@ -508,9 +508,9 @@ body {
 .filter-tabs { display: flex; gap: 6px; }
 
 .filter-tab {
-  padding: 6px 18px;
+  padding: 10px 28px;
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.88rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--cream-dim);
@@ -1180,7 +1180,7 @@ body {
   .hero-subhead { font-size: 0.65rem; letter-spacing: 0.08em; }
   .about-title  { font-size: 2.4rem; }
   .page-hero-title { font-size: 2.8rem; }
-  .filter-tab   { padding: 5px 12px; font-size: 0.68rem; }
+  .filter-tab   { padding: 8px 20px; font-size: 0.82rem; }
   .hero-portrait-wrap { width: 95%; }
   .hero-portrait { height: 45vh; }
   .hero-content { margin-bottom: 32px; }
