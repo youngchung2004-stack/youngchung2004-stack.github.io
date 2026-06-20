@@ -315,6 +315,59 @@
       color: rgba(100,220,130,.6);
     }
 
+    /* ── Bold term emphasis ─────────────────────── */
+    .case-body strong,
+    .arch-layer-desc strong,
+    .pain-list li strong {
+      color: var(--cream);
+      font-style: normal;
+    }
+
+    /* ── Screenshot Blocks ──────────────────────── */
+    .case-screenshot-strip {
+      padding: 0 0 80px;
+    }
+    .case-img-block {
+      margin: 0;
+      border: 1px solid rgba(245,245,240,.1);
+      box-shadow: 0 4px 32px rgba(0,0,0,.4);
+    }
+    .case-img-placeholder {
+      width: 100%;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245,245,240,.02);
+      border-bottom: 1px dashed rgba(245,245,240,.1);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.18);
+    }
+    .case-img-block img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .case-img-caption {
+      padding: 14px 20px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(245,245,240,.45);
+      background: rgba(245,245,240,.02);
+    }
+    /* Inline block inside arch-layers */
+    .arch-screenshot {
+      border: 1px solid rgba(245,245,240,.1);
+      box-shadow: 0 4px 32px rgba(0,0,0,.4);
+      margin: 0;
+    }
+    .arch-screenshot .case-img-placeholder { min-height: 240px; }
+
     /* ── Responsive ─────────────────────────────── */
     @media (max-width: 900px) {
       .overview-grid { grid-template-columns: 1fr; }
@@ -408,22 +461,32 @@
           <p class="case-eyebrow">The Challenge</p>
           <h2 class="case-title">Fragmented Data,<br>Broken Pipeline</h2>
           <p class="case-body">
-            Most GTM teams don't have a data problem. They have a data architecture problem. The information exists; it's just scattered across six tools with no consistent schema, no deduplication logic, and no enrichment layer connecting intent signals to outreach timing.
+            Most GTM teams don't have a data problem — they have a <strong>data architecture</strong> problem. Prospect data existed across Apollo, LinkedIn, and manual exports. None of it was connected, cleaned, or enriched.
           </p>
           <p class="case-body">
-            The result is reps working from stale exports, marketing sending to bad emails, and leadership unable to trust their own pipeline numbers. The fix isn't more data. It's building the architecture to make existing data usable.
+            Reps worked from stale lists. Sequences hit bad emails. Leadership couldn't trust the pipeline numbers. The fix wasn't more data — it was building a <strong>relational data schema</strong> to make existing data usable.
           </p>
         </div>
 
         <ul class="pain-list">
-          <li>Prospect records duplicated across Apollo, LinkedIn exports, and manual CSV imports with no deduplication rule set</li>
-          <li>No enrichment waterfall: missing fields were left blank rather than pulled from alternate sources</li>
-          <li>CRM properties inconsistently mapped; custom fields in HubSpot did not reflect the actual signals reps used to prioritize outreach</li>
-          <li>Sequences triggered on import date, not intent signals: timing was arbitrary rather than behavior-driven</li>
-          <li>No relational linking between company-level and contact-level records, making account-based plays impossible to execute cleanly</li>
+          <li>Records duplicated across Apollo, LinkedIn exports, and CSV imports — no deduplication logic in place</li>
+          <li>No <strong>data enrichment waterfall</strong> — blank fields stayed blank instead of pulling from fallback sources</li>
+          <li>HubSpot properties inconsistently mapped; CRM didn't reflect the signals reps actually used to prioritize</li>
+          <li>Sequences triggered on import date, not intent — outreach timing was arbitrary</li>
+          <li>No company-to-contact relational linking — <strong>account-based plays</strong> were impossible to execute cleanly</li>
         </ul>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ── Screenshot 1: ICP Company Matrix ─────── -->
+  <section class="case-screenshot-strip">
+    <div class="container">
+      <figure class="case-img-block">
+        <div class="case-img-placeholder">[INSERT COMPANY ICP SCREENSHOT HERE]</div>
+        <figcaption class="case-img-caption">Target ICP Company Identification Matrix inside Clay, filtering for software companies with 11–50 employees in the NYC market.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -442,7 +505,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Unified Field Schema Design</p>
-            <p class="arch-layer-desc">Audited all incoming data sources, Apollo, LinkedIn Sales Navigator, and manual exports, and designed a canonical field schema with standardized naming conventions, data types, and required vs. enrichable field classification. Every record entering the system was mapped to this schema before any enrichment ran.</p>
+            <p class="arch-layer-desc">Audited all data sources — Apollo, LinkedIn Sales Navigator, manual exports — and built a <strong>canonical field schema</strong>: standardized names, data types, and required vs. enrichable field classification. Every record was mapped to this schema before any enrichment ran.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay</span>
               <span class="arch-tool">Apollo.io</span>
@@ -451,6 +514,12 @@
           </div>
         </div>
 
+        <!-- Screenshot 2: Persona Extraction -->
+        <figure class="arch-screenshot">
+          <div class="case-img-placeholder">[INSERT PERSONA EXTRACTION SCREENSHOT HERE]</div>
+          <figcaption class="case-img-caption">Programmatic Persona Extraction pulling real-time target profiles including Heads of Marketing and Marketing Directors mapped directly to the target company data.</figcaption>
+        </figure>
+
         <div class="arch-layer">
           <div class="arch-layer-label">
             <p class="arch-step-num">Layer 02</p>
@@ -458,7 +527,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Multi-Source Data Enrichment</p>
-            <p class="arch-layer-desc">Built a cascading enrichment waterfall inside Clay: if a field was missing from Source A, the system automatically queried Source B, then Source C, before flagging the field as unresolvable. This eliminated blank properties without creating redundant API calls, keeping enrichment cost predictable and coverage high.</p>
+            <p class="arch-layer-desc">Built a cascading <strong>data enrichment waterfall</strong> in Clay. Missing field in Source A? Query Source B, then Source C — before flagging unresolvable. No blank properties. No redundant API calls.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay Enrichment</span>
               <span class="arch-tool">Relational Schemas</span>
@@ -474,7 +543,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Record Deduplication & Merging</p>
-            <p class="arch-layer-desc">Implemented fuzzy-match deduplication rules using email domain, company name, and LinkedIn URL as primary identifiers. Duplicate records were auto-merged or flagged for manual review based on a confidence score, ensuring one clean record per contact in the downstream CRM with full history preserved.</p>
+            <p class="arch-layer-desc">Fuzzy-match dedup using email domain, company name, and LinkedIn URL as primary keys. Duplicates auto-merged or flagged by confidence score. One clean record per contact — full history preserved.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay</span>
               <span class="arch-tool">Match Logic</span>
@@ -490,7 +559,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">HubSpot Custom Property Mapping</p>
-            <p class="arch-layer-desc">Designed custom HubSpot contact and company properties to house enriched fields: firmographics, intent signals, source attribution, and enrichment confidence scores. Clay pushed clean records directly into the correct HubSpot lifecycle stage with properties pre-populated, eliminating all manual CRM data entry for the GTM team.</p>
+            <p class="arch-layer-desc">Built custom HubSpot properties for enriched fields — firmographics, intent signals, source attribution. Clay pushed records directly into the correct lifecycle stage, all properties pre-populated. <strong>Zero manual CRM data entry</strong> for the GTM team.</p>
             <div class="arch-tools">
               <span class="arch-tool">HubSpot CRM</span>
               <span class="arch-tool">Custom Properties</span>
@@ -506,7 +575,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Intent-Based Sequence Enrollment</p>
-            <p class="arch-layer-desc">Replaced time-based triggers with signal-based enrollment logic. Contacts entered outreach sequences based on enriched intent indicators, job change signals, company funding events, or engagement history, rather than arbitrary import dates. Each trigger mapped to a distinct sequence template calibrated to that signal's conversion profile.</p>
+            <p class="arch-layer-desc">Replaced time-based triggers with <strong>signal-based enrollment logic</strong>. Contacts entered sequences on real intent indicators — job changes, funding events, engagement history — not import dates. Each trigger maps to a distinct sequence template.</p>
             <div class="arch-tools">
               <span class="arch-tool">HubSpot Workflows</span>
               <span class="arch-tool">Intent Signals</span>
