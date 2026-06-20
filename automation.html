@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marketing Automation Engine — YoungJoo Chung</title>
+  <title>Marketing Automation Engine · YoungJoo Chung</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -422,7 +422,7 @@
 
   <nav class="nav">
     <div class="nav-container">
-      <a href="index.html" class="nav-home"><img src="images/logo.png" alt="YJC" class="nav-logo-img"></a>
+      <a href="index.html" class="nav-home"><img src="assets/images/logo.png" alt="YJC" class="nav-logo-img"></a>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
@@ -446,7 +446,7 @@
     <div class="container">
       <p class="auto-hero-eyebrow">Marketing Operations · Automation</p>
       <h1 class="auto-hero-title">Marketing Logistics<br>&amp; Automation Engine</h1>
-      <p class="auto-hero-sub">A live simulation of how inbound leads are captured, cleaned, scored, and routed in real time — built to demonstrate the operational logic behind modern marketing automation stacks.</p>
+      <p class="auto-hero-sub">A live simulation of how inbound leads are captured, cleaned, scored, and routed in real time, built to demonstrate the operational logic behind modern marketing automation stacks.</p>
       <div class="auto-tags">
         <span class="auto-tag">HubSpot Logic</span>
         <span class="auto-tag">Lead Scoring</span>
@@ -460,7 +460,7 @@
   <!-- ── Simulator ─────────────────────────────── -->
   <section class="simulator-section">
     <div class="container">
-      <p class="sim-label">↳ Interactive Pipeline Simulator — Try It Live</p>
+      <p class="sim-label">↳ Interactive Pipeline Simulator · Try It Live</p>
 
       <div class="sim-grid" id="sim-grid">
 
@@ -558,7 +558,7 @@
         <div>
           <h2 class="speed-title">The Logic of<br>Speed-to-Lead</h2>
           <p class="speed-body">
-            In modern marketing operations, the time between a lead submitting a form and receiving a response is the single biggest lever on conversion rate. This pipeline simulates the logic I apply in real campaigns: standardize the data, score the intent, and route instantly — so the right person always gets the right lead at the right time.<br><br>
+            In modern marketing operations, the time between a lead submitting a form and receiving a response is the single biggest lever on conversion rate. This pipeline simulates the logic I apply in real campaigns: standardize the data, score the intent, and route instantly, so the right person always gets the right lead at the right time.<br><br>
             By automating text cleansing and sentiment detection, teams eliminate manual triage. High-intent signals like pricing inquiries or urgency language trigger direct sales handoffs, while softer leads flow into nurture sequences that build trust over time.
           </p>
         </div>
@@ -673,7 +673,7 @@
       if (!rawName) { nameInput.focus(); return; }
 
       btn.disabled = true;
-      logEl.innerHTML = '<span class="log-line">// Pipeline initiated — ' + new Date().toLocaleTimeString() + '</span>';
+      logEl.innerHTML = '<span class="log-line">// Pipeline initiated: ' + new Date().toLocaleTimeString() + '</span>';
       resetSteps();
 
       // ── Packet appears at form button ────────────
@@ -705,7 +705,7 @@
 
       const hits = scoreMessage(message);
       const isHighPriority = hits.length > 0;
-      const score = isHighPriority ? 'HIGH INTENT (' + hits.join(', ') + ')' : 'LOW INTENT — no triggers found';
+      const score = isHighPriority ? 'HIGH INTENT (' + hits.join(', ') + ')' : 'LOW INTENT: no triggers found';
       outSentiment.textContent = 'Score: ' + score;
       stepSentiment.classList.remove('active');
       stepSentiment.classList.add('done');

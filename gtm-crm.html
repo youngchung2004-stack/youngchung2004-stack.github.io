@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTM CRM Architecture — YoungJoo Chung</title>
+  <title>GTM CRM Architecture · YoungJoo Chung</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -334,7 +334,7 @@
 
   <nav class="nav">
     <div class="nav-container">
-      <a href="index.html" class="nav-home"><img src="images/logo.png" alt="YJC" class="nav-logo-img"></a>
+      <a href="index.html" class="nav-home"><img src="assets/images/logo.png" alt="YJC" class="nav-logo-img"></a>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
@@ -358,7 +358,7 @@
     <div class="container">
       <p class="gtm-eyebrow">Marketing Operations · Case Study</p>
       <h1 class="gtm-title">GTM CRM<br>Architecture</h1>
-      <p class="gtm-sub">Engineering a custom go-to-market CRM system using Clay and multi-source relational schemas — unifying prospect intelligence from fragmented data sources into a single, enriched, action-ready pipeline.</p>
+      <p class="gtm-sub">Engineering a custom go-to-market CRM system using Clay and multi-source relational schemas, unifying prospect intelligence from fragmented data sources into a single, enriched, action-ready pipeline.</p>
       <div class="gtm-tags">
         <span class="gtm-tag accent">Clay</span>
         <span class="gtm-tag accent">Relational Schemas</span>
@@ -380,7 +380,7 @@
         <div class="overview-col">
           <p class="overview-num">01</p>
           <p class="overview-label">The Challenge</p>
-          <p class="overview-body">Prospect data was siloed across Apollo, LinkedIn, and manual spreadsheets — no unified schema, constant duplicates, and zero enrichment logic tying signals together for outreach.</p>
+          <p class="overview-body">Prospect data was siloed across Apollo, LinkedIn, and manual spreadsheets, with no unified schema, constant duplicates, and zero enrichment logic tying signals together for outreach.</p>
         </div>
 
         <div class="overview-col">
@@ -408,18 +408,18 @@
           <p class="case-eyebrow">The Challenge</p>
           <h2 class="case-title">Fragmented Data,<br>Broken Pipeline</h2>
           <p class="case-body">
-            Most GTM teams don't have a data problem — they have a data architecture problem. The information exists; it's just scattered across six tools with no consistent schema, no deduplication logic, and no enrichment layer connecting intent signals to outreach timing.
+            Most GTM teams don't have a data problem. They have a data architecture problem. The information exists; it's just scattered across six tools with no consistent schema, no deduplication logic, and no enrichment layer connecting intent signals to outreach timing.
           </p>
           <p class="case-body">
-            The result is reps working from stale exports, marketing sending to bad emails, and leadership unable to trust their own pipeline numbers. The fix isn't more data — it's building the architecture to make existing data usable.
+            The result is reps working from stale exports, marketing sending to bad emails, and leadership unable to trust their own pipeline numbers. The fix isn't more data. It's building the architecture to make existing data usable.
           </p>
         </div>
 
         <ul class="pain-list">
           <li>Prospect records duplicated across Apollo, LinkedIn exports, and manual CSV imports with no deduplication rule set</li>
-          <li>No enrichment waterfall — missing fields were left blank rather than pulled from alternate sources</li>
+          <li>No enrichment waterfall: missing fields were left blank rather than pulled from alternate sources</li>
           <li>CRM properties inconsistently mapped; custom fields in HubSpot did not reflect the actual signals reps used to prioritize outreach</li>
-          <li>Sequences triggered on import date, not intent signals — timing was arbitrary rather than behavior-driven</li>
+          <li>Sequences triggered on import date, not intent signals: timing was arbitrary rather than behavior-driven</li>
           <li>No relational linking between company-level and contact-level records, making account-based plays impossible to execute cleanly</li>
         </ul>
 
@@ -442,7 +442,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Unified Field Schema Design</p>
-            <p class="arch-layer-desc">Audited all incoming data sources — Apollo, LinkedIn Sales Navigator, and manual exports — and designed a canonical field schema with standardized naming conventions, data types, and required vs. enrichable field classification. Every record entering the system was mapped to this schema before any enrichment ran.</p>
+            <p class="arch-layer-desc">Audited all incoming data sources, Apollo, LinkedIn Sales Navigator, and manual exports, and designed a canonical field schema with standardized naming conventions, data types, and required vs. enrichable field classification. Every record entering the system was mapped to this schema before any enrichment ran.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay</span>
               <span class="arch-tool">Apollo.io</span>
@@ -458,7 +458,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Multi-Source Data Enrichment</p>
-            <p class="arch-layer-desc">Built a cascading enrichment waterfall inside Clay — if a field was missing from Source A, the system automatically queried Source B, then Source C, before flagging the field as unresolvable. This eliminated blank properties without creating redundant API calls, keeping enrichment cost predictable and coverage high.</p>
+            <p class="arch-layer-desc">Built a cascading enrichment waterfall inside Clay: if a field was missing from Source A, the system automatically queried Source B, then Source C, before flagging the field as unresolvable. This eliminated blank properties without creating redundant API calls, keeping enrichment cost predictable and coverage high.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay Enrichment</span>
               <span class="arch-tool">Relational Schemas</span>
@@ -490,7 +490,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">HubSpot Custom Property Mapping</p>
-            <p class="arch-layer-desc">Designed custom HubSpot contact and company properties to house enriched fields — firmographics, intent signals, source attribution, and enrichment confidence scores. Clay pushed clean records directly into the correct HubSpot lifecycle stage with properties pre-populated, eliminating all manual CRM data entry for the GTM team.</p>
+            <p class="arch-layer-desc">Designed custom HubSpot contact and company properties to house enriched fields: firmographics, intent signals, source attribution, and enrichment confidence scores. Clay pushed clean records directly into the correct HubSpot lifecycle stage with properties pre-populated, eliminating all manual CRM data entry for the GTM team.</p>
             <div class="arch-tools">
               <span class="arch-tool">HubSpot CRM</span>
               <span class="arch-tool">Custom Properties</span>
@@ -506,7 +506,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Intent-Based Sequence Enrollment</p>
-            <p class="arch-layer-desc">Replaced time-based triggers with signal-based enrollment logic. Contacts entered outreach sequences based on enriched intent indicators — job change signals, company funding events, or engagement history — rather than arbitrary import dates. Each trigger mapped to a distinct sequence template calibrated to that signal's conversion profile.</p>
+            <p class="arch-layer-desc">Replaced time-based triggers with signal-based enrollment logic. Contacts entered outreach sequences based on enriched intent indicators, job change signals, company funding events, or engagement history, rather than arbitrary import dates. Each trigger mapped to a distinct sequence template calibrated to that signal's conversion profile.</p>
             <div class="arch-tools">
               <span class="arch-tool">HubSpot Workflows</span>
               <span class="arch-tool">Intent Signals</span>
@@ -530,7 +530,7 @@
         <div class="stat-rows">
           <div class="stat-row">
             <span class="stat-num">1</span>
-            <p class="stat-desc">Unified record per prospect — no duplicates, no blank properties, no manual cleanup required by reps.</p>
+            <p class="stat-desc">Unified record per prospect: no duplicates, no blank properties, no manual cleanup required by reps.</p>
           </div>
           <div class="stat-row">
             <span class="stat-num">5+</span>
@@ -538,20 +538,20 @@
           </div>
           <div class="stat-row">
             <span class="stat-num">0</span>
-            <p class="stat-desc">Manual CRM data entry required post-implementation — every enriched field pushed programmatically to HubSpot.</p>
+            <p class="stat-desc">Manual CRM data entry required post-implementation: every enriched field pushed programmatically to HubSpot.</p>
           </div>
           <div class="stat-row">
             <span class="stat-num">Signal</span>
-            <p class="stat-desc">Outreach sequences now triggered by real intent signals — job changes, funding events, engagement history — not import timestamps.</p>
+            <p class="stat-desc">Outreach sequences now triggered by real intent signals, job changes, funding events, engagement history, not import timestamps.</p>
           </div>
         </div>
 
         <ul class="outcomes-list">
-          <li>CRM data quality improved immediately upon launch — enrichment waterfall eliminated the blank-field problem that had been degrading sequence deliverability</li>
-          <li>GTM team onboarded to clean, standardized records within one sprint cycle — no retraining required because the schema matched how reps already thought about prospects</li>
-          <li>Account-based plays became executable for the first time — relational company-to-contact linking enabled multi-threaded outreach without manual cross-referencing</li>
+          <li>CRM data quality improved immediately upon launch: enrichment waterfall eliminated the blank-field problem that had been degrading sequence deliverability</li>
+          <li>GTM team onboarded to clean, standardized records within one sprint cycle: no retraining required because the schema matched how reps already thought about prospects</li>
+          <li>Account-based plays became executable for the first time: relational company-to-contact linking enabled multi-threaded outreach without manual cross-referencing</li>
           <li>Pipeline reporting accuracy increased as lifecycle stage assignments were now driven by enriched data logic rather than manual rep updates</li>
-          <li>Architecture designed to scale — adding a new data source requires only a new Clay column and field mapping rule, not a system rebuild</li>
+          <li>Architecture designed to scale: adding a new data source requires only a new Clay column and field mapping rule, not a system rebuild</li>
         </ul>
 
       </div>

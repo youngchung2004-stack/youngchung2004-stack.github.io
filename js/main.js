@@ -145,7 +145,7 @@ const projects = [
     description: 'A strategic campaign to expand Bhakti Chai\'s presence into East Coast urban and college markets by positioning it as a functional wellness beverage for Gen Z. Execution focused on a multi-city college ambassador tour and heavy social media engagement.',
     skills: ['Media Planning', 'Campaign Structuring', 'Experiential Marketing', 'Strategic Timeline Management', 'Social Media Strategy', 'TikTok / Instagram'],
     bullets: null,
-    screenshots: ['images/projects/bhakti-chai/screenshot-1.png','images/projects/bhakti-chai/screenshot-2.png','images/projects/bhakti-chai/screenshot-3.png','images/projects/bhakti-chai/screenshot-4.png']
+    screenshots: ['assets/images/projects/bhakti-chai/screenshot-1.png','assets/images/projects/bhakti-chai/screenshot-2.png','assets/images/projects/bhakti-chai/screenshot-3.png','assets/images/projects/bhakti-chai/screenshot-4.png']
   },
   {
     id: 'ups-store',
@@ -157,7 +157,7 @@ const projects = [
     description: 'A creative platform bridging The UPS Store and Gen Z small business owners. Introduced the "Box Buddies" concept for a more interactive brand experience, alongside "Build-A-PR Box" and influencer collaborations.',
     skills: ['Creative Strategy', 'Consumer Insight Research', 'Presentation Delivery', 'Figma', 'Social Media Content Strategy'],
     bullets: null,
-    screenshots: ['images/projects/ups-store/screenshot-2.png','images/projects/ups-store/screenshot-3.png','images/projects/ups-store/screenshot-4.png','images/projects/ups-store/screenshot-5.png','images/projects/ups-store/screenshot-6.png']
+    screenshots: ['assets/images/projects/ups-store/screenshot-2.png','assets/images/projects/ups-store/screenshot-3.png','assets/images/projects/ups-store/screenshot-4.png','assets/images/projects/ups-store/screenshot-5.png','assets/images/projects/ups-store/screenshot-6.png']
   },
   {
     id: 'matcha-brand',
@@ -169,7 +169,7 @@ const projects = [
     description: 'A comprehensive website layout for a fictional matcha brand focused on creating a clean, aesthetic UI that reflects the wellness and ritual aspects of the product.',
     skills: ['UI/UX Design (Figma)', 'Visual Branding', 'E-commerce Layout Design', 'Prototyping'],
     bullets: null,
-    screenshots: ['images/projects/matcha-brand/screenshot-1.png','images/projects/matcha-brand/screenshot-2.png','images/projects/matcha-brand/screenshot-3.png']
+    screenshots: ['assets/images/projects/matcha-brand/screenshot-1.png','assets/images/projects/matcha-brand/screenshot-2.png','assets/images/projects/matcha-brand/screenshot-3.png']
   },
   {
     id: 'women-in-fashion',
@@ -181,7 +181,7 @@ const projects = [
     description: 'An interactive digital autobiography of Coco Chanel, Rei Kawakubo, Vivienne Westwood, and Miuccia Prada — exploring their historical impact through curated visual narrative.',
     skills: ['UI/UX Design (Figma)', 'Content Curation', 'Educational Layout Design', 'Storytelling'],
     bullets: null,
-    screenshots: ['images/projects/women-in-fashion/screenshot-1.png','images/projects/women-in-fashion/screenshot-2.png']
+    screenshots: ['assets/images/projects/women-in-fashion/screenshot-1.png','assets/images/projects/women-in-fashion/screenshot-2.png']
   },
   {
     id: 'house-of-hur',
@@ -199,7 +199,7 @@ const projects = [
       'Negotiated paid and gifting terms with micro-influencers (up to 100K followers), building long-term relationships through email campaigns.',
       'Planned, filmed, and published TikTok assets for product launches; tested hooks/CTAs and documented learnings for future campaigns.'
     ],
-    screenshots: ['images/projects/house-of-hur/detail.webp']
+    screenshots: ['assets/images/projects/house-of-hur/detail.webp']
   },
   {
     id: 'bilin-technology',
@@ -235,7 +235,7 @@ const projects = [
       'Produced custom digital illustrations and graphics using Procreate and Canva.',
       'Shot and edited event photography for promotional use across all channels.'
     ],
-    screenshots: ['images/projects/kasa/screenshot-1.png','images/projects/kasa/screenshot-2.png','images/projects/kasa/screenshot-3.png','images/projects/kasa/screenshot-4.png']
+    screenshots: ['assets/images/projects/kasa/screenshot-1.png','assets/images/projects/kasa/screenshot-2.png','assets/images/projects/kasa/screenshot-3.png','assets/images/projects/kasa/screenshot-4.png']
   },
   {
     id: 'podcast',
@@ -247,7 +247,7 @@ const projects = [
     description: 'Developed a comprehensive social media strategy to promote guest-led podcast episodes, specializing in identifying high-impact segments to create engaging clips and promotional posts.',
     skills: ['Video Snippet Editing', 'Social Media Promotion', 'Content Curation', 'Podcast Hosting', 'Graphic Design'],
     bullets: null,
-    screenshots: ['images/projects/podcast/screenshot-1.png','images/projects/podcast/screenshot-2.png','images/projects/podcast/screenshot-3.png']
+    screenshots: ['assets/images/projects/podcast/screenshot-1.png','assets/images/projects/podcast/screenshot-2.png','assets/images/projects/podcast/screenshot-3.png']
   }
 ];
 
@@ -257,16 +257,29 @@ const projects = [
 function initFilters() {
   const tabs    = document.querySelectorAll('.filter-tab[data-view]');
   const section = document.querySelector('.projects-section');
+  const flat    = document.querySelector('.projects-grid-flat');
   if (!tabs.length || !section) return;
 
   // Ensure all groups are always visible (no filtered-out state needed)
   document.querySelectorAll('.project-group').forEach(g => g.classList.remove('filtered-out'));
+
+  // Record each card's original (category) parent so "Categories" view can restore it exactly.
+  const cards = [...document.querySelectorAll('.project-card')];
+  const homeParents = cards.map(card => card.parentElement);
 
   function applyView(view) {
     tabs.forEach(t => t.classList.toggle('active', t.dataset.view === view));
     section.classList.toggle('view-all',        view === 'all');
     section.classList.toggle('view-categories', view === 'categories');
     history.replaceState(null, '', view === 'categories' ? '#categories' : window.location.pathname);
+
+    if (flat) {
+      if (view === 'all') {
+        cards.forEach(card => flat.appendChild(card));
+      } else {
+        cards.forEach((card, i) => homeParents[i].appendChild(card));
+      }
+    }
   }
 
   function switchView(view) {
@@ -379,8 +392,18 @@ function initLightbox() {
   });
 }
 
+/* ============================================
+   PROJECT CARD IMAGE FALLBACK
+   ============================================ */
+function initImageFallback() {
+  document.querySelectorAll('.project-card-image img').forEach(img => {
+    img.addEventListener('error', () => { img.style.display = 'none'; });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initFilters();
   initModal();
   initLightbox();
+  initImageFallback();
 });

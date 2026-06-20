@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — YoungJoo Chung</title>
+  <title>Contact · YoungJoo Chung</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
   <nav class="nav">
     <div class="nav-container">
-      <a href="index.html" class="nav-home"><img src="images/logo.png" alt="YJC" class="nav-logo-img"></a>
+      <a href="index.html" class="nav-home"><img src="assets/images/logo.png" alt="YJC" class="nav-logo-img"></a>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
@@ -36,49 +36,42 @@
   </nav>
 
   <section class="contact-section">
-    <div class="container">
-      <div class="contact-grid">
+    <div class="container contact-layout">
 
-        <div class="reveal">
-          <p class="contact-eyebrow">Let's work together</p>
-          <h2>Get In Touch</h2>
-          <p>I'm always open to new opportunities, collaborations, and conversations. Whether you're looking for a marketing professional or just want to connect — reach out through any of the channels below.</p>
-          <a href="YOUNGJOOCHUNG_RESUME.pdf" target="_blank" class="btn btn-cream">Download Resume</a>
-        </div>
+      <h2 class="contact-headline reveal">
+        <span class="contact-headline-line line-1">Let's</span>
+        <span class="contact-headline-line line-2">get in</span>
+        <span class="contact-headline-line line-3">touch<i class="contact-headline-dot"></i></span>
+      </h2>
 
-        <div class="contact-cards reveal reveal-delay-2">
+      <div class="contact-info reveal reveal-delay-2">
+        <p class="contact-blurb">Open to new opportunities, collaborations, and conversations. Reach out through any of the channels below.</p>
 
-          <a href="https://www.linkedin.com/in/young-chung/" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-card-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-            </div>
-            <div>
-              <p class="contact-card-label">LinkedIn</p>
-              <p class="contact-card-value">young-chung</p>
-            </div>
-            <span class="contact-card-arrow">↗</span>
-          </a>
-
+        <div class="contact-cards">
           <a href="mailto:Youngchung2004@gmail.com" class="contact-card">
-            <div class="contact-card-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <div>
-              <p class="contact-card-label">Email</p>
-              <p class="contact-card-value">Youngchung2004@gmail.com</p>
-            </div>
-            <span class="contact-card-arrow">↗</span>
+            <span class="contact-card-text">
+              <span class="contact-card-label">Email</span>
+              <span class="contact-card-value">Youngchung2004@gmail.com</span>
+            </span>
+            <span class="contact-card-arrow">→</span>
           </a>
-
+          <a href="https://www.linkedin.com/in/young-chung/" target="_blank" rel="noopener" class="contact-card">
+            <span class="contact-card-text">
+              <span class="contact-card-label">LinkedIn</span>
+              <span class="contact-card-value">young-chung</span>
+            </span>
+            <span class="contact-card-arrow">→</span>
+          </a>
+          <a href="assets/docs/YOUNGJOOCHUNG_RESUME.pdf" target="_blank" class="contact-card">
+            <span class="contact-card-text">
+              <span class="contact-card-label">Resume</span>
+              <span class="contact-card-value">Download PDF</span>
+            </span>
+            <span class="contact-card-arrow">→</span>
+          </a>
         </div>
       </div>
+
     </div>
   </section>
 

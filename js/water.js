@@ -149,7 +149,7 @@
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
   };
   bgImg.onerror = () => console.error('water-bg.jpg failed to load');
-  bgImg.src = 'images/water-bg.jpg';
+  bgImg.src = 'assets/images/water-bg.jpg';
 
   /* ── Mouse ── */
   let mx = 0.5, my = 0.5, dropStr = 0, prevMx = -1, prevMy = -1;
