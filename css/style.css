@@ -389,7 +389,7 @@ body {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
 }
 
@@ -422,6 +422,34 @@ body {
   line-height: 1.7;
   color: var(--cream-dim);
 }
+
+.skill-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--cream-dim);
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  border: 1px solid var(--cream-border);
+  border-radius: 999px;
+  transition: all .2s;
+}
+
+.skill-tag:hover { color: var(--cream); border-color: rgba(245,245,240,.35); }
+
+.skill-tag svg { width: 18px; height: 18px; flex-shrink: 0; fill: currentColor; }
 
 /* ============================================
    FOOTER CTA
@@ -1128,9 +1156,8 @@ body {
    ============================================ */
 @media (max-width: 1024px) {
   .project-card  { flex-basis: calc((100% - 2px) / 2); }
-  .skills-grid   { grid-template-columns: repeat(2, 1fr); }
-  .skill-block:nth-child(2) { border-right: none; }
-  .skill-block:nth-child(3) { border-top: 1px solid var(--cream-border); }
+  .skills-grid   { grid-template-columns: 1fr; }
+  .skill-block   { border-right: none; border-top: none; border-bottom: 1px solid var(--cream-border); }
   .gallery-grid  { columns: 2; }
 }
 
