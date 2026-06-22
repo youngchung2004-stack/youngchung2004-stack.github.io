@@ -361,6 +361,27 @@
       color: rgba(245,245,240,.45);
       background: rgba(245,245,240,.02);
     }
+    /* Proof screenshots inside a single arch-layer body (right column only) */
+    .layer-screenshot {
+      margin-top: 20px;
+      border: 1px solid rgba(245,245,240,.1);
+      box-shadow: 0 4px 32px rgba(0,0,0,.4);
+    }
+    .layer-screenshot img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .layer-screenshot-caption {
+      padding: 10px 4px 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(245,245,240,.45);
+    }
+
     /* Inline block inside arch-layers */
     .arch-screenshot {
       max-width: 860px;
@@ -583,6 +604,16 @@
               <span class="arch-tool">Gmail</span>
               <span class="arch-tool">Workflow Orchestration</span>
             </div>
+
+            <figure class="layer-screenshot">
+              <img src="images/projects/gtm-crm/zapier-bridge.png" alt="Zapier automation setup connecting Google Sheets to Gmail">
+              <figcaption class="layer-screenshot-caption">Zapier automation bridge — Google Sheets to Gmail</figcaption>
+            </figure>
+
+            <figure class="layer-screenshot">
+              <img src="images/projects/gtm-crm/gmail-sent.png" alt="Gmail sent folder showing outbound emails">
+              <figcaption class="layer-screenshot-caption">Gmail sent folder — 43 personalized outbound emails</figcaption>
+            </figure>
           </div>
         </div>
 
