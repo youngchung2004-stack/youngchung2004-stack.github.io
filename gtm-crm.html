@@ -315,6 +315,82 @@
       color: rgba(100,220,130,.6);
     }
 
+    /* ── Bold term emphasis ─────────────────────── */
+    .case-body strong,
+    .arch-layer-desc strong,
+    .pain-list li strong {
+      color: var(--cream);
+      font-style: normal;
+    }
+
+    /* ── Screenshot Blocks ──────────────────────── */
+    .case-screenshot-strip {
+      padding: 0 0 80px;
+    }
+    .case-img-block {
+      margin: 0 auto;
+      max-width: 860px;
+      border: 1px solid rgba(245,245,240,.1);
+      box-shadow: 0 4px 32px rgba(0,0,0,.4);
+    }
+    .case-img-placeholder {
+      width: 100%;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245,245,240,.02);
+      border-bottom: 1px dashed rgba(245,245,240,.1);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,.18);
+    }
+    .case-img-block img, .arch-screenshot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .case-img-caption {
+      padding: 14px 20px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(245,245,240,.45);
+      background: rgba(245,245,240,.02);
+    }
+    /* Proof screenshots inside a single arch-layer body (right column only) */
+    .layer-screenshot {
+      margin-top: 20px;
+      border: 1px solid rgba(245,245,240,.1);
+      box-shadow: 0 4px 32px rgba(0,0,0,.4);
+    }
+    .layer-screenshot img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .layer-screenshot-caption {
+      padding: 10px 4px 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(245,245,240,.45);
+    }
+
+    /* Inline block inside arch-layers */
+    .arch-screenshot {
+      max-width: 860px;
+      border: 1px solid rgba(245,245,240,.1);
+      box-shadow: 0 4px 32px rgba(0,0,0,.4);
+      margin: 0 auto;
+    }
+    .arch-screenshot .case-img-placeholder { min-height: 240px; }
+
     /* ── Responsive ─────────────────────────────── */
     @media (max-width: 900px) {
       .overview-grid { grid-template-columns: 1fr; }
@@ -358,16 +434,16 @@
     <div class="container">
       <p class="gtm-eyebrow">Marketing Operations · Case Study</p>
       <h1 class="gtm-title">GTM CRM<br>Architecture</h1>
-      <p class="gtm-sub">Engineering a custom go-to-market CRM system using Clay and multi-source relational schemas, unifying prospect intelligence from fragmented data sources into a single, enriched, action-ready pipeline.</p>
+      <p class="gtm-sub">Orchestrating a multi-tool go-to-market pipeline — Clay for enrichment, Google Sheets as the data warehouse layer, and Zapier-bridged Gmail delivery — routing prospect intelligence from raw data to compliant outbound send.</p>
       <div class="gtm-tags">
         <span class="gtm-tag accent">Clay</span>
-        <span class="gtm-tag accent">Relational Schemas</span>
-        <span class="gtm-tag accent">HubSpot</span>
+        <span class="gtm-tag accent">Google Sheets</span>
+        <span class="gtm-tag accent">Zapier</span>
+        <span class="gtm-tag accent">Gmail</span>
         <span class="gtm-tag">Apollo.io</span>
         <span class="gtm-tag">LinkedIn Sales Navigator</span>
         <span class="gtm-tag">Data Enrichment</span>
-        <span class="gtm-tag">GTM Strategy</span>
-        <span class="gtm-tag">CRM Architecture</span>
+        <span class="gtm-tag">Workflow Orchestration</span>
       </div>
     </div>
   </section>
@@ -386,7 +462,7 @@
         <div class="overview-col">
           <p class="overview-num">02</p>
           <p class="overview-label">The Execution</p>
-          <p class="overview-body">Designed a multi-source relational architecture in Clay, mapping field logic across data providers, building enrichment waterfalls, and routing clean records directly into HubSpot with custom properties.</p>
+          <p class="overview-body">Orchestrated a multi-tool pipeline: Clay handled enrichment and filtering, Google Sheets served as the data warehouse layer, and Zapier bridged clean records into Gmail for compliant, deliverable outbound sends.</p>
         </div>
 
         <div class="overview-col">
@@ -408,22 +484,32 @@
           <p class="case-eyebrow">The Challenge</p>
           <h2 class="case-title">Fragmented Data,<br>Broken Pipeline</h2>
           <p class="case-body">
-            Most GTM teams don't have a data problem. They have a data architecture problem. The information exists; it's just scattered across six tools with no consistent schema, no deduplication logic, and no enrichment layer connecting intent signals to outreach timing.
+            Most GTM teams don't have a data problem — they have a <strong>data architecture</strong> problem. Prospect data existed across Apollo, LinkedIn, and manual exports. None of it was connected, cleaned, or enriched.
           </p>
           <p class="case-body">
-            The result is reps working from stale exports, marketing sending to bad emails, and leadership unable to trust their own pipeline numbers. The fix isn't more data. It's building the architecture to make existing data usable.
+            Reps worked from stale lists. Sequences hit bad emails. Leadership couldn't trust the pipeline numbers. The fix wasn't more data — it was a <strong>relational data schema</strong> that made existing data usable.
           </p>
         </div>
 
         <ul class="pain-list">
-          <li>Prospect records duplicated across Apollo, LinkedIn exports, and manual CSV imports with no deduplication rule set</li>
-          <li>No enrichment waterfall: missing fields were left blank rather than pulled from alternate sources</li>
-          <li>CRM properties inconsistently mapped; custom fields in HubSpot did not reflect the actual signals reps used to prioritize outreach</li>
-          <li>Sequences triggered on import date, not intent signals: timing was arbitrary rather than behavior-driven</li>
-          <li>No relational linking between company-level and contact-level records, making account-based plays impossible to execute cleanly</li>
+          <li>Records duplicated across Apollo, LinkedIn exports, and CSV imports — no deduplication logic in place</li>
+          <li>No <strong>data enrichment waterfall</strong> — blank fields stayed blank instead of pulling from fallback sources</li>
+          <li>No consistent property mapping across tools; downstream records didn't reflect the signals reps actually used to prioritize</li>
+          <li>Sequences triggered on import date, not intent — outreach timing was arbitrary</li>
+          <li>No company-to-contact relational linking — <strong>account-based plays</strong> were impossible to execute cleanly</li>
         </ul>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ── Screenshot 1: ICP Company Matrix ─────── -->
+  <section class="case-screenshot-strip">
+    <div class="container">
+      <figure class="case-img-block">
+        <img src="images/projects/gtm-crm/screenshot-1.jpg" alt="Target ICP Company Identification Matrix inside Clay">
+        <figcaption class="case-img-caption">Target ICP Company Identification Matrix inside Clay, filtering for software companies with 11–50 employees in the NYC market.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -431,7 +517,7 @@
   <section class="execution-section">
     <div class="container">
       <p class="case-eyebrow">The Execution</p>
-      <h2 class="case-title">Building the Architecture</h2>
+      <h2 class="case-title">Orchestrating the Pipeline</h2>
 
       <div class="arch-layers">
 
@@ -442,7 +528,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Unified Field Schema Design</p>
-            <p class="arch-layer-desc">Audited all incoming data sources, Apollo, LinkedIn Sales Navigator, and manual exports, and designed a canonical field schema with standardized naming conventions, data types, and required vs. enrichable field classification. Every record entering the system was mapped to this schema before any enrichment ran.</p>
+            <p class="arch-layer-desc">Audited all data sources — Apollo, LinkedIn Sales Navigator, manual exports — and built a <strong>canonical field schema</strong>: standardized names, data types, and required vs. enrichable field classification. Every record was mapped to this schema before any enrichment ran.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay</span>
               <span class="arch-tool">Apollo.io</span>
@@ -451,6 +537,12 @@
           </div>
         </div>
 
+        <!-- Screenshot 2: Persona Extraction -->
+        <figure class="arch-screenshot">
+          <img src="images/projects/gtm-crm/screenshot-2.jpg" alt="Programmatic Persona Extraction inside Clay">
+          <figcaption class="case-img-caption">Programmatic Persona Extraction pulling real-time target profiles including Heads of Marketing and Marketing Directors mapped directly to the target company data.</figcaption>
+        </figure>
+
         <div class="arch-layer">
           <div class="arch-layer-label">
             <p class="arch-step-num">Layer 02</p>
@@ -458,7 +550,7 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Multi-Source Data Enrichment</p>
-            <p class="arch-layer-desc">Built a cascading enrichment waterfall inside Clay: if a field was missing from Source A, the system automatically queried Source B, then Source C, before flagging the field as unresolvable. This eliminated blank properties without creating redundant API calls, keeping enrichment cost predictable and coverage high.</p>
+            <p class="arch-layer-desc">Built a cascading <strong>data enrichment waterfall</strong> in Clay. Missing field in Source A? Query Source B, then Source C — before flagging unresolvable. No blank properties. No redundant API calls.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay Enrichment</span>
               <span class="arch-tool">Relational Schemas</span>
@@ -474,11 +566,11 @@
           </div>
           <div class="arch-layer-body">
             <p class="arch-layer-title">Record Deduplication & Merging</p>
-            <p class="arch-layer-desc">Implemented fuzzy-match deduplication rules using email domain, company name, and LinkedIn URL as primary identifiers. Duplicate records were auto-merged or flagged for manual review based on a confidence score, ensuring one clean record per contact in the downstream CRM with full history preserved.</p>
+            <p class="arch-layer-desc">Fuzzy-match dedup using email domain, company name, and LinkedIn URL as primary keys. Duplicates auto-merged or flagged by confidence score. One clean record per contact — full history preserved.</p>
             <div class="arch-tools">
               <span class="arch-tool">Clay</span>
               <span class="arch-tool">Match Logic</span>
-              <span class="arch-tool">HubSpot Dedup</span>
+              <span class="arch-tool">Sheets Dedup</span>
             </div>
           </div>
         </div>
@@ -486,15 +578,15 @@
         <div class="arch-layer">
           <div class="arch-layer-label">
             <p class="arch-step-num">Layer 04</p>
-            <p class="arch-step-name">CRM Sync</p>
+            <p class="arch-step-name">Warehouse Routing</p>
           </div>
           <div class="arch-layer-body">
-            <p class="arch-layer-title">HubSpot Custom Property Mapping</p>
-            <p class="arch-layer-desc">Designed custom HubSpot contact and company properties to house enriched fields: firmographics, intent signals, source attribution, and enrichment confidence scores. Clay pushed clean records directly into the correct HubSpot lifecycle stage with properties pre-populated, eliminating all manual CRM data entry for the GTM team.</p>
+            <p class="arch-layer-title">Google Sheets as the Staging Layer</p>
+            <p class="arch-layer-desc">Clay's native sequencer was the original plan — until <strong>Google's API security protocols</strong> for personal inboxes blocked it from sending through a personal Gmail account. Re-routed enriched, qualified records from Clay into a <strong>Google Sheets data warehouse layer</strong>, creating a clean staging environment between enrichment and send.</p>
             <div class="arch-tools">
-              <span class="arch-tool">HubSpot CRM</span>
-              <span class="arch-tool">Custom Properties</span>
-              <span class="arch-tool">Lifecycle Stages</span>
+              <span class="arch-tool">Clay</span>
+              <span class="arch-tool">Google Sheets</span>
+              <span class="arch-tool">Data Warehousing</span>
             </div>
           </div>
         </div>
@@ -502,16 +594,26 @@
         <div class="arch-layer">
           <div class="arch-layer-label">
             <p class="arch-step-num">Layer 05</p>
-            <p class="arch-step-name">Trigger Routing</p>
+            <p class="arch-step-name">Outbound Orchestration</p>
           </div>
           <div class="arch-layer-body">
-            <p class="arch-layer-title">Intent-Based Sequence Enrollment</p>
-            <p class="arch-layer-desc">Replaced time-based triggers with signal-based enrollment logic. Contacts entered outreach sequences based on enriched intent indicators, job change signals, company funding events, or engagement history, rather than arbitrary import dates. Each trigger mapped to a distinct sequence template calibrated to that signal's conversion profile.</p>
+            <p class="arch-layer-title">Zapier-to-Gmail Send Bridge</p>
+            <p class="arch-layer-desc">Engineered an <strong>automation bridge</strong> in Zapier connecting the Sheets warehouse directly to Gmail. Each qualified record triggers a personalized send through native Gmail delivery — preserving inbox reputation and working within Google's security constraints instead of against them.</p>
             <div class="arch-tools">
-              <span class="arch-tool">HubSpot Workflows</span>
-              <span class="arch-tool">Intent Signals</span>
-              <span class="arch-tool">Sequence Logic</span>
+              <span class="arch-tool">Zapier</span>
+              <span class="arch-tool">Gmail</span>
+              <span class="arch-tool">Workflow Orchestration</span>
             </div>
+
+            <figure class="layer-screenshot">
+              <img src="images/projects/gtm-crm/zapier-bridge.png" alt="Zapier automation setup connecting Google Sheets to Gmail">
+              <figcaption class="layer-screenshot-caption">Zapier automation bridge — Google Sheets to Gmail</figcaption>
+            </figure>
+
+            <figure class="layer-screenshot">
+              <img src="images/projects/gtm-crm/gmail-sent.png" alt="Gmail sent folder showing outbound emails">
+              <figcaption class="layer-screenshot-caption">Gmail sent folder — 43 personalized outbound emails</figcaption>
+            </figure>
           </div>
         </div>
 
@@ -523,7 +625,7 @@
   <section class="results-section">
     <div class="container">
       <p class="case-eyebrow">The Results</p>
-      <h2 class="case-title">What the Architecture<br>Delivered</h2>
+      <h2 class="case-title">What the Pipeline<br>Delivered</h2>
 
       <div class="results-grid" style="margin-top: 48px;">
 
@@ -538,7 +640,7 @@
           </div>
           <div class="stat-row">
             <span class="stat-num">0</span>
-            <p class="stat-desc">Manual CRM data entry required post-implementation: every enriched field pushed programmatically to HubSpot.</p>
+            <p class="stat-desc">Manual data entry required post-implementation: every enriched record routed programmatically from Clay through Sheets to Gmail.</p>
           </div>
           <div class="stat-row">
             <span class="stat-num">Signal</span>
@@ -550,8 +652,8 @@
           <li>CRM data quality improved immediately upon launch: enrichment waterfall eliminated the blank-field problem that had been degrading sequence deliverability</li>
           <li>GTM team onboarded to clean, standardized records within one sprint cycle: no retraining required because the schema matched how reps already thought about prospects</li>
           <li>Account-based plays became executable for the first time: relational company-to-contact linking enabled multi-threaded outreach without manual cross-referencing</li>
-          <li>Pipeline reporting accuracy increased as lifecycle stage assignments were now driven by enriched data logic rather than manual rep updates</li>
-          <li>Architecture designed to scale: adding a new data source requires only a new Clay column and field mapping rule, not a system rebuild</li>
+          <li>Outbound stage tracking gained accuracy, driven by the Sheets-based data layer rather than manual rep updates</li>
+          <li>Pipeline designed to scale: adding a new data source requires only a new Clay column and field mapping rule, not a workflow rebuild</li>
         </ul>
 
       </div>
